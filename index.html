@@ -121,23 +121,9 @@ body{background:var(--bg);color:var(--text);font-family:var(--font);font-size:13
     <div class="live-badge" id="conn-badge"><div class="live-dot" id="conn-dot" style="background:var(--muted)"></div><span id="conn-label">Demo</span></div>
     <span id="countdown" style="font-size:10px;color:var(--muted);font-family:var(--mono);min-width:110px;text-align:right"></span>
     <button class="btn-refresh" onclick="fetchAllData()">↻ Refresh</button>
-    <button class="btn-cfg" onclick="openModal()">⚙ Konfigurasi</button>
+    <button class="btn-cfg" onclick="showConfig()">⚙ Konfigurasi</button>
   </div>
-  <!-- CONFIG MODAL (inside header for z-index context) -->
-  <div class="modal-wrap" id="modal">
-    <div class="modal">
-      <div class="modal-title">Konfigurasi Koneksi GSheet</div>
-      <div class="modal-desc">Masukkan Google API Key dan nama tab yang sesuai dengan GSheet kamu. Konfigurasi disimpan di browser (localStorage).</div>
-      <div class="inp-group"><label class="inp-lbl">Google API Key</label><input class="inp" id="cfg-key" placeholder="AIzaSy..."></div>
-      <div class="inp-group"><label class="inp-lbl">Nama Tab — Retur</label><input class="inp" id="cfg-tab-retur" placeholder="Input Return"></div>
-      <div class="inp-group"><label class="inp-lbl">Nama Tab — Stock Gudang</label><input class="inp" id="cfg-tab-stock" placeholder="REPORT ALL STOCK"></div>
-      <div class="inp-group"><label class="inp-lbl">Nama Tab — Report Harian</label><input class="inp" id="cfg-tab-harian" placeholder="Form Responses 1"></div>
-      <div class="modal-actions">
-        <button class="btn-cancel" onclick="closeModal()">Batal</button>
-        <button class="btn-save" onclick="saveConfig()">Simpan & Muat Data</button>
-      </div>
-    </div>
-  </div>
+
 </div>
 
 <!-- NAV -->
@@ -146,6 +132,7 @@ body{background:var(--bg);color:var(--text);font-family:var(--font);font-size:13
   <div class="nav-tab" onclick="switchTab('retur',this)">Retur Produk</div>
   <div class="nav-tab" onclick="switchTab('harian',this)">Report Harian</div>
   <div class="nav-tab" onclick="switchTab('stock',this)">Stock Gudang</div>
+  <div class="nav-tab" id="tab-btn-config" onclick="switchTab('config',this)">⚙ Konfigurasi</div>
   <div class="nav-tab" onclick="switchTab('alerts',this)">⚠ Alerts <span id="alert-badge" style="display:none;background:var(--red);color:#fff;border-radius:10px;padding:1px 5px;font-size:9px;margin-left:3px;font-family:var(--mono)"></span></div>
 </div>
 
@@ -268,6 +255,83 @@ body{background:var(--bg);color:var(--text);font-family:var(--font);font-size:13
   </div>
 </div>
 
+<!-- ===== CONFIG ===== -->
+<div class="tab-content" id="tab-config">
+  <div class="sec-lbl">Konfigurasi Koneksi GSheet</div>
+  <div class="card" style="max-width:560px">
+    <div class="card-hdr">
+      <div class="card-title">Google Sheets API</div>
+      <div class="card-sub">Konfigurasi disimpan di browser kamu</div>
+    </div>
+    <div class="card-body" style="display:flex;flex-direction:column;gap:14px">
+
+      <div>
+        <label style="display:block;font-size:11px;color:var(--muted);margin-bottom:5px;font-weight:500">Google API Key</label>
+        <input type="text" id="cfg-key" placeholder="AIzaSy..." style="width:100%;background:var(--bg3);border:1px solid var(--border2);border-radius:6px;padding:9px 12px;color:var(--text);font-size:12px;font-family:var(--mono);outline:none;box-sizing:border-box">
+        <div style="font-size:10px;color:var(--muted);margin-top:4px">Buat di console.cloud.google.com → Sheets API → Credentials → API Key</div>
+      </div>
+
+      <div style="height:1px;background:var(--border)"></div>
+
+      <div>
+        <label style="display:block;font-size:11px;color:var(--muted);margin-bottom:5px;font-weight:500">Nama Tab — Retur Produk</label>
+        <input type="text" id="cfg-tab-retur" placeholder="Input Return" style="width:100%;background:var(--bg3);border:1px solid var(--border2);border-radius:6px;padding:9px 12px;color:var(--text);font-size:12px;font-family:var(--mono);outline:none;box-sizing:border-box">
+        <div style="font-size:10px;color:var(--muted);margin-top:4px">Sheet ID: 1VSZ6l3BJ3wISat459WpiU7RbZqDV0Aq-xPO45rUVuW8</div>
+      </div>
+
+      <div>
+        <label style="display:block;font-size:11px;color:var(--muted);margin-bottom:5px;font-weight:500">Nama Tab — Stock Gudang</label>
+        <input type="text" id="cfg-tab-stock" placeholder="REPORT ALL STOCK" style="width:100%;background:var(--bg3);border:1px solid var(--border2);border-radius:6px;padding:9px 12px;color:var(--text);font-size:12px;font-family:var(--mono);outline:none;box-sizing:border-box">
+        <div style="font-size:10px;color:var(--muted);margin-top:4px">Sheet ID: 1yazMZ8bFba_mSM0BzM5-x3c_MYJiLoE0M0RWPKywxRE</div>
+      </div>
+
+      <div>
+        <label style="display:block;font-size:11px;color:var(--muted);margin-bottom:5px;font-weight:500">Nama Tab — Report Harian</label>
+        <input type="text" id="cfg-tab-harian" placeholder="Form Responses 1" style="width:100%;background:var(--bg3);border:1px solid var(--border2);border-radius:6px;padding:9px 12px;color:var(--text);font-size:12px;font-family:var(--mono);outline:none;box-sizing:border-box">
+        <div style="font-size:10px;color:var(--muted);margin-top:4px">Sheet ID: 1bUWUHiH8WLQW5xPCNy_qEDBx9mcWxlkByZUg_xalEs4</div>
+      </div>
+
+      <div style="height:1px;background:var(--border)"></div>
+
+      <div style="display:flex;gap:10px;align-items:center">
+        <button id="btn-simpan" onclick="doSaveConfig()" style="background:var(--blue);color:#fff;border:none;border-radius:7px;padding:10px 22px;font-size:13px;font-weight:600;cursor:pointer;font-family:var(--font)">Simpan & Muat Data</button>
+        <button onclick="doResetConfig()" style="background:transparent;color:var(--muted);border:1px solid var(--border2);border-radius:7px;padding:10px 16px;font-size:12px;cursor:pointer;font-family:var(--font)">Reset</button>
+        <span id="cfg-status" style="font-size:11px;color:var(--muted);font-family:var(--mono)"></span>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="card" style="max-width:560px">
+    <div class="card-hdr"><div class="card-title">Status Koneksi</div></div>
+    <div class="card-body">
+      <table class="tbl">
+        <thead><tr><th>Sumber</th><th>Sheet ID</th><th>Tab</th><th>Status</th></tr></thead>
+        <tbody>
+          <tr>
+            <td style="font-weight:500">Retur Produk</td>
+            <td style="font-family:var(--mono);font-size:10px;color:var(--muted)">1VSZ6l3...W8</td>
+            <td style="font-family:var(--mono)" id="st-tab-retur">—</td>
+            <td id="st-conn-retur"><span class="bdg bdg-gray">Belum dicek</span></td>
+          </tr>
+          <tr>
+            <td style="font-weight:500">Stock Gudang</td>
+            <td style="font-family:var(--mono);font-size:10px;color:var(--muted)">1yazMZ8...RE</td>
+            <td style="font-family:var(--mono)" id="st-tab-stock">—</td>
+            <td id="st-conn-stock"><span class="bdg bdg-gray">Belum dicek</span></td>
+          </tr>
+          <tr>
+            <td style="font-weight:500">Report Harian</td>
+            <td style="font-family:var(--mono);font-size:10px;color:var(--muted)">1bUWUH...s4</td>
+            <td style="font-family:var(--mono)" id="st-tab-harian">—</td>
+            <td id="st-conn-harian"><span class="bdg bdg-gray">Belum dicek</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
 </div><!-- end .main -->
 
 
@@ -298,27 +362,91 @@ function getCfg() {
   };
 }
 
-// ─── MODAL ───
-function openModal() {
+// ─── CONFIG ───
+function showConfig() {
+  // Switch to config tab
+  const tabs = document.querySelectorAll('.nav-tab');
+  const contents = document.querySelectorAll('.tab-content');
+  tabs.forEach(t => t.classList.remove('active'));
+  contents.forEach(t => t.classList.remove('active'));
+  document.getElementById('tab-config').classList.add('active');
+  document.getElementById('tab-btn-config').classList.add('active');
+  // Populate current values
   const c = loadConfig();
-  document.getElementById('cfg-key').value = c.key || '';
+  document.getElementById('cfg-key').value        = c.key || '';
   document.getElementById('cfg-tab-retur').value  = c.tabRetur  || DEFAULT_TABS.retur;
   document.getElementById('cfg-tab-stock').value  = c.tabStock  || DEFAULT_TABS.stock;
   document.getElementById('cfg-tab-harian').value = c.tabHarian || DEFAULT_TABS.harian;
-  document.getElementById('modal').classList.add('open');
+  // Update status table
+  updateStatusTable();
 }
-function closeModal() { document.getElementById('modal').classList.remove('open'); }
-function saveConfig() {
-  localStorage.setItem('hs_cfg', JSON.stringify({
-    key:       document.getElementById('cfg-key').value.trim(),
-    tabRetur:  document.getElementById('cfg-tab-retur').value.trim()  || DEFAULT_TABS.retur,
-    tabStock:  document.getElementById('cfg-tab-stock').value.trim()  || DEFAULT_TABS.stock,
-    tabHarian: document.getElementById('cfg-tab-harian').value.trim() || DEFAULT_TABS.harian
-  }));
-  closeModal();
+function updateStatusTable() {
+  const c = loadConfig();
+  document.getElementById('st-tab-retur').textContent  = c.tabRetur  || DEFAULT_TABS.retur;
+  document.getElementById('st-tab-stock').textContent  = c.tabStock  || DEFAULT_TABS.stock;
+  document.getElementById('st-tab-harian').textContent = c.tabHarian || DEFAULT_TABS.harian;
+}
+function doSaveConfig() {
+  const key      = document.getElementById('cfg-key').value.trim();
+  const tabRetur = document.getElementById('cfg-tab-retur').value.trim()  || DEFAULT_TABS.retur;
+  const tabStock = document.getElementById('cfg-tab-stock').value.trim()  || DEFAULT_TABS.stock;
+  const tabHarian= document.getElementById('cfg-tab-harian').value.trim() || DEFAULT_TABS.harian;
+  if (!key) {
+    document.getElementById('cfg-status').textContent = '⚠ API Key kosong!';
+    document.getElementById('cfg-status').style.color = 'var(--orange)';
+    return;
+  }
+  localStorage.setItem('hs_cfg', JSON.stringify({ key, tabRetur, tabStock, tabHarian }));
+  document.getElementById('cfg-status').textContent = '✓ Tersimpan, memuat data...';
+  document.getElementById('cfg-status').style.color = 'var(--green)';
+  updateStatusTable();
+  // Test connections
+  testConnections(key, tabRetur, tabStock, tabHarian);
   fetchAllData();
+  startAutoRefresh();
+  setTimeout(() => {
+    document.getElementById('cfg-status').textContent = '';
+    switchTab('overview', document.querySelector('.nav-tab'));
+  }, 2500);
 }
-document.getElementById('modal').addEventListener('click', function(e){ if(e.target===this) closeModal(); });
+function doResetConfig() {
+  localStorage.removeItem('hs_cfg');
+  document.getElementById('cfg-key').value = '';
+  document.getElementById('cfg-tab-retur').value  = DEFAULT_TABS.retur;
+  document.getElementById('cfg-tab-stock').value  = DEFAULT_TABS.stock;
+  document.getElementById('cfg-tab-harian').value = DEFAULT_TABS.harian;
+  document.getElementById('cfg-status').textContent = 'Konfigurasi direset.';
+  document.getElementById('cfg-status').style.color = 'var(--muted)';
+}
+async function testConnections(key, tabRetur, tabStock, tabHarian) {
+  const tests = [
+    { id: 'retur',  sheetId: SHEET_IDS.retur,  tab: tabRetur,  elId: 'st-conn-retur'  },
+    { id: 'stock',  sheetId: SHEET_IDS.stock,  tab: tabStock,  elId: 'st-conn-stock'  },
+    { id: 'harian', sheetId: SHEET_IDS.harian, tab: tabHarian, elId: 'st-conn-harian' },
+  ];
+  for (const t of tests) {
+    const el = document.getElementById(t.elId);
+    if (!el) continue;
+    el.innerHTML = '<span class="bdg bdg-blue">Mengecek...</span>';
+    try {
+      const url = `https://sheets.googleapis.com/v4/spreadsheets/${t.sheetId}/values/${encodeURIComponent("'"+t.tab+"'")}!A1:A2?key=${key}`;
+      const res = await fetch(url);
+      if (res.ok) {
+        el.innerHTML = '<span class="bdg bdg-green">✓ Terhubung</span>';
+      } else {
+        const err = await res.json();
+        const msg = err.error?.status || 'Error';
+        el.innerHTML = `<span class="bdg bdg-red">${msg}</span>`;
+      }
+    } catch(e) {
+      el.innerHTML = '<span class="bdg bdg-red">Gagal</span>';
+    }
+  }
+}
+// Legacy aliases (tidak dipakai lagi tapi jaga kalau ada reference)
+function openModal() { showConfig(); }
+function closeModal() {}
+function saveConfig() { doSaveConfig(); }
 
 // ─── FETCH ───
 async function fetchSheet(sheetId, tab, range) {
@@ -407,8 +535,6 @@ function parseDate(s) {
     // a = hari, b = bulan, c = tahun — selalu
     return new Date(c, b - 1, a);
   }
-  return new Date(str);
-}
   return new Date(str);
 }
 function fmtDate(s) {
@@ -856,16 +982,12 @@ window.addEventListener('load', () => {
     startAutoRefresh();
   } else {
     document.getElementById('last-update').textContent = 'Klik ⚙ Konfigurasi untuk mulai';
-    setTimeout(openModal, 800);
+    setTimeout(showConfig, 400);
   }
 });
 
 // Restart autorefresh after saveConfig
-const _origSave = saveConfig;
-saveConfig = function() {
-  _origSave();
-  startAutoRefresh();
-};
+// saveConfig alias handled above
 </script>
 </body>
 </html>
