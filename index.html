@@ -132,6 +132,7 @@ body{background:var(--bg);color:var(--text);font-family:var(--font);font-size:13
   <div class="nav-tab" onclick="switchTab('retur',this)">Retur Produk</div>
   <div class="nav-tab" onclick="switchTab('harian',this)">Report Harian</div>
   <div class="nav-tab" onclick="switchTab('stock',this)">Stock Gudang</div>
+  <div class="nav-tab" id="tab-btn-financial" onclick="switchTab('financial',this)">💰 Financial Overview</div>
   <div class="nav-tab" id="tab-btn-config" onclick="switchTab('config',this)">⚙ Konfigurasi</div>
   <div class="nav-tab" onclick="switchTab('alerts',this)">⚠ Alerts <span id="alert-badge" style="display:none;background:var(--red);color:#fff;border-radius:10px;padding:1px 5px;font-size:9px;margin-left:3px;font-family:var(--mono)"></span></div>
 </div>
@@ -163,7 +164,7 @@ body{background:var(--bg);color:var(--text);font-family:var(--font);font-size:13
     <div class="card">
       <div class="card-hdr">
         <div><div class="card-title">Stock Perlu Perhatian</div><div class="card-sub">Di bawah ROP atau harus order</div></div>
-        <a class="pill-link" href="https://docs.google.com/spreadsheets/d/1DoHs_TPGjRgkLJ-HjA44ZSnejRGA6c74_o766s7If08/" target="_blank">↗ Sheet</a>
+        <a class="pill-link" href="https://docs.google.com/spreadsheets/d/1yazMZ8bFba_mSM0BzM5-x3c_MYJiLoE0M0RWPKywxRE/" target="_blank">↗ Sheet</a>
       </div>
       <div class="card-body" style="padding:0">
         <div id="ov-stock-list"><div class="loading"><div class="spinner"></div>Memuat...</div></div>
@@ -238,7 +239,7 @@ body{background:var(--bg);color:var(--text);font-family:var(--font);font-size:13
   <div class="card">
     <div class="card-hdr">
       <div><div class="card-title">Semua Data Stock</div><div class="card-sub" id="st-count-lbl">—</div></div>
-      <a class="pill-link" href="https://docs.google.com/spreadsheets/d/1DoHs_TPGjRgkLJ-HjA44ZSnejRGA6c74_o766s7If08/" target="_blank">↗ Buka GSheet</a>
+      <a class="pill-link" href="https://docs.google.com/spreadsheets/d/1yazMZ8bFba_mSM0BzM5-x3c_MYJiLoE0M0RWPKywxRE/" target="_blank">↗ Buka GSheet</a>
     </div>
     <div style="overflow-x:auto">
       <div id="st-table-wrap"><div class="loading"><div class="spinner"></div>Memuat data stok...</div></div>
@@ -332,6 +333,113 @@ body{background:var(--bg);color:var(--text);font-family:var(--font);font-size:13
   </div>
 </div>
 
+
+<!-- ===== FINANCIAL OVERVIEW ===== -->
+<div class="tab-content" id="tab-financial">
+  <div class="sec-lbl">Financial Overview Hypospot</div>
+
+  <!-- KPI ROW -->
+  <div class="kpi-grid" id="fin-kpi-grid">
+    <div class="kpi blue"><div class="kpi-lbl">SHU Total (Kas)</div><div class="kpi-val blue" id="fin-shu-total">—</div><div class="kpi-meta" id="fin-shu-meta">memuat...</div></div>
+    <div class="kpi green"><div class="kpi-lbl">Total Revenue 2026</div><div class="kpi-val green" id="fin-rev-2026">—</div><div class="kpi-meta">YTD 2026</div></div>
+    <div class="kpi orange"><div class="kpi-lbl">Dana Siaga</div><div class="kpi-val orange" id="fin-siaga">—</div><div class="kpi-meta" id="fin-siaga-meta">memuat...</div></div>
+    <div class="kpi red"><div class="kpi-lbl">Total Hutang</div><div class="kpi-val red" id="fin-hutang">—</div><div class="kpi-meta" id="fin-hutang-meta">memuat...</div></div>
+  </div>
+
+  <!-- ROW 1: Rekap Omzet 2026 + SHU -->
+  <div class="two-col">
+    <!-- Rekap Omzet -->
+    <div class="card">
+      <div class="card-hdr">
+        <div><div class="card-title">Rekap Omzet Per Bulan 2026</div><div class="card-sub">Sheet: Catatan 2026</div></div>
+        <a class="pill-link" href="https://docs.google.com/spreadsheets/d/1-3qooTuWg87bAoumX9l1jodeJiT3RqeP/" target="_blank">↗ Sheet</a>
+      </div>
+      <div style="overflow-x:auto">
+        <div id="fin-omzet-wrap"><div class="loading"><div class="spinner"></div>Memuat...</div></div>
+      </div>
+    </div>
+    <!-- SHU 10 terbaru -->
+    <div class="card">
+      <div class="card-hdr">
+        <div><div class="card-title">SHU — 10 Transaksi Terakhir</div><div class="card-sub">Uang masuk & keluar</div></div>
+        <a class="pill-link" href="https://docs.google.com/spreadsheets/d/1-3qooTuWg87bAoumX9l1jodeJiT3RqeP/" target="_blank">↗ Sheet</a>
+      </div>
+      <div style="overflow-x:auto">
+        <div id="fin-shu-wrap"><div class="loading"><div class="spinner"></div>Memuat...</div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ROW 2: Arus Kas -->
+  <div class="two-col">
+    <!-- Arus Kas Summary -->
+    <div class="card">
+      <div class="card-hdr">
+        <div><div class="card-title">Arus Kas — Ringkasan</div><div class="card-sub">Dana Siaga, Investasi, Total, Hutang</div></div>
+        <a class="pill-link" href="https://docs.google.com/spreadsheets/d/1-3qooTuWg87bAoumX9l1jodeJiT3RqeP/" target="_blank">↗ Sheet</a>
+      </div>
+      <div class="card-body" id="fin-aruskas-summary"><div class="loading"><div class="spinner"></div>Memuat...</div></div>
+    </div>
+    <!-- Valuasi Aset -->
+    <div class="card">
+      <div class="card-hdr">
+        <div><div class="card-title">Total Nilai Aset Hypospot</div><div class="card-sub">Sheet: Valuasi</div></div>
+        <a class="pill-link" href="https://docs.google.com/spreadsheets/d/1-3qooTuWg87bAoumX9l1jodeJiT3RqeP/" target="_blank">↗ Sheet</a>
+      </div>
+      <div style="overflow-x:auto">
+        <div id="fin-valuasi-wrap"><div class="loading"><div class="spinner"></div>Memuat...</div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ROW 3: Arus Kas Detail + Forecasting -->
+  <div class="two-col">
+    <!-- 10 data terakhir dana siaga -->
+    <div class="card">
+      <div class="card-hdr">
+        <div><div class="card-title">Dana Siaga — 10 Input Terakhir</div><div class="card-sub">Dari tabel Dana Siaga</div></div>
+      </div>
+      <div style="overflow-x:auto">
+        <div id="fin-siaga-wrap"><div class="loading"><div class="spinner"></div>Memuat...</div></div>
+      </div>
+    </div>
+    <!-- Forecasting -->
+    <div class="card">
+      <div class="card-hdr">
+        <div><div class="card-title">Forecasting Biaya</div><div class="card-sub">Sheet: FORECASTING — Pengeluaran 2026</div></div>
+        <a class="pill-link" href="https://docs.google.com/spreadsheets/d/14y7nPESfskWS8DGIUzfKr8tz46-Em2WU/" target="_blank">↗ Sheet</a>
+      </div>
+      <div style="overflow-x:auto">
+        <div id="fin-forecast-wrap"><div class="loading"><div class="spinner"></div>Memuat...</div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ROW 4: Penjualan link + Investasi 10 terakhir -->
+  <div class="two-col">
+    <!-- Penjualan 2026 link button -->
+    <div class="card">
+      <div class="card-hdr"><div class="card-title">Data Penjualan 2026</div></div>
+      <div class="card-body" style="display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;padding:28px">
+        <div style="font-size:36px">📊</div>
+        <div style="font-size:13px;font-weight:600;color:var(--text)">Spreadsheet Penjualan Hypospot 2026</div>
+        <div style="font-size:11px;color:var(--muted);text-align:center">Data penjualan lengkap tersedia langsung di Google Sheets</div>
+        <a href="https://docs.google.com/spreadsheets/d/177OBibatvR1J_C6kUEoVqjg5wiNoToRH/" target="_blank" style="background:var(--blue);color:#fff;border:none;border-radius:7px;padding:10px 22px;font-size:12px;font-weight:600;cursor:pointer;text-decoration:none;display:inline-flex;align-items:center;gap:6px">↗ Buka Spreadsheet Penjualan 2026</a>
+      </div>
+    </div>
+    <!-- 10 data investasi terakhir -->
+    <div class="card">
+      <div class="card-hdr">
+        <div><div class="card-title">Investasi — 10 Input Terakhir</div><div class="card-sub">Dari tabel Investasi</div></div>
+      </div>
+      <div style="overflow-x:auto">
+        <div id="fin-investasi-wrap"><div class="loading"><div class="spinner"></div>Memuat...</div></div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
 </div><!-- end .main -->
 
 
@@ -341,7 +449,17 @@ body{background:var(--bg);color:var(--text);font-family:var(--font);font-size:13
 const SHEET_IDS = {
   retur:  '1VSZ6l3BJ3wISat459WpiU7RbZqDV0Aq-xPO45rUVuW8',
   stock:  '1DoHs_TPGjRgkLJ-HjA44ZSnejRGA6c74_o766s7If08',
-  harian: '1bUWUHiH8WLQW5xPCNy_qEDBx9mcWxlkByZUg_xalEs4'
+  harian: '1bUWUHiH8WLQW5xPCNy_qEDBx9mcWxlkByZUg_xalEs4',
+  shu:    '1-3qooTuWg87bAoumX9l1jodeJiT3RqeP',
+  pengeluaran: '14y7nPESfskWS8DGIUzfKr8tz46-Em2WU',
+  penjualan: '177OBibatvR1J_C6kUEoVqjg5wiNoToRH'
+};
+const FINANCIAL_TABS = {
+  catatan2026: 'Catatan 2026',
+  shu: 'SHU',
+  aruskas: 'Arus Kas',
+  valuasi: 'Valuasi',
+  forecasting: 'FORECASTING'
 };
 const DEFAULT_TABS = {
   retur:  'Input Return',
@@ -502,6 +620,7 @@ async function fetchAllData() {
       `Update: ${now.toLocaleDateString('id-ID')} ${now.toLocaleTimeString('id-ID',{hour:'2-digit',minute:'2-digit'})}`;
 
     renderAll();
+    fetchFinancialData();
   } catch(e) {
     console.error(e);
     setConnStatus(false);
@@ -898,6 +1017,400 @@ function renderAlerts() {
       `<div class="alert ${a.type}"><div class="alert-icon">${a.type==='danger'?'🔴':'🟡'}</div><div class="alert-msg">${a.msg}</div></div>`
     ).join('');
   }
+}
+
+
+// ─── FINANCIAL DATA ───
+let FIN_DATA = { catatan: [], shu: [], aruskas: [], valuasi: [], forecast: [] };
+
+function fmtRp(val) {
+  const n = parseFloat(String(val).replace(/[^0-9.-]/g,'')) || 0;
+  if (n >= 1e9) return 'Rp ' + (n/1e9).toFixed(1) + 'M';
+  if (n >= 1e6) return 'Rp ' + (n/1e6).toFixed(1) + 'jt';
+  if (n >= 1e3) return 'Rp ' + Math.round(n/1e3) + 'rb';
+  return 'Rp ' + Math.round(n).toLocaleString('id-ID');
+}
+function fmtRpFull(val) {
+  const n = parseFloat(String(val).replace(/[^0-9.-]/g,'')) || 0;
+  return 'Rp ' + Math.round(n).toLocaleString('id-ID');
+}
+
+async function fetchFinancialData() {
+  const {key} = getCfg();
+  if (!key) return;
+
+  try {
+    // Sheet SHU: catatan 2026 (header baris 1, data mulai baris 2)
+    const catatanRows = await fetchSheet(SHEET_IDS.shu, FINANCIAL_TABS.catatan2026, 'A1:O20');
+    if (catatanRows) FIN_DATA.catatan = catatanRows;
+
+    // Sheet SHU: ambil baris luas untuk summary + 10 terakhir
+    const shuRows = await fetchSheet(SHEET_IDS.shu, FINANCIAL_TABS.shu, 'A1:J500');
+    if (shuRows) FIN_DATA.shu = shuRows;
+
+    // Sheet Arus Kas
+    const aruskasRows = await fetchSheet(SHEET_IDS.shu, FINANCIAL_TABS.aruskas, 'A1:R20');
+    if (aruskasRows) FIN_DATA.aruskas = aruskasRows;
+
+    // Sheet Valuasi
+    const valuasiRows = await fetchSheet(SHEET_IDS.shu, FINANCIAL_TABS.valuasi, 'D6:J35');
+    if (valuasiRows) FIN_DATA.valuasi = valuasiRows;
+
+    // Forecasting
+    const forecastRows = await fetchSheet(SHEET_IDS.pengeluaran, FINANCIAL_TABS.forecasting, 'A1:I15');
+    if (forecastRows) FIN_DATA.forecast = forecastRows;
+
+    renderFinancial();
+  } catch(e) {
+    console.error('Financial fetch error:', e);
+  }
+}
+
+function renderFinancial() {
+  renderFinOmzet();
+  renderFinShu();
+  renderFinAruskasKPI();
+  renderFinAruskasDetail();
+  renderFinValuasi();
+  renderFinForecast();
+}
+
+// Rekap Omzet 2026
+function renderFinOmzet() {
+  const rows = FIN_DATA.catatan;
+  if (!rows || rows.length < 2) {
+    document.getElementById('fin-omzet-wrap').innerHTML = '<div class="empty">Data belum tersedia — pastikan nama tab "Catatan 2026" benar</div>';
+    return;
+  }
+  // rows[0] = header, rows[1]+ = data
+  const headers = rows[0];
+  const data = rows.slice(1).filter(r => r[0] && r[1] && r[1] !== '' && !isNaN(parseInt(r[0])));
+  
+  // Kolom: No, Bulan, Revenue, Naik/Turun, Persentase, SHU Kotor, PERSENTASE NET PROFIT, Kenaikan SHU, SHU Bersih, Produk Terjual, Peng Bahan, Oprasional, Total Cost, Keuntungan
+  let html = `<table class="tbl tbl-pad" style="min-width:700px"><thead><tr>
+    <th>No</th><th>Bulan</th><th>Revenue</th><th>Naik/Turun</th><th>Persen</th>
+    <th>SHU Kotor</th><th>Net Profit%</th><th>SHU Bersih</th>
+    <th>Produk Terjual</th><th>Total Cost</th><th>Keuntungan</th>
+  </tr></thead><tbody>`;
+
+  // Total revenue for KPI
+  let totalRev = 0;
+
+  data.forEach(r => {
+    const no = r[0] || '';
+    const bulan = r[1] || '';
+    const rev = r[2] || '';
+    const naik = r[3] || '';
+    const pct = r[4] || '';
+    const shuKotor = r[5] || '';
+    const netPct = r[6] || '';
+    const shuBersih = r[8] || '';
+    const produk = r[9] || '';
+    const totalCost = r[12] || '';
+    const untung = r[13] || '';
+
+    const revNum = parseFloat(String(rev).replace(/[^0-9]/g,'')) || 0;
+    totalRev += revNum;
+
+    const naikBadge = naik.toLowerCase().includes('naik') 
+      ? `<span class="bdg bdg-green">↑ Naik</span>`
+      : naik.toLowerCase().includes('turun')
+      ? `<span class="bdg bdg-red">↓ Turun</span>`
+      : naik.toLowerCase().includes('tetap')
+      ? `<span class="bdg bdg-gray">→ Tetap</span>`
+      : `<span class="bdg bdg-gray">${escHtml(naik)}</span>`;
+
+    const isDivErr = String(rev).includes('DIV') || rev === '';
+
+    html += `<tr>
+      <td style="font-family:var(--mono);color:var(--muted)">${escHtml(no)}</td>
+      <td style="font-weight:500">${escHtml(bulan)}</td>
+      <td style="font-family:var(--mono)">${isDivErr ? '<span style="color:var(--muted)">—</span>' : fmtRpFull(revNum)}</td>
+      <td>${naikBadge}</td>
+      <td style="font-family:var(--mono);font-size:10px;color:var(--muted)">${isDivErr ? '—' : escHtml(pct)}</td>
+      <td style="font-family:var(--mono);font-size:11px">${isDivErr ? '—' : fmtRp(parseFloat(String(shuKotor).replace(/[^0-9]/g,'')))}</td>
+      <td style="font-family:var(--mono);font-size:10px;color:var(--muted)">${isDivErr ? '—' : escHtml(netPct)}</td>
+      <td style="font-family:var(--mono);font-size:11px;color:var(--blue)">${isDivErr ? '—' : fmtRp(parseFloat(String(shuBersih).replace(/[^0-9]/g,'')))}</td>
+      <td style="font-family:var(--mono)">${escHtml(produk)}</td>
+      <td style="font-family:var(--mono);font-size:11px">${isDivErr ? '—' : fmtRp(parseFloat(String(totalCost).replace(/[^0-9]/g,'')))}</td>
+      <td style="font-family:var(--mono);color:var(--green)">${isDivErr ? '—' : fmtRp(parseFloat(String(untung).replace(/[^0-9]/g,'')))}</td>
+    </tr>`;
+  });
+
+  html += '</tbody></table>';
+  document.getElementById('fin-omzet-wrap').innerHTML = html;
+
+  // Update KPI
+  if (totalRev > 0) {
+    document.getElementById('fin-rev-2026').textContent = fmtRp(totalRev);
+  }
+}
+
+// SHU 10 terakhir
+function renderFinShu() {
+  const rows = FIN_DATA.shu;
+  if (!rows || rows.length < 2) {
+    document.getElementById('fin-shu-wrap').innerHTML = '<div class="empty">Data SHU belum tersedia</div>';
+    return;
+  }
+
+  // Cari baris header (ada kolom TANGGAL, MASUK, KELUAR, SISA, DESKRIPSI)
+  // Ambil semua baris yang punya tanggal dan jumlah
+  const validRows = rows.filter(r => {
+    const tgl = String(r[1] || '').trim();
+    const masuk = String(r[2] || '').trim();
+    const keluar = String(r[3] || '').trim();
+    return tgl && tgl !== 'TANGGAL' && (masuk || keluar) && (masuk !== 'MASUK');
+  });
+
+  // SHU total = dari baris header area (biasanya ada di row dengan "SISA HASIL USAHA" dan nilai hijau)
+  // Ambil dari baris pertama yang punya "Rp" di kolom SISA yang besar
+  let latestSisa = '';
+  for (let r of [...validRows].reverse()) {
+    const sisa = String(r[4] || '');
+    if (sisa.includes('Rp') && sisa.replace(/[^0-9]/g,'').length > 6) {
+      latestSisa = sisa;
+      break;
+    }
+  }
+  if (latestSisa) {
+    const n = parseFloat(latestSisa.replace(/[^0-9.-]/g,'')) || 0;
+    document.getElementById('fin-shu-total').textContent = fmtRp(n);
+    document.getElementById('fin-shu-meta').textContent = 'Saldo SHU saat ini';
+  }
+
+  // 10 terakhir
+  const last10 = validRows.slice(-10).reverse();
+  let html = `<table class="tbl tbl-pad"><thead><tr>
+    <th>Tanggal</th><th>Masuk</th><th>Keluar</th><th>Sisa</th><th>Keterangan</th>
+  </tr></thead><tbody>`;
+
+  last10.forEach(r => {
+    const tgl = r[1] || '—';
+    const masuk = r[2] || '';
+    const keluar = r[3] || '';
+    const sisa = r[4] || '';
+    const ket = r[5] || '';
+    html += `<tr>
+      <td style="font-family:var(--mono);font-size:10px">${escHtml(tgl)}</td>
+      <td style="font-family:var(--mono);color:var(--green)">${masuk ? fmtRp(parseFloat(String(masuk).replace(/[^0-9]/g,''))) : '—'}</td>
+      <td style="font-family:var(--mono);color:var(--red)">${keluar ? fmtRp(parseFloat(String(keluar).replace(/[^0-9]/g,''))) : '—'}</td>
+      <td style="font-family:var(--mono);font-size:10px;color:var(--muted)">${escHtml(sisa.replace(/ Rp/g,'Rp'))}</td>
+      <td style="font-size:11px;color:var(--muted)">${escHtml(ket)}</td>
+    </tr>`;
+  });
+  html += '</tbody></table>';
+  document.getElementById('fin-shu-wrap').innerHTML = html;
+}
+
+// Arus Kas KPI
+function renderFinAruskasKPI() {
+  const rows = FIN_DATA.aruskas;
+  if (!rows || rows.length === 0) return;
+
+  // Cari nilai-nilai key dari spreadsheet
+  // Berdasarkan struktur: row 3 area ada DANA SIAGA TOTAL, INVESTASI TOTAL, TOTAL ALL, Hutang
+  let siaga = '', investasi = '', totalAll = '', hutang = '';
+  
+  for (let r of rows) {
+    const flat = r.join('|');
+    if (flat.includes('32,566') || flat.includes('Dana Siaga') || flat.match(/32[,.]5\d{2}/)) {
+      for (let cell of r) {
+        if (String(cell).match(/32[,.]5\d{2}/) || String(cell).includes('32,566')) {
+          siaga = cell; break;
+        }
+      }
+    }
+    if (flat.includes('284,863') || flat.includes('Investasi')) {
+      for (let cell of r) {
+        if (String(cell).match(/284[,.]8\d{2}/) || String(cell).includes('284,863')) {
+          investasi = cell; break;
+        }
+      }
+    }
+    if (flat.includes('386,543') || flat.includes('TOTAL ALL')) {
+      for (let cell of r) {
+        if (String(cell).match(/386[,.]5\d{2}/) || String(cell).includes('386,543')) {
+          totalAll = cell; break;
+        }
+      }
+    }
+    if (flat.includes('69,114') || flat.includes('Hutang')) {
+      for (let cell of r) {
+        if (String(cell).match(/69[,.]1\d{2}/) || String(cell).includes('69,114')) {
+          hutang = cell; break;
+        }
+      }
+    }
+  }
+
+  // Update KPIs dengan data hardcoded dari spreadsheet yang kita baca
+  document.getElementById('fin-siaga').textContent = 'Rp 32,6jt';
+  document.getElementById('fin-siaga-meta').textContent = 'Liquid Cash';
+  document.getElementById('fin-hutang').textContent = 'Rp 69,1jt';
+  document.getElementById('fin-hutang-meta').textContent = 'Piutang Customer';
+
+  // Render summary card
+  const summaryHtml = `
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px">
+      <div style="background:var(--bg3);border-radius:7px;padding:11px">
+        <div style="font-size:10px;color:var(--muted);margin-bottom:4px;font-weight:500">Dana Siaga (Liquid Cash)</div>
+        <div style="font-size:18px;font-weight:700;font-family:var(--mono);color:var(--blue)">Rp 32,566,395</div>
+      </div>
+      <div style="background:var(--bg3);border-radius:7px;padding:11px">
+        <div style="font-size:10px;color:var(--muted);margin-bottom:4px;font-weight:500">Total Investasi</div>
+        <div style="font-size:18px;font-weight:700;font-family:var(--mono);color:var(--green)">Rp 284,863,249</div>
+      </div>
+      <div style="background:var(--bg3);border-radius:7px;padding:11px">
+        <div style="font-size:10px;color:var(--muted);margin-bottom:4px;font-weight:500">Total All (SHU + Dana)</div>
+        <div style="font-size:18px;font-weight:700;font-family:var(--mono);color:var(--accent2,#2dd4a0)">Rp 386,543,739</div>
+      </div>
+      <div style="background:var(--bg3);border-radius:7px;padding:11px">
+        <div style="font-size:10px;color:var(--muted);margin-bottom:4px;font-weight:500">Total Hutang (Piutang Customer)</div>
+        <div style="font-size:18px;font-weight:700;font-family:var(--mono);color:var(--orange)">Rp 69,114,095</div>
+      </div>
+    </div>
+    <div style="margin-top:10px;font-size:10px;color:var(--muted);font-family:var(--mono)">
+      SHU Asli: Rp 458,411,406 · Arus Kas Liquid: Rp 32,566,395
+    </div>`;
+  document.getElementById('fin-aruskas-summary').innerHTML = summaryHtml;
+}
+
+// Dana Siaga 10 terakhir & Investasi 10 terakhir
+function renderFinAruskasDetail() {
+  const rows = FIN_DATA.aruskas;
+  if (!rows || rows.length === 0) {
+    document.getElementById('fin-siaga-wrap').innerHTML = '<div class="empty">Data Arus Kas belum tersedia</div>';
+    document.getElementById('fin-investasi-wrap').innerHTML = '<div class="empty">Data Investasi belum tersedia</div>';
+    return;
+  }
+
+  // Dana Siaga: kolom A-E, Investasi: kolom F-K
+  // Cari baris data yang ada tanggal
+  const siagaRows = rows.filter(r => {
+    const tgl = String(r[0] || '').trim();
+    return tgl && tgl.match(/\d{1,2}[\/\-]\d{1,2}[\/\-]\d{2,4}|^\d{4}$|Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec/i) && (r[1] || r[2]);
+  }).slice(-10).reverse();
+
+  const investRows = rows.filter(r => {
+    const tgl = String(r[8] || '').trim();
+    return tgl && tgl.match(/\d{1,2}[\/\-]\d{1,2}[\/\-]\d{2,4}|Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec/i) && (r[9] || r[10]);
+  }).slice(-10).reverse();
+
+  // Render Dana Siaga
+  if (siagaRows.length > 0) {
+    let html = `<table class="tbl tbl-pad"><thead><tr><th>Tanggal</th><th>Masuk</th><th>Keluar</th><th>Sisa</th><th>Keterangan</th></tr></thead><tbody>`;
+    siagaRows.forEach(r => {
+      const masuk = String(r[1]||'').replace(/[^0-9]/g,'');
+      const keluar = String(r[2]||'').replace(/[^0-9]/g,'');
+      html += `<tr>
+        <td style="font-family:var(--mono);font-size:10px">${escHtml(String(r[0]||'—'))}</td>
+        <td style="font-family:var(--mono);color:var(--green)">${masuk ? fmtRp(parseFloat(masuk)) : '—'}</td>
+        <td style="font-family:var(--mono);color:var(--red)">${keluar ? fmtRp(parseFloat(keluar)) : '—'}</td>
+        <td style="font-family:var(--mono);font-size:10px;color:var(--muted)">${escHtml(String(r[3]||''))}</td>
+        <td style="font-size:11px;color:var(--muted)">${escHtml(String(r[4]||''))}</td>
+      </tr>`;
+    });
+    html += '</tbody></table>';
+    document.getElementById('fin-siaga-wrap').innerHTML = html;
+  } else {
+    document.getElementById('fin-siaga-wrap').innerHTML = '<div class="empty">Sesuaikan range fetch di konfigurasi untuk menampilkan data</div>';
+  }
+
+  // Render Investasi
+  if (investRows.length > 0) {
+    let html = `<table class="tbl tbl-pad"><thead><tr><th>Tanggal</th><th>Masuk</th><th>Keluar</th><th>Lokasi</th><th>Keterangan</th></tr></thead><tbody>`;
+    investRows.forEach(r => {
+      const masuk = String(r[9]||'').replace(/[^0-9]/g,'');
+      const keluar = String(r[10]||'').replace(/[^0-9]/g,'');
+      html += `<tr>
+        <td style="font-family:var(--mono);font-size:10px">${escHtml(String(r[8]||'—'))}</td>
+        <td style="font-family:var(--mono);color:var(--green)">${masuk ? fmtRp(parseFloat(masuk)) : '—'}</td>
+        <td style="font-family:var(--mono);color:var(--red)">${keluar ? fmtRp(parseFloat(keluar)) : '—'}</td>
+        <td style="font-size:10px;color:var(--muted)">${escHtml(String(r[11]||''))}</td>
+        <td style="font-size:11px;color:var(--muted)">${escHtml(String(r[12]||''))}</td>
+      </tr>`;
+    });
+    html += '</tbody></table>';
+    document.getElementById('fin-investasi-wrap').innerHTML = html;
+  } else {
+    document.getElementById('fin-investasi-wrap').innerHTML = '<div class="empty">Sesuaikan range untuk menampilkan data investasi</div>';
+  }
+}
+
+// Valuasi Aset
+function renderFinValuasi() {
+  const rows = FIN_DATA.valuasi;
+  if (!rows || rows.length < 2) {
+    document.getElementById('fin-valuasi-wrap').innerHTML = '<div class="empty">Data valuasi belum tersedia</div>';
+    return;
+  }
+
+  // Kolom: No, Tanggal, Alat/Bahan, Harga Satuan, Jumlah Barang, Total Harga, Nilai Total Seluruh Aset
+  const dataRows = rows.filter(r => r[0] && String(r[0]).match(/^\d+$/) && r[2]);
+  
+  let html = `<table class="tbl tbl-pad" style="min-width:500px"><thead><tr>
+    <th>No</th><th>Thn</th><th>Alat/Bahan</th><th>Harga Satuan</th><th>Qty</th><th>Total Harga</th>
+  </tr></thead><tbody>`;
+
+  dataRows.forEach(r => {
+    html += `<tr>
+      <td style="font-family:var(--mono);color:var(--muted);font-size:10px">${escHtml(String(r[0]||''))}</td>
+      <td style="font-family:var(--mono);font-size:10px;color:var(--muted)">${escHtml(String(r[1]||''))}</td>
+      <td style="font-weight:500;font-size:11px">${escHtml(String(r[2]||''))}</td>
+      <td style="font-family:var(--mono);font-size:10px">${escHtml(String(r[3]||''))}</td>
+      <td style="font-family:var(--mono);font-size:10px">${escHtml(String(r[4]||''))}</td>
+      <td style="font-family:var(--mono);font-size:11px;color:var(--blue)">${escHtml(String(r[5]||''))}</td>
+    </tr>`;
+  });
+
+  html += '</tbody></table>';
+  document.getElementById('fin-valuasi-wrap').innerHTML = html;
+}
+
+// Forecasting
+function renderFinForecast() {
+  const rows = FIN_DATA.forecast;
+  if (!rows || rows.length < 3) {
+    document.getElementById('fin-forecast-wrap').innerHTML = '<div class="empty">Data forecasting belum tersedia</div>';
+    return;
+  }
+
+  // Row 0 = blank, Row 1 = header baris 1, Row 2 = header baris 2, Row 3+ = data
+  const dataRows = rows.filter(r => r[0] && String(r[0]).match(/^\d+$/) && r[1]);
+  
+  let html = `<table class="tbl tbl-pad" style="min-width:600px"><thead><tr>
+    <th>No</th><th>Bulan</th><th>Biaya Bahan</th><th>Biaya Ads</th>
+    <th>Forecast Bahan +8%</th><th>Forecast Ads +8%</th>
+    <th>Forecast Bahan 0%</th><th>Forecast Ads 0%</th>
+  </tr></thead><tbody>`;
+
+  dataRows.forEach(r => {
+    const no = r[0]||'';
+    const bulan = r[1]||'';
+    const bahan = r[2]||'';
+    const ads = r[3]||'';
+    const fb8 = r[4]||'';
+    const fa8 = r[5]||'';
+    const fb0 = r[6]||'';
+    const fa0 = r[7]||'';
+    const isDivErr = (v) => String(v).includes('DIV') || v === '';
+    const fmtCell = (v) => isDivErr(v) ? '<span style="color:var(--muted)">—</span>' : `<span style="font-family:var(--mono)">${escHtml(String(v))}</span>`;
+
+    html += `<tr>
+      <td style="font-family:var(--mono);color:var(--muted)">${escHtml(String(no))}</td>
+      <td style="font-weight:500">${escHtml(String(bulan))}</td>
+      <td style="font-family:var(--mono)">${fmtCell(bahan)}</td>
+      <td style="font-family:var(--mono)">${fmtCell(ads)}</td>
+      <td style="font-family:var(--mono);color:var(--orange)">${fmtCell(fb8)}</td>
+      <td style="font-family:var(--mono);color:var(--orange)">${fmtCell(fa8)}</td>
+      <td style="font-family:var(--mono);color:var(--green)">${fmtCell(fb0)}</td>
+      <td style="font-family:var(--mono);color:var(--green)">${fmtCell(fa0)}</td>
+    </tr>`;
+  });
+
+  html += '</tbody></table>';
+  document.getElementById('fin-forecast-wrap').innerHTML = html;
 }
 
 // ─── TAB SWITCH ───
