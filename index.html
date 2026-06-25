@@ -1785,7 +1785,7 @@ async function fetchFinancialData() {
 
   try {
     // Sheet SHU: catatan 2026 (header baris 1, data mulai baris 2)
-    const catatanRows = await fetchSheet(SHEET_IDS.shu, FINANCIAL_TABS.catatan2026, 'A1:O20');
+    const catatanRows = await fetchSheet(SHEET_IDS.shu, FINANCIAL_TABS.catatan2026, 'A1:O30');
     if (catatanRows) FIN_DATA.catatan = catatanRows;
 
     // Sheet SHU: ambil baris luas untuk summary + 10 terakhir
@@ -1866,10 +1866,11 @@ function renderFinOmzet() {
     return;
   }
 
-  const dataRows = rows.slice(1).filter(r => {
+  // Skip semua baris header (judul + nama kolom) - ambil hanya baris yg kolom A berisi angka (No urut)
+  const dataRows = rows.filter(r => {
     const no  = String(r[0]||'').trim();
     const bln = String(r[1]||'').trim();
-    return no && bln && !isNaN(parseInt(no));
+    return no && bln && /^\d+$/.test(no);
   });
 
   if (dataRows.length === 0) {
