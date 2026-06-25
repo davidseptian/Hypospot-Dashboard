@@ -1319,7 +1319,7 @@ function renderFinForecast() {
   const rows = FIN_DATA.forecast;
   const wrap = document.getElementById('fin-forecast-wrap');
   if (!rows || rows.length < 3) {
-    wrap.innerHTML = '<div class="empty">Data forecasting belum tersedia.<br><span style="font-size:10px">Spreadsheet "Pengeluaran 2026" perlu berupa Google Sheet native (bukan .xlsx) agar bisa dibaca otomatis. Buka file di Drive → File → Save as Google Sheets.</span></div>';
+    wrap.innerHTML = '<div class="empty">Data forecasting belum tersedia.<br><span style="font-size:10px">Pastikan tab "FORECASTING" ada di Pengeluaran 2026 & file di-set publik.</span></div>';
     return;
   }
   const hIdx = findRowIdx(rows, ['bulan','bahan']);
@@ -1329,6 +1329,11 @@ function renderFinForecast() {
   const cBulan = findColIdx(H,'bulan');
   const cBahan = findColIdx(H,'biaya bahan')>=0?findColIdx(H,'biaya bahan'):findColIdx(H,'bahan');
   const cAds = findColIdx(H,'biaya ads')>=0?findColIdx(H,'biaya ads'):findColIdx(H,'ads');
+  // 4 kolom forecast V=3 bulan, urutan di sheet: Bahan(+8%), Ads(+8%), Bahan(0%), Ads(0%)
+  const cFB8 = cAds + 1;
+  const cFA8 = cAds + 2;
+  const cFB0 = cAds + 3;
+  const cFA0 = cAds + 4;
   let body='';
   const bulanList = ['jan','feb','mar','apr','may','mei','jun','jul','aug','agu','sep','oct','okt','nov','dec','des'];
   for (let i=hIdx+1;i<rows.length;i++){
@@ -1341,9 +1346,24 @@ function renderFinForecast() {
       <td style="font-weight:500">${escHtml(bln)}</td>
       <td style="font-family:var(--mono)">${isNum(r[cBahan])?fmtRpShort(r[cBahan]):dash}</td>
       <td style="font-family:var(--mono)">${isNum(r[cAds])?fmtRpShort(r[cAds]):dash}</td>
+      <td style="font-family:var(--mono);color:var(--orange)">${isNum(r[cFB8])?fmtRpShort(r[cFB8]):dash}</td>
+      <td style="font-family:var(--mono);color:var(--orange)">${isNum(r[cFA8])?fmtRpShort(r[cFA8]):dash}</td>
+      <td style="font-family:var(--mono);color:var(--green)">${isNum(r[cFB0])?fmtRpShort(r[cFB0]):dash}</td>
+      <td style="font-family:var(--mono);color:var(--green)">${isNum(r[cFA0])?fmtRpShort(r[cFA0]):dash}</td>
     </tr>`;
   }
-  wrap.innerHTML = `<table class="tbl tbl-pad" style="min-width:380px;font-size:11px"><thead><tr><th>No</th><th>Bulan</th><th>Biaya Bahan</th><th>Biaya Ads</th></tr></thead><tbody>${body||'<tr><td colspan="4" class="empty">—</td></tr>'}</tbody></table>`;
+  wrap.innerHTML = `<table class="tbl tbl-pad" style="min-width:640px;font-size:11px"><thead>
+    <tr>
+      <th rowspan="2">No</th><th rowspan="2">Bulan</th>
+      <th rowspan="2">Biaya Bahan</th><th rowspan="2">Biaya Ads</th>
+      <th colspan="2" style="color:var(--orange);text-align:center">Forecast +8%</th>
+      <th colspan="2" style="color:var(--green);text-align:center">Forecast 0%</th>
+    </tr>
+    <tr>
+      <th style="color:var(--orange)">Bahan</th><th style="color:var(--orange)">Ads</th>
+      <th style="color:var(--green)">Bahan</th><th style="color:var(--green)">Ads</th>
+    </tr>
+  </thead><tbody>${body||'<tr><td colspan="8" class="empty">—</td></tr>'}</tbody></table>`;
 }
 
 // ─── TAB SWITCH ───
