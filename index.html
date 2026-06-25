@@ -341,10 +341,10 @@ body{background:var(--bg);color:var(--text);font-family:var(--font);font-size:13
 
   <!-- KPI ROW -->
   <div class="kpi-grid">
-    <div class="kpi blue"><div class="kpi-lbl">SHU Total (Kas)</div><div class="kpi-val blue">Rp 458.6jt</div><div class="kpi-meta">Saldo SHU terkini</div></div>
-    <div class="kpi green"><div class="kpi-lbl">Total Revenue 2026</div><div class="kpi-val green">Rp 463.3jt</div><div class="kpi-meta">YTD Jan–Jun 2026</div></div>
-    <div class="kpi orange"><div class="kpi-lbl">Dana Siaga</div><div class="kpi-val orange">Rp 38.6jt</div><div class="kpi-meta">Liquid Cash tersedia</div></div>
-    <div class="kpi red"><div class="kpi-lbl">Total Hutang</div><div class="kpi-val red">Rp 63.1jt</div><div class="kpi-meta">Piutang ke customer/tim</div></div>
+    <div class="kpi blue"><div class="kpi-lbl">SHU Total (Kas)</div><div class="kpi-val blue" id="fin-shu-total">—</div><div class="kpi-meta" id="fin-shu-meta">memuat...</div></div>
+    <div class="kpi green"><div class="kpi-lbl">Total Revenue 2026</div><div class="kpi-val green" id="fin-rev-2026">—</div><div class="kpi-meta">YTD 2026</div></div>
+    <div class="kpi orange"><div class="kpi-lbl">Dana Siaga</div><div class="kpi-val orange" id="fin-siaga-kpi">—</div><div class="kpi-meta">Liquid Cash</div></div>
+    <div class="kpi red"><div class="kpi-lbl">Total Hutang</div><div class="kpi-val red" id="fin-hutang-kpi">—</div><div class="kpi-meta">Piutang customer/tim</div></div>
   </div>
 
   <!-- ROW 1: Rekap Omzet + SHU 10 terakhir -->
@@ -354,230 +354,14 @@ body{background:var(--bg);color:var(--text);font-family:var(--font);font-size:13
         <div><div class="card-title">Rekap Omzet Per Bulan 2026</div><div class="card-sub">Sheet: Catatan 2026</div></div>
         <a class="pill-link" href="https://docs.google.com/spreadsheets/d/1VHl7FAEQaQJHJQQ3jSFiE-t2LlWNTwGbiR6fQmzRxWs/" target="_blank">↗ Sheet</a>
       </div>
-      <div style="overflow-x:auto"><table class="tbl tbl-pad" style="min-width:750px;font-size:11px"><thead><tr><th>No</th><th>Bulan</th><th>Revenue</th><th>Naik/Turun</th><th>%</th><th>SHU Kotor</th><th>Net Profit%</th><th>SHU Bersih</th><th>Produk</th><th>Total Cost</th><th>Keuntungan</th></tr></thead><tbody><tr>
-        <td style="color:var(--muted)">12</td>
-        <td style="font-weight:500">Desember</td>
-        <td style="font-family:var(--mono)">Rp 79.618.903</td>
-        <td><span class="bdg bdg-green">↑ Naik</span></td>
-        <td style="font-family:var(--mono);color:var(--muted)">100.0%</td>
-        <td style="font-family:var(--mono)">Rp 19.248.903</td>
-        <td style="font-family:var(--mono);color:var(--muted)">24.2%</td>
-        <td style="font-family:var(--mono);color:var(--blue)">Rp 16.248.903</td>
-        <td style="font-family:var(--mono)">3519</td>
-        <td style="font-family:var(--mono)">Rp 58.570.000</td>
-        <td style="font-family:var(--mono);color:var(--green)">Rp 2.437.335</td>
-    </tr><tr>
-        <td style="color:var(--muted)">1</td>
-        <td style="font-weight:500">Januari</td>
-        <td style="font-family:var(--mono)">Rp 82.817.549</td>
-        <td><span class="bdg bdg-green">↑ Naik</span></td>
-        <td style="font-family:var(--mono);color:var(--muted)">4.0%</td>
-        <td style="font-family:var(--mono)">Rp 21.447.549</td>
-        <td style="font-family:var(--mono);color:var(--muted)">25.9%</td>
-        <td style="font-family:var(--mono);color:var(--blue)">Rp 10.390.049</td>
-        <td style="font-family:var(--mono)">4065</td>
-        <td style="font-family:var(--mono)">Rp 59.570.000</td>
-        <td style="font-family:var(--mono);color:var(--green)">Rp 1.558.507</td>
-    </tr><tr>
-        <td style="color:var(--muted)">2</td>
-        <td style="font-weight:500">Februari</td>
-        <td style="font-family:var(--mono)">Rp 80.287.563</td>
-        <td><span class="bdg bdg-red">↓ Turun</span></td>
-        <td style="font-family:var(--mono);color:var(--muted)">-3.1%</td>
-        <td style="font-family:var(--mono)">Rp 20.267.563</td>
-        <td style="font-family:var(--mono);color:var(--muted)">25.2%</td>
-        <td style="font-family:var(--mono);color:var(--blue)">Rp 15.567.563</td>
-        <td style="font-family:var(--mono)">4742</td>
-        <td style="font-family:var(--mono)">Rp 58.220.000</td>
-        <td style="font-family:var(--mono);color:var(--green)">Rp 2.335.134</td>
-    </tr><tr>
-        <td style="color:var(--muted)">3</td>
-        <td style="font-weight:500">Maret</td>
-        <td style="font-family:var(--mono)">Rp 68.427.806</td>
-        <td><span class="bdg bdg-red">↓ Turun</span></td>
-        <td style="font-family:var(--mono);color:var(--muted)">-14.8%</td>
-        <td style="font-family:var(--mono)">Rp 13.557.806</td>
-        <td style="font-family:var(--mono);color:var(--muted)">19.8%</td>
-        <td style="font-family:var(--mono);color:var(--blue)">Rp 7.331.633</td>
-        <td style="font-family:var(--mono)">4256</td>
-        <td style="font-family:var(--mono)">Rp 53.370.000</td>
-        <td style="font-family:var(--mono);color:var(--green)">Rp 1.099.744</td>
-    </tr><tr>
-        <td style="color:var(--muted)">4</td>
-        <td style="font-weight:500">April</td>
-        <td style="font-family:var(--mono)">Rp 92.741.606</td>
-        <td><span class="bdg bdg-green">↑ Naik</span></td>
-        <td style="font-family:var(--mono);color:var(--muted)">35.5%</td>
-        <td style="font-family:var(--mono)">Rp 26.271.606</td>
-        <td style="font-family:var(--mono);color:var(--muted)">28.3%</td>
-        <td style="font-family:var(--mono);color:var(--blue)">Rp 20.045.433</td>
-        <td style="font-family:var(--mono)">4853</td>
-        <td style="font-family:var(--mono)">Rp 64.370.000</td>
-        <td style="font-family:var(--mono);color:var(--green)">Rp 3.006.814</td>
-    </tr><tr>
-        <td style="color:var(--muted)">5</td>
-        <td style="font-weight:500">Mei</td>
-        <td style="font-family:var(--mono)">Rp 59.383.624</td>
-        <td><span class="bdg bdg-red">↓ Turun</span></td>
-        <td style="font-family:var(--mono);color:var(--muted)">-36.0%</td>
-        <td style="font-family:var(--mono)">Rp 3.413.624</td>
-        <td style="font-family:var(--mono);color:var(--muted)">5.7%</td>
-        <td style="font-family:var(--mono);color:var(--blue)">Rp 0</td>
-        <td style="font-family:var(--mono)">4123</td>
-        <td style="font-family:var(--mono)">Rp 59.270.000</td>
-        <td style="font-family:var(--mono);color:var(--green)">—</td>
-    </tr><tr>
-        <td style="color:var(--muted)">6</td>
-        <td style="font-weight:500">Juni</td>
-        <td style="font-family:var(--mono)">—</td>
-        <td><span class="bdg bdg-red">↓ Turun</span></td>
-        <td style="font-family:var(--mono);color:var(--muted)">—</td>
-        <td style="font-family:var(--mono)">—</td>
-        <td style="font-family:var(--mono);color:var(--muted)">—</td>
-        <td style="font-family:var(--mono);color:var(--blue)">—</td>
-        <td style="font-family:var(--mono)">—</td>
-        <td style="font-family:var(--mono)">—</td>
-        <td style="font-family:var(--mono);color:var(--green)">—</td>
-    </tr><tr>
-        <td style="color:var(--muted)">7</td>
-        <td style="font-weight:500">Juli</td>
-        <td style="font-family:var(--mono)">—</td>
-        <td><span class="bdg bdg-gray">→ Tetap</span></td>
-        <td style="font-family:var(--mono);color:var(--muted)">—</td>
-        <td style="font-family:var(--mono)">—</td>
-        <td style="font-family:var(--mono);color:var(--muted)">—</td>
-        <td style="font-family:var(--mono);color:var(--blue)">—</td>
-        <td style="font-family:var(--mono)">—</td>
-        <td style="font-family:var(--mono)">—</td>
-        <td style="font-family:var(--mono);color:var(--green)">—</td>
-    </tr><tr>
-        <td style="color:var(--muted)">8</td>
-        <td style="font-weight:500">Agustus</td>
-        <td style="font-family:var(--mono)">—</td>
-        <td><span class="bdg bdg-gray">→ Tetap</span></td>
-        <td style="font-family:var(--mono);color:var(--muted)">—</td>
-        <td style="font-family:var(--mono)">—</td>
-        <td style="font-family:var(--mono);color:var(--muted)">—</td>
-        <td style="font-family:var(--mono);color:var(--blue)">—</td>
-        <td style="font-family:var(--mono)">—</td>
-        <td style="font-family:var(--mono)">—</td>
-        <td style="font-family:var(--mono);color:var(--green)">—</td>
-    </tr><tr>
-        <td style="color:var(--muted)">9</td>
-        <td style="font-weight:500">September</td>
-        <td style="font-family:var(--mono)">—</td>
-        <td><span class="bdg bdg-gray">→ Tetap</span></td>
-        <td style="font-family:var(--mono);color:var(--muted)">—</td>
-        <td style="font-family:var(--mono)">—</td>
-        <td style="font-family:var(--mono);color:var(--muted)">—</td>
-        <td style="font-family:var(--mono);color:var(--blue)">—</td>
-        <td style="font-family:var(--mono)">—</td>
-        <td style="font-family:var(--mono)">—</td>
-        <td style="font-family:var(--mono);color:var(--green)">—</td>
-    </tr><tr>
-        <td style="color:var(--muted)">10</td>
-        <td style="font-weight:500">Oktober</td>
-        <td style="font-family:var(--mono)">—</td>
-        <td><span class="bdg bdg-gray">→ Tetap</span></td>
-        <td style="font-family:var(--mono);color:var(--muted)">—</td>
-        <td style="font-family:var(--mono)">—</td>
-        <td style="font-family:var(--mono);color:var(--muted)">—</td>
-        <td style="font-family:var(--mono);color:var(--blue)">—</td>
-        <td style="font-family:var(--mono)">—</td>
-        <td style="font-family:var(--mono)">—</td>
-        <td style="font-family:var(--mono);color:var(--green)">—</td>
-    </tr><tr>
-        <td style="color:var(--muted)">11</td>
-        <td style="font-weight:500">November</td>
-        <td style="font-family:var(--mono)">—</td>
-        <td><span class="bdg bdg-gray">→ Tetap</span></td>
-        <td style="font-family:var(--mono);color:var(--muted)">—</td>
-        <td style="font-family:var(--mono)">—</td>
-        <td style="font-family:var(--mono);color:var(--muted)">—</td>
-        <td style="font-family:var(--mono);color:var(--blue)">—</td>
-        <td style="font-family:var(--mono)">—</td>
-        <td style="font-family:var(--mono)">—</td>
-        <td style="font-family:var(--mono);color:var(--green)">—</td>
-    </tr><tr>
-        <td style="color:var(--muted)">12</td>
-        <td style="font-weight:500">Desember</td>
-        <td style="font-family:var(--mono)">—</td>
-        <td><span class="bdg bdg-gray">→ Tetap</span></td>
-        <td style="font-family:var(--mono);color:var(--muted)">—</td>
-        <td style="font-family:var(--mono)">—</td>
-        <td style="font-family:var(--mono);color:var(--muted)">—</td>
-        <td style="font-family:var(--mono);color:var(--blue)">—</td>
-        <td style="font-family:var(--mono)">—</td>
-        <td style="font-family:var(--mono)">—</td>
-        <td style="font-family:var(--mono);color:var(--green)">—</td>
-    </tr></tbody></table></div>
+      <div style="overflow-x:auto"><div id="fin-omzet-wrap"><div class="loading"><div class="spinner"></div>Memuat...</div></div></div>
     </div>
     <div class="card">
       <div class="card-hdr">
         <div><div class="card-title">SHU — 10 Transaksi Terakhir</div><div class="card-sub">Uang masuk & keluar</div></div>
         <a class="pill-link" href="https://docs.google.com/spreadsheets/d/1VHl7FAEQaQJHJQQ3jSFiE-t2LlWNTwGbiR6fQmzRxWs/" target="_blank">↗ Sheet</a>
       </div>
-      <div style="overflow-x:auto"><table class="tbl tbl-pad" style="font-size:11px"><thead><tr><th>Tanggal</th><th>Masuk</th><th>Keluar</th><th>Sisa</th><th>Keterangan</th></tr></thead><tbody><tr>
-        <td style="font-family:var(--mono);font-size:10px">18/06/2026</td>
-        <td style="font-family:var(--mono);color:var(--green)">Rp 3.413.625</td>
-        <td style="font-family:var(--mono);color:var(--red)">—</td>
-        <td style="font-family:var(--mono);font-size:10px;color:var(--muted)">Rp 458.631.406</td>
-        <td style="color:var(--muted)">Tambahan SHU Mei</td>
-    </tr><tr>
-        <td style="font-family:var(--mono);font-size:10px">15/06/2026</td>
-        <td style="font-family:var(--mono);color:var(--green)">—</td>
-        <td style="font-family:var(--mono);color:var(--red)">Rp 1.610.000</td>
-        <td style="font-family:var(--mono);font-size:10px;color:var(--muted)">Rp 455.217.781</td>
-        <td style="color:var(--muted)">Pelunasan refreshment stiker</td>
-    </tr><tr>
-        <td style="font-family:var(--mono);font-size:10px">03/06/2026</td>
-        <td style="font-family:var(--mono);color:var(--green)">—</td>
-        <td style="font-family:var(--mono);color:var(--red)">Rp 475.000</td>
-        <td style="font-family:var(--mono);font-size:10px;color:var(--muted)">Rp 456.827.781</td>
-        <td style="color:var(--muted)">DP Refreshment Stiker Part 2</td>
-    </tr><tr>
-        <td style="font-family:var(--mono);font-size:10px">29/05/2026</td>
-        <td style="font-family:var(--mono);color:var(--green)">Rp 321.509</td>
-        <td style="font-family:var(--mono);color:var(--red)">—</td>
-        <td style="font-family:var(--mono);font-size:10px;color:var(--muted)">Rp 457.302.781</td>
-        <td style="color:var(--muted)">Return Bibit</td>
-    </tr><tr>
-        <td style="font-family:var(--mono);font-size:10px">20/05/2026</td>
-        <td style="font-family:var(--mono);color:var(--green)">Rp 22.474.192</td>
-        <td style="font-family:var(--mono);color:var(--red)">—</td>
-        <td style="font-family:var(--mono);font-size:10px;color:var(--muted)">Rp 456.981.272</td>
-        <td style="color:var(--muted)">Tambahan SHU April</td>
-    </tr><tr>
-        <td style="font-family:var(--mono);font-size:10px">20/05/2026</td>
-        <td style="font-family:var(--mono);color:var(--green)">—</td>
-        <td style="font-family:var(--mono);color:var(--red)">Rp 2.750.000</td>
-        <td style="font-family:var(--mono);font-size:10px;color:var(--muted)">Rp 434.507.080</td>
-        <td style="color:var(--muted)">Tambahan ERP Hanung Mei 2026</td>
-    </tr><tr>
-        <td style="font-family:var(--mono);font-size:10px">13/05/2026</td>
-        <td style="font-family:var(--mono);color:var(--green)">—</td>
-        <td style="font-family:var(--mono);color:var(--red)">Rp 3.700.000</td>
-        <td style="font-family:var(--mono);font-size:10px;color:var(--muted)">Rp 437.257.080</td>
-        <td style="color:var(--muted)">Pembayaran Kambing Kurban 2026</td>
-    </tr><tr>
-        <td style="font-family:var(--mono);font-size:10px">13/05/2026</td>
-        <td style="font-family:var(--mono);color:var(--green)">—</td>
-        <td style="font-family:var(--mono);color:var(--red)">Rp 1.135.000</td>
-        <td style="font-family:var(--mono);font-size:10px;color:var(--muted)">Rp 440.957.080</td>
-        <td style="color:var(--muted)">DP Refreshment Stiker</td>
-    </tr><tr>
-        <td style="font-family:var(--mono);font-size:10px">01/05/2026</td>
-        <td style="font-family:var(--mono);color:var(--green)">Rp 446.824</td>
-        <td style="font-family:var(--mono);color:var(--red)">—</td>
-        <td style="font-family:var(--mono);font-size:10px;color:var(--muted)">Rp 442.092.080</td>
-        <td style="color:var(--muted)">Tambahan SHU bulan januari</td>
-    </tr><tr>
-        <td style="font-family:var(--mono);font-size:10px">01/05/2026</td>
-        <td style="font-family:var(--mono);color:var(--green)">Rp 3.797.414</td>
-        <td style="font-family:var(--mono);color:var(--red)">—</td>
-        <td style="font-family:var(--mono);font-size:10px;color:var(--muted)">Rp 441.645.256</td>
-        <td style="color:var(--muted)">SHU Sementara</td>
-    </tr></tbody></table></div>
+      <div style="overflow-x:auto"><div id="fin-shu-wrap"><div class="loading"><div class="spinner"></div>Memuat...</div></div></div>
     </div>
   </div>
 
@@ -588,337 +372,26 @@ body{background:var(--bg);color:var(--text);font-family:var(--font);font-size:13
         <div><div class="card-title">Arus Kas — Ringkasan</div><div class="card-sub">Dana Siaga · Investasi · Total · Hutang</div></div>
         <a class="pill-link" href="https://docs.google.com/spreadsheets/d/1VHl7FAEQaQJHJQQ3jSFiE-t2LlWNTwGbiR6fQmzRxWs/" target="_blank">↗ Sheet</a>
       </div>
-      <div class="card-body">
-<div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:14px">
-  <div style="background:var(--bg3);border-radius:7px;padding:12px">
-    <div style="font-size:10px;color:var(--muted);margin-bottom:4px;font-weight:500;letter-spacing:.5px;text-transform:uppercase">Dana Siaga (Liquid Cash)</div>
-    <div style="font-size:20px;font-weight:700;font-family:var(--mono);color:var(--blue)">Rp 38.566.395</div>
-  </div>
-  <div style="background:var(--bg3);border-radius:7px;padding:12px">
-    <div style="font-size:10px;color:var(--muted);margin-bottom:4px;font-weight:500;letter-spacing:.5px;text-transform:uppercase">Total Investasi</div>
-    <div style="font-size:20px;font-weight:700;font-family:var(--mono);color:var(--green)">Rp 284.863.249</div>
-  </div>
-  <div style="background:var(--bg3);border-radius:7px;padding:12px">
-    <div style="font-size:10px;color:var(--muted);margin-bottom:4px;font-weight:500;letter-spacing:.5px;text-transform:uppercase">Total All</div>
-    <div style="font-size:20px;font-weight:700;font-family:var(--mono);color:var(--accent2,#2dd4a0)">Rp 386.543.739</div>
-    <div style="font-size:10px;color:var(--muted);margin-top:3px">SHU Asli: Rp 458.631.406</div>
-  </div>
-  <div style="background:var(--bg3);border-radius:7px;padding:12px">
-    <div style="font-size:10px;color:var(--muted);margin-bottom:6px;font-weight:500;letter-spacing:.5px;text-transform:uppercase">Total Hutang: Rp 63.114.095</div>
-    <table style="width:100%;border-collapse:collapse"><tr><td style="font-size:11px">David</td><td style="font-family:var(--mono);color:var(--orange);font-size:11px">Rp 7.357.595</td></tr><tr><td style="font-size:11px">Andhika</td><td style="font-family:var(--mono);color:var(--orange);font-size:11px">Rp 4.500.000</td></tr><tr><td style="font-size:11px">Mba Tun</td><td style="font-family:var(--mono);color:var(--orange);font-size:11px">Rp 1.000.000</td></tr><tr><td style="font-size:11px">Dimas Prayoga</td><td style="font-family:var(--mono);color:var(--orange);font-size:11px">Rp 10.006.500</td></tr><tr><td style="font-size:11px">Hadi HP</td><td style="font-family:var(--mono);color:var(--orange);font-size:11px">Rp 2.000.000</td></tr><tr><td style="font-size:11px">Yusril</td><td style="font-family:var(--mono);color:var(--orange);font-size:11px">Rp 35.250.000</td></tr><tr><td style="font-size:11px">Anggito</td><td style="font-family:var(--mono);color:var(--orange);font-size:11px">Rp 3.000.000</td></tr></table>
-  </div>
-</div></div>
+      <div class="card-body" id="fin-aruskas-summary"><div class="loading"><div class="spinner"></div>Memuat...</div></div>
     </div>
     <div class="card">
       <div class="card-hdr">
         <div><div class="card-title">Total Nilai Aset Hypospot</div><div class="card-sub">Sheet: Valuasi</div></div>
         <a class="pill-link" href="https://docs.google.com/spreadsheets/d/1VHl7FAEQaQJHJQQ3jSFiE-t2LlWNTwGbiR6fQmzRxWs/" target="_blank">↗ Sheet</a>
       </div>
-      <div style="overflow-x:auto"><table class="tbl tbl-pad" style="font-size:11px;min-width:450px"><thead><tr><th>No</th><th>Thn</th><th>Alat/Bahan</th><th>Harga Satuan</th><th>Qty</th><th>Total Harga</th></tr></thead><tbody><tr>
-        <td style="font-family:var(--mono);color:var(--muted)">1</td>
-        <td style="font-family:var(--mono);font-size:10px;color:var(--muted)">2023</td>
-        <td style="font-weight:500">Nilai SHU</td>
-        <td style="font-family:var(--mono)">Rp 458.411.406</td>
-        <td style="font-family:var(--mono)">1</td>
-        <td style="font-family:var(--mono);color:var(--blue)">Rp 458.411.406</td>
-    </tr><tr>
-        <td style="font-family:var(--mono);color:var(--muted)">29</td>
-        <td style="font-family:var(--mono);font-size:10px;color:var(--muted)">2024</td>
-        <td style="font-weight:500">Laptop Surface Book 2</td>
-        <td style="font-family:var(--mono)">Rp 5.000.000</td>
-        <td style="font-family:var(--mono)">1</td>
-        <td style="font-family:var(--mono);color:var(--blue)">Rp 5.000.000</td>
-    </tr><tr>
-        <td style="font-family:var(--mono);color:var(--muted)">2</td>
-        <td style="font-family:var(--mono);font-size:10px;color:var(--muted)">2023</td>
-        <td style="font-weight:500">Cam Sony a6000</td>
-        <td style="font-family:var(--mono)">Rp 4.500.000</td>
-        <td style="font-family:var(--mono)">1</td>
-        <td style="font-family:var(--mono);color:var(--blue)">Rp 4.500.000</td>
-    </tr><tr>
-        <td style="font-family:var(--mono);color:var(--muted)">32</td>
-        <td style="font-family:var(--mono);font-size:10px;color:var(--muted)">2024</td>
-        <td style="font-weight:500">Etalase produk</td>
-        <td style="font-family:var(--mono)">Rp 4.000.000</td>
-        <td style="font-family:var(--mono)">1</td>
-        <td style="font-family:var(--mono);color:var(--blue)">Rp 4.000.000</td>
-    </tr><tr>
-        <td style="font-family:var(--mono);color:var(--muted)">15</td>
-        <td style="font-family:var(--mono);font-size:10px;color:var(--muted)">2026</td>
-        <td style="font-weight:500">HP IP 11 Pro Max for David</td>
-        <td style="font-family:var(--mono)">Rp 3.500.000</td>
-        <td style="font-family:var(--mono)">1</td>
-        <td style="font-family:var(--mono);color:var(--blue)">Rp 3.500.000</td>
-    </tr><tr>
-        <td style="font-family:var(--mono);color:var(--muted)">27</td>
-        <td style="font-family:var(--mono);font-size:10px;color:var(--muted)">2024</td>
-        <td style="font-weight:500">Motor Oprational Vega ZR</td>
-        <td style="font-family:var(--mono)">Rp 2.800.000</td>
-        <td style="font-family:var(--mono)">1</td>
-        <td style="font-family:var(--mono);color:var(--blue)">Rp 2.800.000</td>
-    </tr><tr>
-        <td style="font-family:var(--mono);color:var(--muted)">36</td>
-        <td style="font-family:var(--mono);font-size:10px;color:var(--muted)">2025</td>
-        <td style="font-weight:500">AC Sharp 0,5 pk AH A5ZCY</td>
-        <td style="font-family:var(--mono)">Rp 2.500.000</td>
-        <td style="font-family:var(--mono)">1</td>
-        <td style="font-family:var(--mono);color:var(--blue)">Rp 2.500.000</td>
-    </tr><tr>
-        <td style="font-family:var(--mono);color:var(--muted)">3</td>
-        <td style="font-family:var(--mono);font-size:10px;color:var(--muted)">2023</td>
-        <td style="font-weight:500">Komputer</td>
-        <td style="font-family:var(--mono)">Rp 2.400.000</td>
-        <td style="font-family:var(--mono)">1</td>
-        <td style="font-family:var(--mono);color:var(--blue)">Rp 2.400.000</td>
-    </tr><tr>
-        <td style="font-family:var(--mono);color:var(--muted)">4</td>
-        <td style="font-family:var(--mono);font-size:10px;color:var(--muted)">2023</td>
-        <td style="font-weight:500">HP Infinix Hot 12 Play NFC</td>
-        <td style="font-family:var(--mono)">Rp 1.795.000</td>
-        <td style="font-family:var(--mono)">1</td>
-        <td style="font-family:var(--mono);color:var(--blue)">Rp 1.795.000</td>
-    </tr><tr>
-        <td style="font-family:var(--mono);color:var(--muted)">5</td>
-        <td style="font-family:var(--mono);font-size:10px;color:var(--muted)">2023</td>
-        <td style="font-weight:500">Kulkas Sharp 1 Pintu</td>
-        <td style="font-family:var(--mono)">Rp 1.600.000</td>
-        <td style="font-family:var(--mono)">1</td>
-        <td style="font-family:var(--mono);color:var(--blue)">Rp 1.600.000</td>
-    </tr><tr>
-        <td style="font-family:var(--mono);color:var(--muted)">30</td>
-        <td style="font-family:var(--mono);font-size:10px;color:var(--muted)">2024</td>
-        <td style="font-weight:500">HP POCO C65</td>
-        <td style="font-family:var(--mono)">Rp 1.400.000</td>
-        <td style="font-family:var(--mono)">1</td>
-        <td style="font-family:var(--mono);color:var(--blue)">Rp 1.400.000</td>
-    </tr><tr>
-        <td style="font-family:var(--mono);color:var(--muted)">31</td>
-        <td style="font-family:var(--mono);font-size:10px;color:var(--muted)">2024</td>
-        <td style="font-weight:500">Blueprint Eco 80BT</td>
-        <td style="font-family:var(--mono)">Rp 700.000</td>
-        <td style="font-family:var(--mono)">1</td>
-        <td style="font-family:var(--mono);color:var(--blue)">Rp 700.000</td>
-    </tr><tr>
-        <td style="font-family:var(--mono);color:var(--muted)">10</td>
-        <td style="font-family:var(--mono);font-size:10px;color:var(--muted)">2026</td>
-        <td style="font-weight:500">Sanyo Kontrakan</td>
-        <td style="font-family:var(--mono)">Rp 700.000</td>
-        <td style="font-family:var(--mono)">1</td>
-        <td style="font-family:var(--mono);color:var(--blue)">Rp 700.000</td>
-    </tr><tr>
-        <td style="font-family:var(--mono);color:var(--muted)">6</td>
-        <td style="font-family:var(--mono);font-size:10px;color:var(--muted)">2023</td>
-        <td style="font-weight:500">Costa Collect TM-02 Tripod</td>
-        <td style="font-family:var(--mono)">Rp 645.000</td>
-        <td style="font-family:var(--mono)">1</td>
-        <td style="font-family:var(--mono);color:var(--blue)">Rp 645.000</td>
-    </tr><tr>
-        <td style="font-family:var(--mono);color:var(--muted)">7</td>
-        <td style="font-family:var(--mono);font-size:10px;color:var(--muted)">2023</td>
-        <td style="font-weight:500">Printer Blueprint</td>
-        <td style="font-family:var(--mono)">Rp 520.000</td>
-        <td style="font-family:var(--mono)">1</td>
-        <td style="font-family:var(--mono);color:var(--blue)">Rp 520.000</td>
-    </tr><tr>
-        <td style="font-family:var(--mono);color:var(--muted)">33</td>
-        <td style="font-family:var(--mono);font-size:10px;color:var(--muted)">2025</td>
-        <td style="font-weight:500">Rak Besi Hitam</td>
-        <td style="font-family:var(--mono)">Rp 520.000</td>
-        <td style="font-family:var(--mono)">1</td>
-        <td style="font-family:var(--mono);color:var(--blue)">Rp 520.000</td>
-    </tr><tr>
-        <td style="font-family:var(--mono);color:var(--muted)">8</td>
-        <td style="font-family:var(--mono);font-size:10px;color:var(--muted)">2023</td>
-        <td style="font-weight:500">Rak stok barang besar hitam</td>
-        <td style="font-family:var(--mono)">Rp 500.000</td>
-        <td style="font-family:var(--mono)">1</td>
-        <td style="font-family:var(--mono);color:var(--blue)">Rp 500.000</td>
-    </tr><tr>
-        <td style="font-family:var(--mono);color:var(--muted)">34</td>
-        <td style="font-family:var(--mono);font-size:10px;color:var(--muted)">2025</td>
-        <td style="font-weight:500">Meja Kerja David</td>
-        <td style="font-family:var(--mono)">Rp 360.000</td>
-        <td style="font-family:var(--mono)">1</td>
-        <td style="font-family:var(--mono);color:var(--blue)">Rp 360.000</td>
-    </tr><tr>
-        <td style="font-family:var(--mono);color:var(--muted)">28</td>
-        <td style="font-family:var(--mono);font-size:10px;color:var(--muted)">2024</td>
-        <td style="font-weight:500">Rak stok barang besar putih</td>
-        <td style="font-family:var(--mono)">Rp 350.000</td>
-        <td style="font-family:var(--mono)">1</td>
-        <td style="font-family:var(--mono);color:var(--blue)">Rp 350.000</td>
-    </tr><tr>
-        <td style="font-family:var(--mono);color:var(--muted)">9</td>
-        <td style="font-family:var(--mono);font-size:10px;color:var(--muted)">2023</td>
-        <td style="font-weight:500">Rak stok barang</td>
-        <td style="font-family:var(--mono)">Rp 290.000</td>
-        <td style="font-family:var(--mono)">1</td>
-        <td style="font-family:var(--mono);color:var(--blue)">Rp 290.000</td>
-    </tr><tr>
-        <td style="font-family:var(--mono);color:var(--muted)">11</td>
-        <td style="font-family:var(--mono);font-size:10px;color:var(--muted)">2023</td>
-        <td style="font-weight:500">Meja Lipat</td>
-        <td style="font-family:var(--mono)">Rp 226.000</td>
-        <td style="font-family:var(--mono)">1</td>
-        <td style="font-family:var(--mono);color:var(--blue)">Rp 226.000</td>
-    </tr><tr>
-        <td style="font-family:var(--mono);color:var(--muted)">35</td>
-        <td style="font-family:var(--mono);font-size:10px;color:var(--muted)">2025</td>
-        <td style="font-weight:500">Meja Admin</td>
-        <td style="font-family:var(--mono)">Rp 200.000</td>
-        <td style="font-family:var(--mono)">1</td>
-        <td style="font-family:var(--mono);color:var(--blue)">Rp 200.000</td>
-    </tr><tr>
-        <td style="font-family:var(--mono);color:var(--muted)">12</td>
-        <td style="font-family:var(--mono);font-size:10px;color:var(--muted)">2023</td>
-        <td style="font-weight:500">Alat Pemotong kertas A3</td>
-        <td style="font-family:var(--mono)">Rp 191.000</td>
-        <td style="font-family:var(--mono)">1</td>
-        <td style="font-family:var(--mono);color:var(--blue)">Rp 191.000</td>
-    </tr><tr>
-        <td style="font-family:var(--mono);color:var(--muted)">14</td>
-        <td style="font-family:var(--mono);font-size:10px;color:var(--muted)">2023</td>
-        <td style="font-weight:500">Hot Gun Orion</td>
-        <td style="font-family:var(--mono)">Rp 117.000</td>
-        <td style="font-family:var(--mono)">1</td>
-        <td style="font-family:var(--mono);color:var(--blue)">Rp 117.000</td>
-    </tr></tbody></table></div>
+      <div style="overflow-x:auto"><div id="fin-valuasi-wrap"><div class="loading"><div class="spinner"></div>Memuat...</div></div></div>
     </div>
   </div>
 
   <!-- ROW 3: Dana Siaga + Investasi 10 terakhir -->
   <div class="two-col">
     <div class="card">
-      <div class="card-hdr">
-        <div><div class="card-title">Dana Siaga — 10 Input Terakhir</div><div class="card-sub">Dari tabel Arus Kas</div></div>
-      </div>
-      <div style="overflow-x:auto"><table class="tbl tbl-pad" style="font-size:11px"><thead><tr><th>Tanggal</th><th>Masuk</th><th>Keluar</th><th>Sisa</th><th>Keterangan</th></tr></thead><tbody><tr>
-        <td style="font-family:var(--mono);font-size:10px">06/11/2024</td>
-        <td style="font-family:var(--mono);color:var(--green)">Rp 20.000.000</td>
-        <td style="font-family:var(--mono);color:var(--red)">—</td>
-        <td style="font-family:var(--mono);font-size:10px;color:var(--muted)">Rp 62.956.154</td>
-        <td style="color:var(--muted)">dikembalikan de tari</td>
-    </tr><tr>
-        <td style="font-family:var(--mono);font-size:10px">06/08/2024</td>
-        <td style="font-family:var(--mono);color:var(--green)">Rp 1.080.000</td>
-        <td style="font-family:var(--mono);color:var(--red)">—</td>
-        <td style="font-family:var(--mono);font-size:10px;color:var(--muted)">Rp 42.956.154</td>
-        <td style="color:var(--muted)">dikembalikan bahan</td>
-    </tr><tr>
-        <td style="font-family:var(--mono);font-size:10px">06/08/2024</td>
-        <td style="font-family:var(--mono);color:var(--green)">—</td>
-        <td style="font-family:var(--mono);color:var(--red)">Rp 5.000.000</td>
-        <td style="font-family:var(--mono);font-size:10px;color:var(--muted)">Rp 41.876.154</td>
-        <td style="color:var(--muted)">Tambahan biaya bahan</td>
-    </tr><tr>
-        <td style="font-family:var(--mono);font-size:10px">06/01/2024</td>
-        <td style="font-family:var(--mono);color:var(--green)">—</td>
-        <td style="font-family:var(--mono);color:var(--red)">Rp 1.080.000</td>
-        <td style="font-family:var(--mono);font-size:10px;color:var(--muted)">Rp 46.876.154</td>
-        <td style="color:var(--muted)">Pinjam bahan</td>
-    </tr><tr>
-        <td style="font-family:var(--mono);font-size:10px">06/01/2024</td>
-        <td style="font-family:var(--mono);color:var(--green)">—</td>
-        <td style="font-family:var(--mono);color:var(--red)">Rp 129.875.000</td>
-        <td style="font-family:var(--mono);font-size:10px;color:var(--muted)">Rp 47.956.154</td>
-        <td style="color:var(--muted)">DP Tanah di semarang DP 50% 134,875,000</td>
-    </tr><tr>
-        <td style="font-family:var(--mono);font-size:10px">06/01/2024</td>
-        <td style="font-family:var(--mono);color:var(--green)">Rp 6.587.000</td>
-        <td style="font-family:var(--mono);color:var(--red)">—</td>
-        <td style="font-family:var(--mono);font-size:10px;color:var(--muted)">Rp 177.831.154</td>
-        <td style="color:var(--muted)">dikembalikan bahan</td>
-    </tr><tr>
-        <td style="font-family:var(--mono);font-size:10px">06/01/2024</td>
-        <td style="font-family:var(--mono);color:var(--green)">Rp 6.017.210</td>
-        <td style="font-family:var(--mono);color:var(--red)">—</td>
-        <td style="font-family:var(--mono);font-size:10px;color:var(--muted)">Rp 171.244.154</td>
-        <td style="color:var(--muted)">SHU Sementara</td>
-    </tr><tr>
-        <td style="font-family:var(--mono);font-size:10px">21/05/2024</td>
-        <td style="font-family:var(--mono);color:var(--green)">—</td>
-        <td style="font-family:var(--mono);color:var(--red)">Rp 3.300.000</td>
-        <td style="font-family:var(--mono);font-size:10px;color:var(--muted)">Rp 38.999.764</td>
-        <td style="color:var(--muted)">hutang mas nana</td>
-    </tr><tr>
-        <td style="font-family:var(--mono);font-size:10px">14/05/2024</td>
-        <td style="font-family:var(--mono);color:var(--green)">—</td>
-        <td style="font-family:var(--mono);color:var(--red)">Rp 15.000.000</td>
-        <td style="font-family:var(--mono);font-size:10px;color:var(--muted)">Rp 42.299.764</td>
-        <td style="color:var(--muted)">Invest Bibit</td>
-    </tr><tr>
-        <td style="font-family:var(--mono);font-size:10px">13/05/2024</td>
-        <td style="font-family:var(--mono);color:var(--green)">—</td>
-        <td style="font-family:var(--mono);color:var(--red)">Rp 1.711.500</td>
-        <td style="font-family:var(--mono);font-size:10px;color:var(--muted)">Rp 57.299.764</td>
-        <td style="color:var(--muted)">pembayar wifi</td>
-    </tr></tbody></table></div>
+      <div class="card-hdr"><div><div class="card-title">Dana Siaga — 10 Input Terakhir</div><div class="card-sub">Dari tabel Arus Kas</div></div></div>
+      <div style="overflow-x:auto"><div id="fin-siaga-wrap"><div class="loading"><div class="spinner"></div>Memuat...</div></div></div>
     </div>
     <div class="card">
-      <div class="card-hdr">
-        <div><div class="card-title">Investasi — 10 Input Terakhir</div><div class="card-sub">Dari tabel Investasi</div></div>
-      </div>
-      <div style="overflow-x:auto"><table class="tbl tbl-pad" style="font-size:11px"><thead><tr><th>Tanggal</th><th>Masuk</th><th>Keluar</th><th>Lokasi</th><th>Keterangan</th></tr></thead><tbody><tr>
-        <td style="font-family:var(--mono);font-size:10px">05/06/2026</td>
-        <td style="font-family:var(--mono);color:var(--green)">—</td>
-        <td style="font-family:var(--mono);color:var(--red)">Rp 14.999.287</td>
-        <td style="font-size:10px;color:var(--muted)">Tarik dana Bibit</td>
-        <td style="color:var(--muted)">Ke Cash</td>
-    </tr><tr>
-        <td style="font-family:var(--mono);font-size:10px">02/06/2026</td>
-        <td style="font-family:var(--mono);color:var(--green)">Rp 40.225.000</td>
-        <td style="font-family:var(--mono);color:var(--red)">—</td>
-        <td style="font-size:10px;color:var(--muted)">Invest Emas</td>
-        <td style="color:var(--muted)">Emas 15gr</td>
-    </tr><tr>
-        <td style="font-family:var(--mono);font-size:10px">29/05/2026</td>
-        <td style="font-family:var(--mono);color:var(--green)">—</td>
-        <td style="font-family:var(--mono);color:var(--red)">Rp 37.000.000</td>
-        <td style="font-size:10px;color:var(--muted)">Tarik dana Bibit</td>
-        <td style="color:var(--muted)">Ke Cash</td>
-    </tr><tr>
-        <td style="font-family:var(--mono);font-size:10px">31/03/2026</td>
-        <td style="font-family:var(--mono);color:var(--green)">Rp 3.746.528</td>
-        <td style="font-family:var(--mono);color:var(--red)">—</td>
-        <td style="font-size:10px;color:var(--muted)">Bayar cicilan tanah</td>
-        <td style="color:var(--muted)">Cicilan Tanah Maret 2026</td>
-    </tr><tr>
-        <td style="font-family:var(--mono);font-size:10px">28/02/2026</td>
-        <td style="font-family:var(--mono);color:var(--green)">Rp 2.900.000</td>
-        <td style="font-family:var(--mono);color:var(--red)">—</td>
-        <td style="font-size:10px;color:var(--muted)">Invest Bibit</td>
-        <td style="color:var(--muted)">Investasi bibit Hypospot</td>
-    </tr><tr>
-        <td style="font-family:var(--mono);font-size:10px">13/02/2026</td>
-        <td style="font-family:var(--mono);color:var(--green)">Rp 3.746.528</td>
-        <td style="font-family:var(--mono);color:var(--red)">—</td>
-        <td style="font-size:10px;color:var(--muted)">Bayar cicilan tanah</td>
-        <td style="color:var(--muted)">Cicilan Tanah Februari 2026</td>
-    </tr><tr>
-        <td style="font-family:var(--mono);font-size:10px">15/01/2026</td>
-        <td style="font-family:var(--mono);color:var(--green)">Rp 3.746.528</td>
-        <td style="font-family:var(--mono);color:var(--red)">—</td>
-        <td style="font-size:10px;color:var(--muted)">Bayar cicilan tanah</td>
-        <td style="color:var(--muted)">Cicilan Tanah Januari 2026</td>
-    </tr><tr>
-        <td style="font-family:var(--mono);font-size:10px">11/01/2026</td>
-        <td style="font-family:var(--mono);color:var(--green)">Rp 32.592.348</td>
-        <td style="font-family:var(--mono);color:var(--red)">—</td>
-        <td style="font-size:10px;color:var(--muted)">Invest Bibit</td>
-        <td style="color:var(--muted)">Investasi bibit Hypospot</td>
-    </tr><tr>
-        <td style="font-family:var(--mono);font-size:10px">17/12/2025</td>
-        <td style="font-family:var(--mono);color:var(--green)">Rp 3.746.528</td>
-        <td style="font-family:var(--mono);color:var(--red)">—</td>
-        <td style="font-size:10px;color:var(--muted)">Bayar cicilan tanah</td>
-        <td style="color:var(--muted)">Cicilan Tanah Desember 2025</td>
-    </tr><tr>
-        <td style="font-family:var(--mono);font-size:10px">29/11/2025</td>
-        <td style="font-family:var(--mono);color:var(--green)">Rp 2.000.000</td>
-        <td style="font-family:var(--mono);color:var(--red)">—</td>
-        <td style="font-size:10px;color:var(--muted)">Invest Bibit</td>
-        <td style="color:var(--muted)">Investasi bibit Hypospot</td>
-    </tr></tbody></table></div>
+      <div class="card-hdr"><div><div class="card-title">Investasi — 10 Input Terakhir</div><div class="card-sub">Dari tabel Investasi</div></div></div>
+      <div style="overflow-x:auto"><div id="fin-investasi-wrap"><div class="loading"><div class="spinner"></div>Memuat...</div></div></div>
     </div>
   </div>
 
@@ -929,258 +402,21 @@ body{background:var(--bg);color:var(--text);font-family:var(--font);font-size:13
         <div><div class="card-title">Forecasting Biaya</div><div class="card-sub">Sheet: FORECASTING — Pengeluaran 2026</div></div>
         <a class="pill-link" href="https://docs.google.com/spreadsheets/d/14y7nPESfskWS8DGIUzfKr8tz46-Em2WU/" target="_blank">↗ Sheet</a>
       </div>
-      <div style="overflow-x:auto">
-        <div id="fin-forecast-wrap"><table class="tbl tbl-pad" style="min-width:650px;font-size:11px">
-<thead>
-<tr>
-  <th rowspan="2">No</th><th rowspan="2">Bulan</th>
-  <th rowspan="2">Biaya Bahan</th><th rowspan="2">Biaya Ads</th>
-  <th colspan="2" style="text-align:center;color:var(--orange)">Forecast +8%</th>
-  <th colspan="2" style="text-align:center;color:var(--green)">Forecast 0%</th>
-</tr>
-<tr>
-  <th style="color:var(--orange)">Bahan</th><th style="color:var(--orange)">Ads</th>
-  <th style="color:var(--green)">Bahan</th><th style="color:var(--green)">Ads</th>
-</tr>
-</thead><tbody><tr>
-      <td style="font-family:var(--mono);color:var(--muted)">1</td>
-      <td style="font-weight:500">Jan-26</td>
-      <td style="font-family:var(--mono)">Rp 23.317.976</td>
-      <td style="font-family:var(--mono)">Rp 16.057.876</td>
-      <td style="font-family:var(--mono);color:var(--orange)"><span style="color:var(--muted)">—</span></td>
-      <td style="font-family:var(--mono);color:var(--orange)"><span style="color:var(--muted)">—</span></td>
-      <td style="font-family:var(--mono);color:var(--green)"><span style="color:var(--muted)">—</span></td>
-      <td style="font-family:var(--mono);color:var(--green)"><span style="color:var(--muted)">—</span></td>
-    </tr><tr>
-      <td style="font-family:var(--mono);color:var(--muted)">2</td>
-      <td style="font-weight:500">Feb-26</td>
-      <td style="font-family:var(--mono)">Rp 31.465.924</td>
-      <td style="font-family:var(--mono)">Rp 18.130.361</td>
-      <td style="font-family:var(--mono);color:var(--orange)"><span style="color:var(--muted)">—</span></td>
-      <td style="font-family:var(--mono);color:var(--orange)"><span style="color:var(--muted)">—</span></td>
-      <td style="font-family:var(--mono);color:var(--green)"><span style="color:var(--muted)">—</span></td>
-      <td style="font-family:var(--mono);color:var(--green)"><span style="color:var(--muted)">—</span></td>
-    </tr><tr>
-      <td style="font-family:var(--mono);color:var(--muted)">3</td>
-      <td style="font-weight:500">Mar-26</td>
-      <td style="font-family:var(--mono)">Rp 29.529.356</td>
-      <td style="font-family:var(--mono)">Rp 17.122.545</td>
-      <td style="font-family:var(--mono);color:var(--orange)"><span style="color:var(--muted)">—</span></td>
-      <td style="font-family:var(--mono);color:var(--orange)"><span style="color:var(--muted)">—</span></td>
-      <td style="font-family:var(--mono);color:var(--green)"><span style="color:var(--muted)">—</span></td>
-      <td style="font-family:var(--mono);color:var(--green)"><span style="color:var(--muted)">—</span></td>
-    </tr><tr>
-      <td style="font-family:var(--mono);color:var(--muted)">4</td>
-      <td style="font-weight:500">Apr-26</td>
-      <td style="font-family:var(--mono)">Rp 43.596.500</td>
-      <td style="font-family:var(--mono)">Rp 18.102.500</td>
-      <td style="font-family:var(--mono);color:var(--orange)">Rp 30.352.772</td>
-      <td style="font-family:var(--mono);color:var(--orange)">Rp 18.471.882</td>
-      <td style="font-family:var(--mono);color:var(--green)">Rp 28.104.419</td>
-      <td style="font-family:var(--mono);color:var(--green)">Rp 17.103.594</td>
-    </tr><tr>
-      <td style="font-family:var(--mono);color:var(--muted)">5</td>
-      <td style="font-weight:500">May-26</td>
-      <td style="font-family:var(--mono)">Rp 27.200.850</td>
-      <td style="font-family:var(--mono)">Rp 14.200.633</td>
-      <td style="font-family:var(--mono);color:var(--orange)">Rp 37.653.041</td>
-      <td style="font-family:var(--mono);color:var(--orange)">Rp 19.207.946</td>
-      <td style="font-family:var(--mono);color:var(--green)">Rp 34.863.927</td>
-      <td style="font-family:var(--mono);color:var(--green)">Rp 17.785.135</td>
-    </tr><tr>
-      <td style="font-family:var(--mono);color:var(--muted)">6</td>
-      <td style="font-weight:500">Jun-26</td>
-      <td style="font-family:var(--mono)"><span style="color:var(--muted)">—</span></td>
-      <td style="font-family:var(--mono)"><span style="color:var(--muted)">—</span></td>
-      <td style="font-family:var(--mono);color:var(--orange)">Rp 36.117.614</td>
-      <td style="font-family:var(--mono);color:var(--orange)">Rp 17.793.244</td>
-      <td style="font-family:var(--mono);color:var(--green)">Rp 33.442.235</td>
-      <td style="font-family:var(--mono);color:var(--green)">Rp 16.475.226</td>
-    </tr><tr>
-      <td style="font-family:var(--mono);color:var(--muted)">7</td>
-      <td style="font-weight:500">Jul-26</td>
-      <td style="font-family:var(--mono)"><span style="color:var(--muted)">—</span></td>
-      <td style="font-family:var(--mono)"><span style="color:var(--muted)">—</span></td>
-      <td style="font-family:var(--mono);color:var(--orange)">Rp 38.230.569</td>
-      <td style="font-family:var(--mono);color:var(--orange)">Rp 17.443.692</td>
-      <td style="font-family:var(--mono);color:var(--green)">Rp 35.398.675</td>
-      <td style="font-family:var(--mono);color:var(--green)">Rp 16.151.567</td>
-    </tr><tr>
-      <td style="font-family:var(--mono);color:var(--muted)">8</td>
-      <td style="font-weight:500">Aug-26</td>
-      <td style="font-family:var(--mono)"><span style="color:var(--muted)">—</span></td>
-      <td style="font-family:var(--mono)"><span style="color:var(--muted)">—</span></td>
-      <td style="font-family:var(--mono);color:var(--orange)">Rp 29.376.918</td>
-      <td style="font-family:var(--mono);color:var(--orange)">Rp 15.336.684</td>
-      <td style="font-family:var(--mono);color:var(--green)">Rp 27.200.850</td>
-      <td style="font-family:var(--mono);color:var(--green)">Rp 14.200.633</td>
-    </tr><tr>
-      <td style="font-family:var(--mono);color:var(--muted)">9</td>
-      <td style="font-weight:500">Sep-26</td>
-      <td style="font-family:var(--mono)"><span style="color:var(--muted)">—</span></td>
-      <td style="font-family:var(--mono)"><span style="color:var(--muted)">—</span></td>
-      <td style="font-family:var(--mono);color:var(--orange)"><span style="color:var(--muted)">—</span></td>
-      <td style="font-family:var(--mono);color:var(--orange)"><span style="color:var(--muted)">—</span></td>
-      <td style="font-family:var(--mono);color:var(--green)"><span style="color:var(--muted)">—</span></td>
-      <td style="font-family:var(--mono);color:var(--green)"><span style="color:var(--muted)">—</span></td>
-    </tr><tr>
-      <td style="font-family:var(--mono);color:var(--muted)">10</td>
-      <td style="font-weight:500">Oct-26</td>
-      <td style="font-family:var(--mono)"><span style="color:var(--muted)">—</span></td>
-      <td style="font-family:var(--mono)"><span style="color:var(--muted)">—</span></td>
-      <td style="font-family:var(--mono);color:var(--orange)"><span style="color:var(--muted)">—</span></td>
-      <td style="font-family:var(--mono);color:var(--orange)"><span style="color:var(--muted)">—</span></td>
-      <td style="font-family:var(--mono);color:var(--green)"><span style="color:var(--muted)">—</span></td>
-      <td style="font-family:var(--mono);color:var(--green)"><span style="color:var(--muted)">—</span></td>
-    </tr><tr>
-      <td style="font-family:var(--mono);color:var(--muted)">11</td>
-      <td style="font-weight:500">Nov-26</td>
-      <td style="font-family:var(--mono)"><span style="color:var(--muted)">—</span></td>
-      <td style="font-family:var(--mono)"><span style="color:var(--muted)">—</span></td>
-      <td style="font-family:var(--mono);color:var(--orange)"><span style="color:var(--muted)">—</span></td>
-      <td style="font-family:var(--mono);color:var(--orange)"><span style="color:var(--muted)">—</span></td>
-      <td style="font-family:var(--mono);color:var(--green)"><span style="color:var(--muted)">—</span></td>
-      <td style="font-family:var(--mono);color:var(--green)"><span style="color:var(--muted)">—</span></td>
-    </tr><tr>
-      <td style="font-family:var(--mono);color:var(--muted)">12</td>
-      <td style="font-weight:500">Dec-26</td>
-      <td style="font-family:var(--mono)"><span style="color:var(--muted)">—</span></td>
-      <td style="font-family:var(--mono)"><span style="color:var(--muted)">—</span></td>
-      <td style="font-family:var(--mono);color:var(--orange)"><span style="color:var(--muted)">—</span></td>
-      <td style="font-family:var(--mono);color:var(--orange)"><span style="color:var(--muted)">—</span></td>
-      <td style="font-family:var(--mono);color:var(--green)"><span style="color:var(--muted)">—</span></td>
-      <td style="font-family:var(--mono);color:var(--green)"><span style="color:var(--muted)">—</span></td>
-    </tr><tr style="border-top:1px solid var(--border2)">
-  <td colspan="2" style="font-weight:600;font-size:10px">Avg 6 Bulan</td>
-  <td style="font-family:var(--mono);color:var(--muted);font-size:10px">Rp 28.821.641</td>
-  <td style="font-family:var(--mono);color:var(--muted);font-size:10px">Rp 16.102.745</td>
-  <td colspan="4" style="font-family:var(--mono);color:var(--muted);font-size:10px">Total avg: Rp 44.924.386</td>
-</tr></tbody></table></div>
-      </div>
+      <div style="overflow-x:auto"><div id="fin-forecast-wrap"><div class="loading"><div class="spinner"></div>Memuat...</div></div></div>
     </div>
     <div class="card">
       <div class="card-hdr"><div class="card-title">Spreadsheet Penjualan 2026</div></div>
-      <div class="card-body" style="display:flex;flex-direction:column;align-items:center;justify-content:center;gap:14px;padding:32px;min-height:180px">
+      <div class="card-body" style="display:flex;flex-direction:column;align-items:center;justify-content:center;gap:14px;padding:32px;min-height:200px">
         <div style="font-size:40px">📊</div>
         <div style="font-size:13px;font-weight:600">Data Penjualan Hypospot 2026</div>
         <div style="font-size:11px;color:var(--muted);text-align:center">Data penjualan lengkap tersedia di Google Sheets</div>
-        <a href="https://docs.google.com/spreadsheets/d/177OBibatvR1J_C6kUEoVqjg5wiNoToRH/" target="_blank"
-           style="background:var(--blue);color:#fff;border-radius:7px;padding:10px 22px;font-size:12px;font-weight:600;text-decoration:none;display:inline-flex;align-items:center;gap:6px">
-          ↗ Buka Spreadsheet Penjualan 2026
-        </a>
-        <a href="https://docs.google.com/spreadsheets/d/14y7nPESfskWS8DGIUzfKr8tz46-Em2WU/" target="_blank"
-           style="background:transparent;color:var(--muted);border:1px solid var(--border2);border-radius:7px;padding:8px 18px;font-size:11px;text-decoration:none">
-          ↗ Buka Spreadsheet Pengeluaran 2026
-        </a>
+        <a href="https://docs.google.com/spreadsheets/d/177OBibatvR1J_C6kUEoVqjg5wiNoToRH/" target="_blank" style="background:var(--blue);color:#fff;border-radius:7px;padding:10px 22px;font-size:12px;font-weight:600;text-decoration:none;display:inline-flex;align-items:center;gap:6px">↗ Buka Spreadsheet Penjualan 2026</a>
+        <a href="https://docs.google.com/spreadsheets/d/14y7nPESfskWS8DGIUzfKr8tz46-Em2WU/" target="_blank" style="background:transparent;color:var(--muted);border:1px solid var(--border2);border-radius:7px;padding:8px 18px;font-size:11px;text-decoration:none">↗ Buka Spreadsheet Pengeluaran 2026</a>
       </div>
     </div>
   </div>
 
-  <div style="font-size:10px;color:var(--muted);font-family:var(--mono);text-align:right;margin-top:4px">
-    Data finansial diperbarui terakhir: 18 Juni 2026 · Update manual via Google Drive sync
-  </div>
-</div>
-
-  <!-- KPI ROW -->
-  <div class="kpi-grid" id="fin-kpi-grid">
-    <div class="kpi blue"><div class="kpi-lbl">SHU Total (Kas)</div><div class="kpi-val blue" id="fin-shu-total">—</div><div class="kpi-meta" id="fin-shu-meta">memuat...</div></div>
-    <div class="kpi green"><div class="kpi-lbl">Total Revenue 2026</div><div class="kpi-val green" id="fin-rev-2026">—</div><div class="kpi-meta">YTD 2026</div></div>
-    <div class="kpi orange"><div class="kpi-lbl">Dana Siaga</div><div class="kpi-val orange" id="fin-siaga">—</div><div class="kpi-meta" id="fin-siaga-meta">memuat...</div></div>
-    <div class="kpi red"><div class="kpi-lbl">Total Hutang</div><div class="kpi-val red" id="fin-hutang">—</div><div class="kpi-meta" id="fin-hutang-meta">memuat...</div></div>
-  </div>
-
-  <!-- ROW 1: Rekap Omzet 2026 + SHU -->
-  <div class="two-col">
-    <!-- Rekap Omzet -->
-    <div class="card">
-      <div class="card-hdr">
-        <div><div class="card-title">Rekap Omzet Per Bulan 2026</div><div class="card-sub">Sheet: Catatan 2026</div></div>
-        <a class="pill-link" href="https://docs.google.com/spreadsheets/d/1VHl7FAEQaQJHJQQ3jSFiE-t2LlWNTwGbiR6fQmzRxWs/" target="_blank">↗ Sheet</a>
-      </div>
-      <div style="overflow-x:auto">
-        <div id="fin-omzet-wrap"><div class="loading"><div class="spinner"></div>Memuat...</div></div>
-      </div>
-    </div>
-    <!-- SHU 10 terbaru -->
-    <div class="card">
-      <div class="card-hdr">
-        <div><div class="card-title">SHU — 10 Transaksi Terakhir</div><div class="card-sub">Uang masuk & keluar</div></div>
-        <a class="pill-link" href="https://docs.google.com/spreadsheets/d/1VHl7FAEQaQJHJQQ3jSFiE-t2LlWNTwGbiR6fQmzRxWs/" target="_blank">↗ Sheet</a>
-      </div>
-      <div style="overflow-x:auto">
-        <div id="fin-shu-wrap"><div class="loading"><div class="spinner"></div>Memuat...</div></div>
-      </div>
-    </div>
-  </div>
-
-  <!-- ROW 2: Arus Kas -->
-  <div class="two-col">
-    <!-- Arus Kas Summary -->
-    <div class="card">
-      <div class="card-hdr">
-        <div><div class="card-title">Arus Kas — Ringkasan</div><div class="card-sub">Dana Siaga, Investasi, Total, Hutang</div></div>
-        <a class="pill-link" href="https://docs.google.com/spreadsheets/d/1VHl7FAEQaQJHJQQ3jSFiE-t2LlWNTwGbiR6fQmzRxWs/" target="_blank">↗ Sheet</a>
-      </div>
-      <div class="card-body" id="fin-aruskas-summary"><div class="loading"><div class="spinner"></div>Memuat...</div></div>
-    </div>
-    <!-- Valuasi Aset -->
-    <div class="card">
-      <div class="card-hdr">
-        <div><div class="card-title">Total Nilai Aset Hypospot</div><div class="card-sub">Sheet: Valuasi</div></div>
-        <a class="pill-link" href="https://docs.google.com/spreadsheets/d/1VHl7FAEQaQJHJQQ3jSFiE-t2LlWNTwGbiR6fQmzRxWs/" target="_blank">↗ Sheet</a>
-      </div>
-      <div style="overflow-x:auto">
-        <div id="fin-valuasi-wrap"><div class="loading"><div class="spinner"></div>Memuat...</div></div>
-      </div>
-    </div>
-  </div>
-
-  <!-- ROW 3: Arus Kas Detail + Forecasting -->
-  <div class="two-col">
-    <!-- 10 data terakhir dana siaga -->
-    <div class="card">
-      <div class="card-hdr">
-        <div><div class="card-title">Dana Siaga — 10 Input Terakhir</div><div class="card-sub">Dari tabel Dana Siaga</div></div>
-      </div>
-      <div style="overflow-x:auto">
-        <div id="fin-siaga-wrap"><div class="loading"><div class="spinner"></div>Memuat...</div></div>
-      </div>
-    </div>
-    <!-- Forecasting -->
-    <div class="card">
-      <div class="card-hdr">
-        <div><div class="card-title">Forecasting Biaya</div><div class="card-sub">Sheet: FORECASTING — Pengeluaran 2026</div></div>
-        <a class="pill-link" href="https://docs.google.com/spreadsheets/d/14y7nPESfskWS8DGIUzfKr8tz46-Em2WU/" target="_blank">↗ Sheet</a>
-      </div>
-      <div style="overflow-x:auto">
-        <div id="fin-forecast-wrap"><div class="loading"><div class="spinner"></div>Memuat...</div></div>
-      </div>
-    </div>
-  </div>
-
-  <!-- ROW 4: Penjualan link + Investasi 10 terakhir -->
-  <div class="two-col">
-    <!-- Penjualan 2026 link button -->
-    <div class="card">
-      <div class="card-hdr"><div class="card-title">Data Penjualan 2026</div></div>
-      <div class="card-body" style="display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;padding:28px">
-        <div style="font-size:36px">📊</div>
-        <div style="font-size:13px;font-weight:600;color:var(--text)">Spreadsheet Penjualan Hypospot 2026</div>
-        <div style="font-size:11px;color:var(--muted);text-align:center">Data penjualan lengkap tersedia langsung di Google Sheets</div>
-        <a href="https://docs.google.com/spreadsheets/d/177OBibatvR1J_C6kUEoVqjg5wiNoToRH/" target="_blank" style="background:var(--blue);color:#fff;border:none;border-radius:7px;padding:10px 22px;font-size:12px;font-weight:600;cursor:pointer;text-decoration:none;display:inline-flex;align-items:center;gap:6px">↗ Buka Spreadsheet Penjualan 2026</a>
-      </div>
-    </div>
-    <!-- 10 data investasi terakhir -->
-    <div class="card">
-      <div class="card-hdr">
-        <div><div class="card-title">Investasi — 10 Input Terakhir</div><div class="card-sub">Dari tabel Investasi</div></div>
-      </div>
-      <div style="overflow-x:auto">
-        <div id="fin-investasi-wrap"><div class="loading"><div class="spinner"></div>Memuat...</div></div>
-      </div>
-    </div>
-  </div>
-
+  <div style="font-size:10px;color:var(--muted);font-family:var(--mono);text-align:right;margin-top:4px" id="fin-update-note">Data finansial otomatis dari Google Sheets API</div>
 </div>
 
 </div><!-- end .main -->
@@ -1202,8 +438,7 @@ const FINANCIAL_TABS = {
   shu: 'SHU',
   aruskas: 'Arus Kas',
   valuasi: 'Valuasi',
-  forecasting: 'FORECASTING',
-  pembagian: 'Pembagian SHU'
+  forecasting: 'FORECASTING'
 };
 const DEFAULT_TABS = {
   retur:  'Input Return',
@@ -1764,45 +999,71 @@ function renderAlerts() {
 }
 
 
-// ─── FINANCIAL DATA ───
+// ─── FINANCIAL DATA (dinamis dari Sheets API) ───
 let FIN_DATA = { catatan: [], shu: [], aruskas: [], valuasi: [], forecast: [] };
 
-function fmtRp(val) {
-  const n = parseFloat(String(val).replace(/[^0-9.-]/g,'')) || 0;
-  if (n >= 1e9) return 'Rp ' + (n/1e9).toFixed(1) + 'M';
-  if (n >= 1e6) return 'Rp ' + (n/1e6).toFixed(1) + 'jt';
-  if (n >= 1e3) return 'Rp ' + Math.round(n/1e3) + 'rb';
-  return 'Rp ' + Math.round(n).toLocaleString('id-ID');
+// Helper: parse angka dari string format Indonesia ("Rp 1.234.567" / "1.234.567,89" / "-12.345")
+function parseNum(v) {
+  if (v === null || v === undefined) return 0;
+  let s = String(v).trim();
+  if (!s || s === '-' || s === '#DIV/0!' || s.includes('DIV')) return 0;
+  s = s.replace(/rp/ig,'').replace(/\s/g,'');
+  // buang pemisah ribuan titik, ganti koma desimal jadi titik
+  s = s.replace(/\.(?=\d{3}(\D|$))/g,'').replace(',', '.');
+  s = s.replace(/[^0-9.\-]/g,'');
+  const n = parseFloat(s);
+  return isNaN(n) ? 0 : n;
 }
-function fmtRpFull(val) {
-  const n = parseFloat(String(val).replace(/[^0-9.-]/g,'')) || 0;
-  return 'Rp ' + Math.round(n).toLocaleString('id-ID');
+function isNum(v) {
+  if (v === null || v === undefined) return false;
+  const s = String(v).trim();
+  if (!s || s.includes('DIV')) return false;
+  return /\d/.test(s);
+}
+function fmtRpShort(n) {
+  n = Math.round(parseNum(n));
+  const abs = Math.abs(n);
+  if (abs >= 1e9) return 'Rp ' + (n/1e9).toFixed(1) + 'M';
+  if (abs >= 1e6) return 'Rp ' + (n/1e6).toFixed(1) + 'jt';
+  if (abs >= 1e3) return 'Rp ' + Math.round(n/1e3) + 'rb';
+  return 'Rp ' + n;
+}
+function fmtRpFull(n) {
+  return 'Rp ' + Math.round(parseNum(n)).toLocaleString('id-ID');
+}
+// cari index baris yang cocok dengan semua kata kunci (case-insensitive)
+function findRowIdx(rows, keywords, startFrom) {
+  for (let i = (startFrom||0); i < rows.length; i++) {
+    const flat = (rows[i]||[]).map(c => String(c||'').toLowerCase()).join('|');
+    if (keywords.every(k => flat.includes(k.toLowerCase()))) return i;
+  }
+  return -1;
+}
+// cari index kolom dalam satu baris yang cocok teks
+function findColIdx(row, keyword) {
+  return (row||[]).findIndex(c => String(c||'').toLowerCase().includes(keyword.toLowerCase()));
 }
 
 async function fetchFinancialData() {
   const {key} = getCfg();
   if (!key) return;
-
   try {
-    // Sheet SHU: catatan 2026 (header baris 1, data mulai baris 2)
-    const catatanRows = await fetchSheet(SHEET_IDS.shu, FINANCIAL_TABS.catatan2026, 'A1:O30');
-    if (catatanRows) FIN_DATA.catatan = catatanRows;
+    const [catatan, shu, aruskas, valuasi] = await Promise.all([
+      fetchSheet(SHEET_IDS.shu, FINANCIAL_TABS.catatan2026, 'A1:P30'),
+      fetchSheet(SHEET_IDS.shu, FINANCIAL_TABS.shu, 'A1:J2000'),
+      fetchSheet(SHEET_IDS.shu, FINANCIAL_TABS.aruskas, 'A1:U400'),
+      fetchSheet(SHEET_IDS.shu, FINANCIAL_TABS.valuasi, 'A1:L60'),
+    ]);
+    if (catatan) FIN_DATA.catatan = catatan;
+    if (shu)     FIN_DATA.shu = shu;
+    if (aruskas) FIN_DATA.aruskas = aruskas;
+    if (valuasi) FIN_DATA.valuasi = valuasi;
 
-    // Sheet SHU: ambil baris luas untuk summary + 10 terakhir
-    const shuRows = await fetchSheet(SHEET_IDS.shu, FINANCIAL_TABS.shu, 'A1:U500');
-    if (shuRows) FIN_DATA.shu = shuRows;
-
-    // Sheet Arus Kas
-    const aruskasRows = await fetchSheet(SHEET_IDS.shu, FINANCIAL_TABS.aruskas, 'A1:U500');
-    if (aruskasRows) FIN_DATA.aruskas = aruskasRows;
-
-    // Sheet Valuasi
-    const valuasiRows = await fetchSheet(SHEET_IDS.shu, FINANCIAL_TABS.valuasi, 'D6:J35');
-    if (valuasiRows) FIN_DATA.valuasi = valuasiRows;
-
-    // Forecasting
-    const forecastRows = await fetchSheet(SHEET_IDS.pengeluaran, FINANCIAL_TABS.forecasting, 'A1:I15');
-    if (forecastRows) FIN_DATA.forecast = forecastRows;
+    // Forecasting (file Pengeluaran 2026). Hanya jalan kalau file sudah native Google Sheet.
+    try {
+      const fc = await fetchSheet(SHEET_IDS.pengeluaran, FINANCIAL_TABS.forecasting, 'A1:N20');
+      FIN_DATA.forecast = fc || [];
+    } catch(e) { FIN_DATA.forecast = []; }
 
     renderFinancial();
   } catch(e) {
@@ -1813,471 +1074,276 @@ async function fetchFinancialData() {
 function renderFinancial() {
   renderFinOmzet();
   renderFinShu();
-  renderFinAruskasKPI();
-  renderFinAruskasDetail();
+  renderFinAruskas();
   renderFinValuasi();
   renderFinForecast();
 }
 
-
-// ══════════════════════════════════════════════════════════
-//  FINANCIAL RENDER — 100% DINAMIS dari API Spreadsheet
-//  Tidak ada nilai hardcode. Semua baca langsung dari data.
-// ══════════════════════════════════════════════════════════
-
-// Helper: parse angka dari cell (handle titik/koma sebagai ribuan)
-function parseNum(v) {
-  if (v === null || v === undefined || v === '') return 0;
-  const s = String(v).trim();
-  // Jika ada pola "1.234.567" → titik sebagai ribuan
-  if (/^\d{1,3}(\.\d{3})+$/.test(s)) return parseFloat(s.replace(/\./g,''));
-  // Jika ada koma sebagai ribuan "1,234,567"
-  if (/^\d{1,3}(,\d{3})+$/.test(s)) return parseFloat(s.replace(/,/g,''));
-  // Hapus semua non-digit kecuali minus & titik desimal
-  const clean = s.replace(/[^0-9.\-]/g,'');
-  return parseFloat(clean) || 0;
-}
-
-// Helper: cari baris di array rows yg mengandung teks tertentu di kolom manapun
-function findRowWith(rows, text) {
-  const t = text.toLowerCase();
-  return rows.find(r => r.some(c => String(c||'').toLowerCase().includes(t)));
-}
-
-// Helper: cari nilai angka pertama >= minVal di baris rows[rowIdx], mulai dari kolOffset
-function findNumInRow(rows, rowIdx, minVal=0, maxVal=Infinity) {
-  if (!rows[rowIdx]) return 0;
-  for (let cell of rows[rowIdx]) {
-    const n = parseNum(cell);
-    if (n >= minVal && n <= maxVal) return n;
-  }
-  return 0;
-}
-
-// ─── Rekap Omzet 2026 ───────────────────────────────────
-// Tab "Catatan 2026": row[0]=header, row[1+]=data
-// Kolom: 0=No, 1=Bulan, 2=Revenue, 3=Naik/Turun, 4=%, 5=SHU Kotor, 6=Net%, 7=Kenaikan SHU,
-//        8=SHU Bersih, 9=Produk, 10=Peng Bahan, 11=Oprasional, 12=Total Cost, 13=Keuntungan
+// ── REKAP OMZET 2026 ──
 function renderFinOmzet() {
   const rows = FIN_DATA.catatan;
-  if (!rows || rows.length < 2) {
-    document.getElementById('fin-omzet-wrap').innerHTML =
-      '<div class="empty">Data belum tersedia — pastikan tab "Catatan 2026" bisa diakses</div>';
-    return;
-  }
+  const wrap = document.getElementById('fin-omzet-wrap');
+  if (!rows || rows.length < 2) { wrap.innerHTML = '<div class="empty">Data belum tersedia — cek nama tab "Catatan 2026"</div>'; return; }
 
-  // Skip semua baris header (judul + nama kolom) - ambil hanya baris yg kolom A berisi angka (No urut)
-  const dataRows = rows.filter(r => {
-    const no  = String(r[0]||'').trim();
-    const bln = String(r[1]||'').trim();
-    return no && bln && /^\d+$/.test(no);
-  });
-
-  if (dataRows.length === 0) {
-    document.getElementById('fin-omzet-wrap').innerHTML =
-      '<div class="empty">Tidak ada data di tab Catatan 2026</div>';
-    return;
-  }
-
+  const hIdx = findRowIdx(rows, ['bulan','revenue']);
+  if (hIdx < 0) { wrap.innerHTML = '<div class="empty">Header tabel tidak ditemukan</div>'; return; }
+  const H = rows[hIdx];
+  const c = {
+    no: findColIdx(H,'no'), bulan: findColIdx(H,'bulan'), rev: findColIdx(H,'revenue'),
+    naik: findColIdx(H,'naik'), persen: findColIdx(H,'persentase'),
+    shuKotor: findColIdx(H,'shu kotor'), netP: findColIdx(H,'net profit'),
+    shuBersih: findColIdx(H,'shu bersih'), produk: findColIdx(H,'produk'),
+    totalCost: findColIdx(H,'total cost'), untung: findColIdx(H,'keuntungan'),
+  };
+  const bulanList = ['januari','februari','maret','april','mei','juni','juli','agustus','september','oktober','november','desember'];
   let totalRev = 0;
-  let html = `<table class="tbl tbl-pad" style="min-width:700px"><thead><tr>
-    <th>No</th><th>Bulan</th><th>Revenue</th><th>Naik/Turun</th><th>%</th>
-    <th>SHU Kotor</th><th>Net Profit%</th><th>SHU Bersih</th>
-    <th>Produk Terjual</th><th>Total Cost</th><th>Keuntungan</th>
-  </tr></thead><tbody>`;
-
-  dataRows.forEach(r => {
-    const no       = String(r[0]||'');
-    const bulan    = String(r[1]||'');
-    const revRaw   = r[2];
-    const naik     = String(r[3]||'');
-    const pct      = String(r[4]||'');
-    const shuKotor = r[5];
-    const netPct   = String(r[6]||'');
-    const shuBersih= r[8];
-    const produk   = String(r[9]||'');
-    const totalCost= r[12];
-    const untung   = r[13];
-
-    const isErr = v => String(v||'').includes('DIV') || String(v||'').includes('ERR') || v === '' || v === null;
-    const revNum = isErr(revRaw) ? 0 : parseNum(revRaw);
-    totalRev += revNum;
-
-    const naikBadge = naik.toLowerCase().includes('naik')
-      ? `<span class="bdg bdg-green">↑ Naik</span>`
-      : naik.toLowerCase().includes('turun')
-      ? `<span class="bdg bdg-red">↓ Turun</span>`
-      : naik.toLowerCase().includes('tetap')
-      ? `<span class="bdg bdg-gray">→ Tetap</span>`
-      : `<span class="bdg bdg-gray">${escHtml(naik)}</span>`;
-
-    const cell = (v, color='') => isErr(v)
-      ? `<span style="color:var(--muted)">—</span>`
-      : `<span style="font-family:var(--mono);${color?'color:'+color:''}">${fmtRpFull(parseNum(v))}</span>`;
-
-    html += `<tr>
-      <td style="font-family:var(--mono);color:var(--muted)">${escHtml(no)}</td>
-      <td style="font-weight:500">${escHtml(bulan)}</td>
-      <td style="font-family:var(--mono)">${isErr(revRaw)?'<span style="color:var(--muted)">—</span>':fmtRpFull(revNum)}</td>
-      <td>${naikBadge}</td>
-      <td style="font-family:var(--mono);font-size:10px;color:var(--muted)">${isErr(pct)?'—':escHtml(pct)}</td>
-      ${cell(shuKotor)}
-      <td style="font-family:var(--mono);font-size:10px;color:var(--muted)">${isErr(netPct)?'—':escHtml(netPct)}</td>
-      <td style="font-family:var(--mono);color:var(--blue)">${isErr(shuBersih)?'—':fmtRpFull(parseNum(shuBersih))}</td>
-      <td style="font-family:var(--mono)">${escHtml(produk)}</td>
-      ${cell(totalCost)}
-      <td style="font-family:var(--mono);color:var(--green)">${isErr(untung)?'—':fmtRpFull(parseNum(untung))}</td>
+  let body = '';
+  for (let i = hIdx+1; i < rows.length; i++) {
+    const r = rows[i];
+    const bln = String(r[c.bulan]||'').trim();
+    if (!bulanList.includes(bln.toLowerCase())) continue;
+    const revNum = parseNum(r[c.rev]);
+    const hasData = isNum(r[c.rev]) && revNum > 0;
+    if (hasData) totalRev += revNum;
+    const naik = String(r[c.naik]||'');
+    const bdg = naik.toLowerCase().includes('naik') ? 'bdg-green">↑ Naik'
+              : naik.toLowerCase().includes('turun') ? 'bdg-red">↓ Turun'
+              : 'bdg-gray">→ '+escHtml(naik||'—');
+    const dash = '<span style="color:var(--muted)">—</span>';
+    body += `<tr>
+      <td style="color:var(--muted)">${escHtml(String(r[c.no]||''))}</td>
+      <td style="font-weight:500">${escHtml(bln)}</td>
+      <td style="font-family:var(--mono)">${hasData?fmtRpFull(revNum):dash}</td>
+      <td><span class="bdg ${bdg}</span></td>
+      <td style="font-family:var(--mono);color:var(--muted)">${hasData?escHtml(String(r[c.persen]||'—')):dash}</td>
+      <td style="font-family:var(--mono);font-size:11px">${hasData?fmtRpShort(r[c.shuKotor]):dash}</td>
+      <td style="font-family:var(--mono);color:var(--blue)">${hasData?fmtRpShort(r[c.shuBersih]):dash}</td>
+      <td style="font-family:var(--mono)">${hasData?escHtml(String(r[c.produk]||'—')):dash}</td>
+      <td style="font-family:var(--mono);font-size:11px">${hasData?fmtRpShort(r[c.totalCost]):dash}</td>
+      <td style="font-family:var(--mono);color:var(--green)">${hasData&&parseNum(r[c.untung])>0?fmtRpShort(r[c.untung]):dash}</td>
     </tr>`;
-  });
-
-  html += '</tbody></table>';
-  document.getElementById('fin-omzet-wrap').innerHTML = html;
-
-  if (totalRev > 0) {
-    document.getElementById('fin-rev-2026').textContent = fmtRp(totalRev);
   }
+  wrap.innerHTML = `<table class="tbl tbl-pad" style="min-width:720px;font-size:11px"><thead><tr>
+    <th>No</th><th>Bulan</th><th>Revenue</th><th>Naik/Turun</th><th>%</th>
+    <th>SHU Kotor</th><th>SHU Bersih</th><th>Produk</th><th>Total Cost</th><th>Keuntungan</th>
+  </tr></thead><tbody>${body}</tbody></table>`;
+
+  document.getElementById('fin-rev-2026').textContent = totalRev > 0 ? fmtRpShort(totalRev) : '—';
 }
 
-// ─── SHU — 10 Transaksi Terakhir ────────────────────────
-// Tab "SHU" (CATATAN SHU HYPOSPOT):
-//   A,B kosong | C(2)=Tanggal | D(3)=Masuk | E(4)=Keluar | F(5)=Sisa(text) | G(6)=Ket
-//   Baris 2 (idx 1): kolom Q(16) atau sekitar → ada nilai SHU ASLI total (458jt)
-//   Baris 3 (idx 2): kolom O(14)="SHU ASLI", P(15)=nilai, S(18)=Liquid Cash
+// ── SHU 10 terakhir + total ──
 function renderFinShu() {
   const rows = FIN_DATA.shu;
-  if (!rows || rows.length < 2) {
-    document.getElementById('fin-shu-wrap').innerHTML =
-      '<div class="empty">Data SHU belum tersedia — pastikan tab "SHU" bisa diakses</div>';
-    return;
+  const wrap = document.getElementById('fin-shu-wrap');
+  if (!rows || rows.length < 2) { wrap.innerHTML = '<div class="empty">Data SHU belum tersedia</div>'; return; }
+
+  // Header: cari baris ada "tanggal" + "deskripsi"
+  const hIdx = findRowIdx(rows, ['tanggal','deskripsi']);
+  let cTgl, cMasuk, cKeluar, cSisa, cKet;
+  if (hIdx >= 0) {
+    const H = rows[hIdx];
+    cTgl = findColIdx(H,'tanggal');
+    cKet = findColIdx(H,'deskripsi');
+    cMasuk = cTgl+1; cKeluar = cTgl+2; cSisa = cTgl+3;
+  } else { cTgl=2; cMasuk=3; cKeluar=4; cSisa=5; cKet=6; }
+
+  // Ambil semua baris transaksi (ada tanggal + masuk/keluar)
+  const tx = [];
+  for (let i = (hIdx>=0?hIdx+1:0); i < rows.length; i++) {
+    const r = rows[i];
+    const tgl = String(r[cTgl]||'').trim();
+    if (!tgl || tgl.toLowerCase()==='tanggal') continue;
+    if (!/\d/.test(tgl)) continue;
+    if (!isNum(r[cMasuk]) && !isNum(r[cKeluar])) continue;
+    tx.push(r);
   }
+  if (tx.length === 0) { wrap.innerHTML = '<div class="empty">Belum ada transaksi SHU</div>'; return; }
 
-  // ── Cari SHU Asli dari baris header (baris 1-6 spreadsheet = index 0-5)
-  // Strategi: scan semua cell di 8 baris pertama, cari angka >= 400jt yang masuk akal sebagai SHU total
-  let shuAsli = 0;
-  const headerRows = rows.slice(0, 8);
-  for (let r of headerRows) {
-    for (let cell of r) {
-      const s = String(cell||'').replace(/\./g,'').replace(/,/g,'');
-      const n = parseFloat(s.replace(/[^0-9]/g,''));
-      // SHU Asli biasanya antara 400jt - 600jt
-      if (n >= 400000000 && n <= 600000000) { shuAsli = n; break; }
-    }
-    if (shuAsli) break;
-  }
+  // Total SHU = SISA transaksi terakhir (saldo berjalan)
+  const lastSisa = parseNum(tx[tx.length-1][cSisa]);
+  document.getElementById('fin-shu-total').textContent = lastSisa>0 ? fmtRpShort(lastSisa) : '—';
+  document.getElementById('fin-shu-meta').textContent = 'Saldo SHU terkini';
 
-  if (shuAsli > 0) {
-    document.getElementById('fin-shu-total').textContent = fmtRp(shuAsli);
-    document.getElementById('fin-shu-meta').textContent = 'SHU Asli terkini';
-  } else {
-    document.getElementById('fin-shu-total').textContent = '—';
-    document.getElementById('fin-shu-meta').textContent = 'Tidak terbaca';
-  }
-
-  // ── Filter baris transaksi valid: kolom C (idx 2) ada tanggal, D atau E ada angka
-  const TGL_PAT = /\d{1,2}[\/\-]\d{1,2}[\/\-]\d{2,4}|\d{1,2}-[A-Za-z]{3}-\d{2,4}|[A-Za-z]{3,}\d{4}/i;
-  const validRows = rows.filter(r => {
-    const tgl   = String(r[2]||'').trim();
-    const masuk = String(r[3]||'').replace(/[^0-9]/g,'');
-    const kel   = String(r[4]||'').replace(/[^0-9]/g,'');
-    return tgl && TGL_PAT.test(tgl) && (masuk || kel);
-  });
-
-  if (validRows.length === 0) {
-    document.getElementById('fin-shu-wrap').innerHTML =
-      '<div class="empty">Tidak ada transaksi SHU yang terbaca — cek format tanggal di kolom C</div>';
-    return;
-  }
-
-  const last10 = validRows.slice(-10).reverse();
-  let html = `<table class="tbl tbl-pad"><thead><tr>
-    <th>Tanggal</th><th>Masuk</th><th>Keluar</th><th>Sisa</th><th>Keterangan</th>
-  </tr></thead><tbody>`;
-
+  const last10 = tx.slice(-10).reverse();
+  let body = '';
   last10.forEach(r => {
-    const tgl    = String(r[2]||'—');
-    const masukN = parseNum(r[3]);
-    const kelN   = parseNum(r[4]);
-    const sisa   = String(r[5]||'');
-    const ket    = String(r[6]||'');
-    html += `<tr>
-      <td style="font-family:var(--mono);font-size:10px">${escHtml(tgl)}</td>
-      <td style="font-family:var(--mono);color:var(--green)">${masukN ? fmtRp(masukN) : '—'}</td>
-      <td style="font-family:var(--mono);color:var(--red)">${kelN ? fmtRp(kelN) : '—'}</td>
-      <td style="font-family:var(--mono);font-size:10px;color:var(--muted)">${escHtml(sisa)}</td>
-      <td style="font-size:11px;color:var(--muted)">${escHtml(ket)}</td>
+    body += `<tr>
+      <td style="font-family:var(--mono);font-size:10px">${escHtml(String(r[cTgl]||'—'))}</td>
+      <td style="font-family:var(--mono);color:var(--green)">${isNum(r[cMasuk])?fmtRpShort(r[cMasuk]):'—'}</td>
+      <td style="font-family:var(--mono);color:var(--red)">${isNum(r[cKeluar])?fmtRpShort(r[cKeluar]):'—'}</td>
+      <td style="font-family:var(--mono);font-size:10px;color:var(--muted)">${fmtRpShort(r[cSisa])}</td>
+      <td style="color:var(--muted)">${escHtml(String(r[cKet]||''))}</td>
     </tr>`;
   });
-  html += '</tbody></table>';
-  document.getElementById('fin-shu-wrap').innerHTML = html;
+  wrap.innerHTML = `<table class="tbl tbl-pad"><thead><tr><th>Tanggal</th><th>Masuk</th><th>Keluar</th><th>Sisa</th><th>Keterangan</th></tr></thead><tbody>${body}</tbody></table>`;
 }
 
-// ─── Arus Kas — KPI & Summary Card ─────────────────────
-// Tab "Arus Kas" — struktur baris summary (baris 2-5 = index 1-4):
-//   Baris 2 (idx1): kolom R(17)=Arus Kas label, S(18)=nilai Arus Kas, U(20)=TOTAL LOKASI CASH
-//   Baris 3 (idx2): kolom P(15)="Arus Kas", Q(16)="Liquid Cash"(label), S(18)=nilai liquid
-//   Baris 4 (idx3): kolom N(13)="SHU ASLI", O(14)=nilai SHU Asli, P(15)=nilai Arus Kas
-//   Baris 5 (idx4): kolom D(3)=Total Dana Siaga, K(10)=Total Investasi, T(19)=Total All
-//   Baris 5 juga: kolom P(15)=Hutang, Q(16)=Piutang Bahan negatif (71jt)
-// Strategy: scan baris 1-8, deteksi angka berdasarkan magnitude yang masuk akal
-function renderFinAruskasKPI() {
+// ── ARUS KAS ringkasan + dana siaga/investasi 10 terakhir ──
+function renderFinAruskas() {
   const rows = FIN_DATA.aruskas;
-  if (!rows || rows.length < 2) {
-    document.getElementById('fin-aruskas-summary').innerHTML =
-      '<div class="empty">Data Arus Kas belum tersedia — pastikan tab "Arus Kas" bisa diakses</div>';
+  const sumEl = document.getElementById('fin-aruskas-summary');
+  const siagaEl = document.getElementById('fin-siaga-wrap');
+  const investEl = document.getElementById('fin-investasi-wrap');
+  if (!rows || rows.length < 5) {
+    sumEl.innerHTML = '<div class="empty">Data Arus Kas belum tersedia</div>';
+    siagaEl.innerHTML = '<div class="empty">—</div>';
+    investEl.innerHTML = '<div class="empty">—</div>';
     return;
   }
 
-  // Scan baris 1-10 untuk ambil nilai summary
-  let shuAsli     = 0;  // ~458jt
-  let danaSiaga   = 0;  // ~38jt  (total kolom Dana Siaga)
-  let totalInvest = 0;  // ~284jt
-  let totalAll    = 0;  // ~380-400jt (SHU + Dana)
-  let piutangBahan= 0;  // ~71jt
-  let hutang      = 0;  // ~63jt
+  // 1) Ringkasan total: cari baris label "DANA SIAGA"
+  const lblIdx = findRowIdx(rows, ['dana siaga']);
+  let totalSiaga=0, totalInvestasi=0, totalAll=0;
+  if (lblIdx >= 0) {
+    const L = rows[lblIdx];
+    const valRow = rows[lblIdx+1] || [];
+    // posisi "TOTAL" (bisa muncul 2x) dan "TOTAL ALL"
+    const totalCols = [];
+    L.forEach((c,idx) => { const s=String(c||'').toLowerCase().trim(); if (s==='total') totalCols.push(idx); });
+    const allCol = L.findIndex(c => String(c||'').toLowerCase().includes('total all'));
+    if (totalCols[0]!==undefined) totalSiaga = parseNum(valRow[totalCols[0]]);
+    if (totalCols[1]!==undefined) totalInvestasi = parseNum(valRow[totalCols[1]]);
+    if (allCol>=0) totalAll = parseNum(valRow[allCol]);
+  }
 
-  const scanRows = rows.slice(0, 10);
-  for (let r of scanRows) {
-    for (let cell of r) {
-      const n = parseNum(cell);
-      if (n <= 0) continue;
-      // Deteksi berdasarkan range magnitude
-      if (!shuAsli     && n >= 400000000 && n <= 600000000) shuAsli     = n;
-      if (!totalInvest && n >= 250000000 && n <= 350000000) totalInvest = n;
-      if (!totalAll    && n >= 300000000 && n <= 400000000 && n !== totalInvest) totalAll = n;
-      if (!piutangBahan&& n >= 65000000  && n <= 80000000)  piutangBahan= n;
-      if (!hutang      && n >= 55000000  && n <= 68000000)  hutang      = n;
-      if (!danaSiaga   && n >= 30000000  && n <= 45000000)  danaSiaga   = n;
+  // 2) Hutang: cari baris label "Hutang", baca nama+nominal di bawahnya
+  const hutangList = [];
+  let totalHutang = 0;
+  const hutIdx = findRowIdx(rows, ['hutang']);
+  if (hutIdx >= 0) {
+    // kolom nama hutang = kolom tempat kata "Hutang" muncul
+    const hutCol = findColIdx(rows[hutIdx],'hutang');
+    for (let i = hutIdx+1; i < Math.min(rows.length, hutIdx+25); i++) {
+      const nama = String(rows[i][hutCol]||'').trim();
+      const nominal = parseNum(rows[i][hutCol+1]);
+      if (!nama) continue;
+      if (/shu|total|lokasi|asset|piutang|current|tanah|bibit|gold|cash/i.test(nama)) continue;
+      if (nominal>0) { hutangList.push({nama, nominal}); totalHutang += nominal; }
     }
   }
 
-  // Jika totalAll belum ketemu (karena terdeteksi sebagai totalInvest), scan ulang skip invest
-  if (!totalAll) {
-    for (let r of scanRows) {
-      for (let cell of r) {
-        const n = parseNum(cell);
-        if (n >= 300000000 && n <= 400000000 && n !== totalInvest) { totalAll = n; break; }
-      }
-      if (totalAll) break;
-    }
-  }
+  // KPI
+  document.getElementById('fin-siaga-kpi').textContent = totalSiaga>0 ? fmtRpShort(totalSiaga) : '—';
+  document.getElementById('fin-hutang-kpi').textContent = totalHutang>0 ? fmtRpShort(totalHutang) : '—';
 
-  // Update KPI cards
-  document.getElementById('fin-siaga').textContent    = danaSiaga   ? fmtRp(danaSiaga)    : '—';
-  document.getElementById('fin-siaga-meta').textContent = 'Liquid Cash';
-  document.getElementById('fin-hutang').textContent   = hutang      ? fmtRp(hutang)       : '—';
-  document.getElementById('fin-hutang-meta').textContent = 'Piutang Customer';
-
-  // Summary card
-  const mkBox = (label, val, color) => `
-    <div style="background:var(--bg3);border-radius:7px;padding:11px">
-      <div style="font-size:10px;color:var(--muted);margin-bottom:4px;font-weight:500">${label}</div>
-      <div style="font-size:18px;font-weight:700;font-family:var(--mono);color:${color}">
-        ${val ? fmtRpFull(val) : '—'}
+  // Render ringkasan card
+  const hutangRows = hutangList.map(h => `<tr><td style="font-size:11px">${escHtml(h.nama)}</td><td style="font-family:var(--mono);color:var(--orange);font-size:11px;text-align:right">${fmtRpFull(h.nominal)}</td></tr>`).join('');
+  sumEl.innerHTML = `
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:14px">
+      <div style="background:var(--bg3);border-radius:7px;padding:12px">
+        <div style="font-size:10px;color:var(--muted);margin-bottom:4px;font-weight:500;text-transform:uppercase">Dana Siaga</div>
+        <div style="font-size:19px;font-weight:700;font-family:var(--mono);color:var(--blue)">${totalSiaga>0?fmtRpFull(totalSiaga):'—'}</div>
+      </div>
+      <div style="background:var(--bg3);border-radius:7px;padding:12px">
+        <div style="font-size:10px;color:var(--muted);margin-bottom:4px;font-weight:500;text-transform:uppercase">Total Investasi</div>
+        <div style="font-size:19px;font-weight:700;font-family:var(--mono);color:var(--green)">${totalInvestasi>0?fmtRpFull(totalInvestasi):'—'}</div>
+      </div>
+      <div style="background:var(--bg3);border-radius:7px;padding:12px">
+        <div style="font-size:10px;color:var(--muted);margin-bottom:4px;font-weight:500;text-transform:uppercase">Total All</div>
+        <div style="font-size:19px;font-weight:700;font-family:var(--mono);color:var(--green)">${totalAll>0?fmtRpFull(totalAll):'—'}</div>
+      </div>
+      <div style="background:var(--bg3);border-radius:7px;padding:12px">
+        <div style="font-size:10px;color:var(--muted);margin-bottom:6px;font-weight:500;text-transform:uppercase">Total Hutang: ${totalHutang>0?fmtRpFull(totalHutang):'—'}</div>
+        <table style="width:100%;border-collapse:collapse">${hutangRows||'<tr><td style="font-size:11px;color:var(--muted)">—</td></tr>'}</table>
       </div>
     </div>`;
 
-  const footerParts = [];
-  if (shuAsli)      footerParts.push(`SHU Asli: ${fmtRpFull(shuAsli)}`);
-  if (danaSiaga)    footerParts.push(`Liquid Cash: ${fmtRpFull(danaSiaga)}`);
-  if (piutangBahan) footerParts.push(`Piutang Bahan: ${fmtRpFull(piutangBahan)}`);
+  // 3) Tabel transaksi: cari baris header dengan dua blok TANGGAL (dana siaga kiri, investasi kanan)
+  const txHdr = findRowIdx(rows, ['tanggal','keterangan']);
+  // Dana siaga: kolom TANGGAL pertama
+  let dsTgl=-1, invTgl=-1;
+  if (txHdr >= 0) {
+    const H = rows[txHdr];
+    const tglCols = [];
+    H.forEach((c,idx)=>{ if(String(c||'').toLowerCase().includes('tanggal')) tglCols.push(idx); });
+    dsTgl = tglCols[0]!==undefined ? tglCols[0] : 2;
+    invTgl = tglCols[1]!==undefined ? tglCols[1] : 8;
+  } else { dsTgl=2; invTgl=8; }
 
-  const summaryHtml = `
-    <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px">
-      ${mkBox('Dana Siaga (Liquid Cash)', danaSiaga,    'var(--blue)')}
-      ${mkBox('Total Investasi',          totalInvest,  'var(--green)')}
-      ${mkBox('Total All (SHU + Dana)',   totalAll,     'var(--accent2,#2dd4a0)')}
-      ${mkBox('Total Hutang / Piutang',   hutang,       'var(--orange)')}
-    </div>
-    <div style="margin-top:10px;font-size:10px;color:var(--muted);font-family:var(--mono)">
-      ${footerParts.join(' · ')}
-    </div>`;
+  function collectTx(tglCol) {
+    const out=[];
+    for (let i=0;i<rows.length;i++){
+      const r=rows[i];
+      const tgl=String(r[tglCol]||'').trim();
+      if(!tgl || tgl.toLowerCase().includes('tanggal')) continue;
+      if(!/\d{1,2}[\/\-]\d{1,2}[\/\-]\d{2,4}|\d{1,2}-[a-z]{3}-\d{2}/i.test(tgl)) continue;
+      const masuk=r[tglCol+1], keluar=r[tglCol+2];
+      if(!isNum(masuk)&&!isNum(keluar)) continue;
+      out.push({tgl, masuk, keluar, sisa:r[tglCol+3], ket:r[tglCol+4]});
+    }
+    return out;
+  }
+  const ds = collectTx(dsTgl).slice(-10).reverse();
+  const inv = collectTx(invTgl).slice(-10).reverse();
 
-  document.getElementById('fin-aruskas-summary').innerHTML = summaryHtml;
+  siagaEl.innerHTML = ds.length ? `<table class="tbl tbl-pad"><thead><tr><th>Tanggal</th><th>Masuk</th><th>Keluar</th><th>Sisa</th><th>Keterangan</th></tr></thead><tbody>${
+    ds.map(r=>`<tr><td style="font-family:var(--mono);font-size:10px">${escHtml(r.tgl)}</td><td style="font-family:var(--mono);color:var(--green)">${isNum(r.masuk)?fmtRpShort(r.masuk):'—'}</td><td style="font-family:var(--mono);color:var(--red)">${isNum(r.keluar)?fmtRpShort(r.keluar):'—'}</td><td style="font-family:var(--mono);font-size:10px;color:var(--muted)">${fmtRpShort(r.sisa)}</td><td style="color:var(--muted)">${escHtml(String(r.ket||''))}</td></tr>`).join('')
+  }</tbody></table>` : '<div class="empty">Belum ada data Dana Siaga</div>';
+
+  investEl.innerHTML = inv.length ? `<table class="tbl tbl-pad"><thead><tr><th>Tanggal</th><th>Masuk</th><th>Keluar</th><th>Lokasi</th><th>Keterangan</th></tr></thead><tbody>${
+    inv.map(r=>`<tr><td style="font-family:var(--mono);font-size:10px">${escHtml(r.tgl)}</td><td style="font-family:var(--mono);color:var(--green)">${isNum(r.masuk)?fmtRpShort(r.masuk):'—'}</td><td style="font-family:var(--mono);color:var(--red)">${isNum(r.keluar)?fmtRpShort(r.keluar):'—'}</td><td style="font-size:10px;color:var(--muted)">${escHtml(String(r.sisa||''))}</td><td style="color:var(--muted)">${escHtml(String(r.ket||''))}</td></tr>`).join('')
+  }</tbody></table>` : '<div class="empty">Belum ada data Investasi</div>';
 }
 
-// ─── Arus Kas — Tabel Detail Dana Siaga & Investasi ────
-// Dana Siaga: A,B kosong | C(2)=Tgl | D(3)=Masuk | E(4)=Keluar | F(5)=Sisa | G(6)=Lokasi | H(7)=Ket
-// Investasi:  I kosong   | J(9)=Tgl | K(10)=Masuk | L(11)=Keluar | M(12)=Lokasi | N(13)=Ket
-function renderFinAruskasDetail() {
-  const rows = FIN_DATA.aruskas;
-  if (!rows || rows.length === 0) {
-    document.getElementById('fin-siaga-wrap').innerHTML =
-      '<div class="empty">Data Arus Kas belum tersedia</div>';
-    document.getElementById('fin-investasi-wrap').innerHTML =
-      '<div class="empty">Data Investasi belum tersedia</div>';
-    return;
-  }
-
-  const TGL_PAT = /\d{1,2}[\/\-]\d{1,2}[\/\-]\d{2,4}|\d{1,2}-[A-Za-z]{3}-\d{2,4}|[A-Za-z]{3,}-\d{2,4}|\d{1,2}[A-Za-z]{3,}\d{2,4}/i;
-
-  // Dana Siaga — tanggal di kolom C (idx 2)
-  const siagaRows = rows.filter(r => {
-    const tgl   = String(r[2]||'').trim();
-    const masuk = String(r[3]||'').replace(/[^0-9]/g,'');
-    const kel   = String(r[4]||'').replace(/[^0-9]/g,'');
-    return tgl && TGL_PAT.test(tgl) && (masuk || kel);
-  }).slice(-10).reverse();
-
-  // Investasi — tanggal di kolom J (idx 9)
-  const investRows = rows.filter(r => {
-    const tgl   = String(r[9]||'').trim();
-    const masuk = String(r[10]||'').replace(/[^0-9]/g,'');
-    const kel   = String(r[11]||'').replace(/[^0-9]/g,'');
-    return tgl && TGL_PAT.test(tgl) && (masuk || kel);
-  }).slice(-10).reverse();
-
-  // ── Render Dana Siaga
-  if (siagaRows.length > 0) {
-    let html = `<table class="tbl tbl-pad"><thead><tr>
-      <th>Tanggal</th><th>Masuk</th><th>Keluar</th><th>Sisa</th><th>Lokasi / Ket</th>
-    </tr></thead><tbody>`;
-    siagaRows.forEach(r => {
-      const masukN = parseNum(r[3]);
-      const kelN   = parseNum(r[4]);
-      const sisa   = String(r[5]||'');
-      const ket    = String(r[7]||r[6]||'');
-      html += `<tr>
-        <td style="font-family:var(--mono);font-size:10px">${escHtml(String(r[2]||'—'))}</td>
-        <td style="font-family:var(--mono);color:var(--green)">${masukN ? fmtRp(masukN) : '—'}</td>
-        <td style="font-family:var(--mono);color:var(--red)">${kelN ? fmtRp(kelN) : '—'}</td>
-        <td style="font-family:var(--mono);font-size:10px;color:var(--muted)">${escHtml(sisa)}</td>
-        <td style="font-size:11px;color:var(--muted)">${escHtml(ket)}</td>
-      </tr>`;
-    });
-    html += '</tbody></table>';
-    document.getElementById('fin-siaga-wrap').innerHTML = html;
-  } else {
-    document.getElementById('fin-siaga-wrap').innerHTML =
-      '<div class="empty">Tidak ada data Dana Siaga — cek format tanggal di kolom C tab "Arus Kas"</div>';
-  }
-
-  // ── Render Investasi
-  if (investRows.length > 0) {
-    let html = `<table class="tbl tbl-pad"><thead><tr>
-      <th>Tanggal</th><th>Masuk</th><th>Keluar</th><th>Lokasi</th><th>Keterangan</th>
-    </tr></thead><tbody>`;
-    investRows.forEach(r => {
-      const masukN = parseNum(r[10]);
-      const kelN   = parseNum(r[11]);
-      html += `<tr>
-        <td style="font-family:var(--mono);font-size:10px">${escHtml(String(r[9]||'—'))}</td>
-        <td style="font-family:var(--mono);color:var(--green)">${masukN ? fmtRp(masukN) : '—'}</td>
-        <td style="font-family:var(--mono);color:var(--red)">${kelN ? fmtRp(kelN) : '—'}</td>
-        <td style="font-size:10px;color:var(--muted)">${escHtml(String(r[12]||''))}</td>
-        <td style="font-size:11px;color:var(--muted)">${escHtml(String(r[13]||''))}</td>
-      </tr>`;
-    });
-    html += '</tbody></table>';
-    document.getElementById('fin-investasi-wrap').innerHTML = html;
-  } else {
-    document.getElementById('fin-investasi-wrap').innerHTML =
-      '<div class="empty">Tidak ada data Investasi — cek format tanggal di kolom J tab "Arus Kas"</div>';
-  }
-}
-
-// ─── Valuasi Aset ────────────────────────────────────────
-// Tab "Valuasi", range D6:J35 → index: 0=No, 1=Thn, 2=Nama, 3=Harga Satuan, 4=Qty, 5=Total, 6=Grand Total
+// ── VALUASI ──
 function renderFinValuasi() {
   const rows = FIN_DATA.valuasi;
-  if (!rows || rows.length < 2) {
-    document.getElementById('fin-valuasi-wrap').innerHTML =
-      '<div class="empty">Data valuasi belum tersedia — pastikan tab "Valuasi" bisa diakses</div>';
-    return;
-  }
-
-  const dataRows = rows.filter(r => {
-    const no = String(r[0]||'').trim();
-    return no && /^\d+$/.test(no) && r[2];
-  });
-
-  if (dataRows.length === 0) {
-    document.getElementById('fin-valuasi-wrap').innerHTML =
-      '<div class="empty">Tidak ada data valuasi yang terbaca</div>';
-    return;
-  }
-
-  // Hitung total nilai aset dari kolom Total Harga (idx 5)
-  let grandTotal = 0;
-  dataRows.forEach(r => { grandTotal += parseNum(r[5]); });
-
-  let html = `<table class="tbl tbl-pad" style="min-width:500px"><thead><tr>
-    <th>No</th><th>Thn</th><th>Alat / Bahan</th><th>Harga Satuan</th><th>Qty</th><th>Total Harga</th>
-  </tr></thead><tbody>`;
-
-  dataRows.forEach(r => {
-    const totalHarga = parseNum(r[5]);
-    html += `<tr>
-      <td style="font-family:var(--mono);color:var(--muted);font-size:10px">${escHtml(String(r[0]||''))}</td>
-      <td style="font-family:var(--mono);font-size:10px;color:var(--muted)">${escHtml(String(r[1]||''))}</td>
-      <td style="font-weight:500;font-size:11px">${escHtml(String(r[2]||''))}</td>
-      <td style="font-family:var(--mono);font-size:10px">${totalHarga ? fmtRpFull(parseNum(r[3])) : escHtml(String(r[3]||''))}</td>
-      <td style="font-family:var(--mono);font-size:10px">${escHtml(String(r[4]||''))}</td>
-      <td style="font-family:var(--mono);font-size:11px;color:var(--blue)">${totalHarga ? fmtRpFull(totalHarga) : '—'}</td>
+  const wrap = document.getElementById('fin-valuasi-wrap');
+  if (!rows || rows.length < 2) { wrap.innerHTML = '<div class="empty">Data valuasi belum tersedia</div>'; return; }
+  const hIdx = findRowIdx(rows, ['alat','harga']);
+  if (hIdx < 0) { wrap.innerHTML = '<div class="empty">Header valuasi tidak ditemukan</div>'; return; }
+  const H = rows[hIdx];
+  const c = {
+    no: findColIdx(H,'no'), thn: findColIdx(H,'tanggal'),
+    nama: findColIdx(H,'alat'), harga: findColIdx(H,'harga'),
+    qty: findColIdx(H,'jumlah'), total: findColIdx(H,'total harga'),
+  };
+  let body='';
+  for (let i=hIdx+1;i<rows.length;i++){
+    const r=rows[i];
+    if(!isNum(r[c.no]) || !String(r[c.nama]||'').trim()) continue;
+    body += `<tr>
+      <td style="font-family:var(--mono);color:var(--muted)">${escHtml(String(r[c.no]||''))}</td>
+      <td style="font-family:var(--mono);font-size:10px;color:var(--muted)">${escHtml(String(r[c.thn]||''))}</td>
+      <td style="font-weight:500">${escHtml(String(r[c.nama]||''))}</td>
+      <td style="font-family:var(--mono)">${fmtRpFull(r[c.harga])}</td>
+      <td style="font-family:var(--mono)">${escHtml(String(r[c.qty]||'1'))}</td>
+      <td style="font-family:var(--mono);color:var(--blue)">${fmtRpFull(r[c.total])}</td>
     </tr>`;
-  });
-
-  // Footer total
-  html += `<tr style="background:rgba(79,142,247,.05)">
-    <td colspan="5" style="font-weight:600;font-size:11px;padding-top:10px">Total Nilai Aset</td>
-    <td style="font-family:var(--mono);font-weight:700;color:var(--blue);font-size:12px;padding-top:10px">
-      ${grandTotal ? fmtRpFull(grandTotal) : '—'}
-    </td>
-  </tr>`;
-
-  html += '</tbody></table>';
-  document.getElementById('fin-valuasi-wrap').innerHTML = html;
+  }
+  wrap.innerHTML = `<table class="tbl tbl-pad" style="min-width:480px;font-size:11px"><thead><tr><th>No</th><th>Thn</th><th>Alat/Bahan</th><th>Harga Satuan</th><th>Qty</th><th>Total Harga</th></tr></thead><tbody>${body}</tbody></table>`;
 }
 
-// ─── Forecasting ─────────────────────────────────────────
-// Tab "FORECASTING" dari sheet Pengeluaran
-// Kolom: 0=No, 1=Bulan, 2=Biaya Bahan, 3=Biaya Ads, 4=Fcst Bahan+8%, 5=Fcst Ads+8%, 6=Fcst Bahan 0%, 7=Fcst Ads 0%
+// ── FORECASTING ──
 function renderFinForecast() {
   const rows = FIN_DATA.forecast;
-  if (!rows || rows.length < 2) {
-    document.getElementById('fin-forecast-wrap').innerHTML =
-      '<div class="empty">Data forecasting belum tersedia</div>';
+  const wrap = document.getElementById('fin-forecast-wrap');
+  if (!rows || rows.length < 3) {
+    wrap.innerHTML = '<div class="empty">Data forecasting belum tersedia.<br><span style="font-size:10px">Spreadsheet "Pengeluaran 2026" perlu berupa Google Sheet native (bukan .xlsx) agar bisa dibaca otomatis. Buka file di Drive → File → Save as Google Sheets.</span></div>';
     return;
   }
-
-  const isErr = v => !v || String(v).includes('DIV') || String(v).includes('ERR') || String(v).trim() === '';
-
-  const dataRows = rows.filter(r => {
-    const no  = String(r[0]||'').trim();
-    const bln = String(r[1]||'').trim();
-    return no && /^\d+$/.test(no) && bln;
-  });
-
-  if (dataRows.length === 0) {
-    document.getElementById('fin-forecast-wrap').innerHTML =
-      '<div class="empty">Tidak ada data forecasting yang terbaca</div>';
-    return;
-  }
-
-  let html = `<table class="tbl tbl-pad" style="min-width:600px"><thead><tr>
-    <th>No</th><th>Bulan</th><th>Biaya Bahan</th><th>Biaya Ads</th>
-    <th style="color:var(--orange)">Fcst Bahan +8%</th><th style="color:var(--orange)">Fcst Ads +8%</th>
-    <th style="color:var(--green)">Fcst Bahan 0%</th><th style="color:var(--green)">Fcst Ads 0%</th>
-  </tr></thead><tbody>`;
-
-  dataRows.forEach(r => {
-    const fmtCell = (v, color='') => isErr(v)
-      ? `<span style="color:var(--muted)">—</span>`
-      : `<span style="font-family:var(--mono);${color?'color:'+color:''}">${fmtRpFull(parseNum(v))}</span>`;
-
-    html += `<tr>
-      <td style="font-family:var(--mono);color:var(--muted)">${escHtml(String(r[0]||''))}</td>
-      <td style="font-weight:500">${escHtml(String(r[1]||''))}</td>
-      <td>${fmtCell(r[2])}</td>
-      <td>${fmtCell(r[3])}</td>
-      <td>${fmtCell(r[4],'var(--orange)')}</td>
-      <td>${fmtCell(r[5],'var(--orange)')}</td>
-      <td>${fmtCell(r[6],'var(--green)')}</td>
-      <td>${fmtCell(r[7],'var(--green)')}</td>
+  const hIdx = findRowIdx(rows, ['bulan','bahan']);
+  if (hIdx < 0) { wrap.innerHTML = '<div class="empty">Header forecasting tidak ditemukan</div>'; return; }
+  const H = rows[hIdx];
+  const cNo = findColIdx(H,'no');
+  const cBulan = findColIdx(H,'bulan');
+  const cBahan = findColIdx(H,'biaya bahan')>=0?findColIdx(H,'biaya bahan'):findColIdx(H,'bahan');
+  const cAds = findColIdx(H,'biaya ads')>=0?findColIdx(H,'biaya ads'):findColIdx(H,'ads');
+  let body='';
+  const bulanList = ['jan','feb','mar','apr','may','mei','jun','jul','aug','agu','sep','oct','okt','nov','dec','des'];
+  for (let i=hIdx+1;i<rows.length;i++){
+    const r=rows[i];
+    const bln=String(r[cBulan]||'').trim();
+    if(!bln || !bulanList.some(m=>bln.toLowerCase().startsWith(m))) continue;
+    const dash='<span style="color:var(--muted)">—</span>';
+    body += `<tr>
+      <td style="font-family:var(--mono);color:var(--muted)">${escHtml(String(r[cNo]||''))}</td>
+      <td style="font-weight:500">${escHtml(bln)}</td>
+      <td style="font-family:var(--mono)">${isNum(r[cBahan])?fmtRpShort(r[cBahan]):dash}</td>
+      <td style="font-family:var(--mono)">${isNum(r[cAds])?fmtRpShort(r[cAds]):dash}</td>
     </tr>`;
-  });
-
-  html += '</tbody></table>';
-  document.getElementById('fin-forecast-wrap').innerHTML = html;
+  }
+  wrap.innerHTML = `<table class="tbl tbl-pad" style="min-width:380px;font-size:11px"><thead><tr><th>No</th><th>Bulan</th><th>Biaya Bahan</th><th>Biaya Ads</th></tr></thead><tbody>${body||'<tr><td colspan="4" class="empty">—</td></tr>'}</tbody></table>`;
 }
 
 // ─── TAB SWITCH ───
