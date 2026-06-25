@@ -334,9 +334,752 @@ body{background:var(--bg);color:var(--text);font-family:var(--font);font-size:13
 </div>
 
 
+
 <!-- ===== FINANCIAL OVERVIEW ===== -->
 <div class="tab-content" id="tab-financial">
   <div class="sec-lbl">Financial Overview Hypospot</div>
+
+  <!-- KPI ROW -->
+  <div class="kpi-grid">
+    <div class="kpi blue"><div class="kpi-lbl">SHU Total (Kas)</div><div class="kpi-val blue">Rp 458.6jt</div><div class="kpi-meta">Saldo SHU terkini</div></div>
+    <div class="kpi green"><div class="kpi-lbl">Total Revenue 2026</div><div class="kpi-val green">Rp 463.3jt</div><div class="kpi-meta">YTD Jan–Jun 2026</div></div>
+    <div class="kpi orange"><div class="kpi-lbl">Dana Siaga</div><div class="kpi-val orange">Rp 38.6jt</div><div class="kpi-meta">Liquid Cash tersedia</div></div>
+    <div class="kpi red"><div class="kpi-lbl">Total Hutang</div><div class="kpi-val red">Rp 63.1jt</div><div class="kpi-meta">Piutang ke customer/tim</div></div>
+  </div>
+
+  <!-- ROW 1: Rekap Omzet + SHU 10 terakhir -->
+  <div class="two-col">
+    <div class="card">
+      <div class="card-hdr">
+        <div><div class="card-title">Rekap Omzet Per Bulan 2026</div><div class="card-sub">Sheet: Catatan 2026</div></div>
+        <a class="pill-link" href="https://docs.google.com/spreadsheets/d/1-3qooTuWg87bAoumX9l1jodeJiT3RqeP/" target="_blank">↗ Sheet</a>
+      </div>
+      <div style="overflow-x:auto"><table class="tbl tbl-pad" style="min-width:750px;font-size:11px"><thead><tr><th>No</th><th>Bulan</th><th>Revenue</th><th>Naik/Turun</th><th>%</th><th>SHU Kotor</th><th>Net Profit%</th><th>SHU Bersih</th><th>Produk</th><th>Total Cost</th><th>Keuntungan</th></tr></thead><tbody><tr>
+        <td style="color:var(--muted)">12</td>
+        <td style="font-weight:500">Desember</td>
+        <td style="font-family:var(--mono)">Rp 79.618.903</td>
+        <td><span class="bdg bdg-green">↑ Naik</span></td>
+        <td style="font-family:var(--mono);color:var(--muted)">100.0%</td>
+        <td style="font-family:var(--mono)">Rp 19.248.903</td>
+        <td style="font-family:var(--mono);color:var(--muted)">24.2%</td>
+        <td style="font-family:var(--mono);color:var(--blue)">Rp 16.248.903</td>
+        <td style="font-family:var(--mono)">3519</td>
+        <td style="font-family:var(--mono)">Rp 58.570.000</td>
+        <td style="font-family:var(--mono);color:var(--green)">Rp 2.437.335</td>
+    </tr><tr>
+        <td style="color:var(--muted)">1</td>
+        <td style="font-weight:500">Januari</td>
+        <td style="font-family:var(--mono)">Rp 82.817.549</td>
+        <td><span class="bdg bdg-green">↑ Naik</span></td>
+        <td style="font-family:var(--mono);color:var(--muted)">4.0%</td>
+        <td style="font-family:var(--mono)">Rp 21.447.549</td>
+        <td style="font-family:var(--mono);color:var(--muted)">25.9%</td>
+        <td style="font-family:var(--mono);color:var(--blue)">Rp 10.390.049</td>
+        <td style="font-family:var(--mono)">4065</td>
+        <td style="font-family:var(--mono)">Rp 59.570.000</td>
+        <td style="font-family:var(--mono);color:var(--green)">Rp 1.558.507</td>
+    </tr><tr>
+        <td style="color:var(--muted)">2</td>
+        <td style="font-weight:500">Februari</td>
+        <td style="font-family:var(--mono)">Rp 80.287.563</td>
+        <td><span class="bdg bdg-red">↓ Turun</span></td>
+        <td style="font-family:var(--mono);color:var(--muted)">-3.1%</td>
+        <td style="font-family:var(--mono)">Rp 20.267.563</td>
+        <td style="font-family:var(--mono);color:var(--muted)">25.2%</td>
+        <td style="font-family:var(--mono);color:var(--blue)">Rp 15.567.563</td>
+        <td style="font-family:var(--mono)">4742</td>
+        <td style="font-family:var(--mono)">Rp 58.220.000</td>
+        <td style="font-family:var(--mono);color:var(--green)">Rp 2.335.134</td>
+    </tr><tr>
+        <td style="color:var(--muted)">3</td>
+        <td style="font-weight:500">Maret</td>
+        <td style="font-family:var(--mono)">Rp 68.427.806</td>
+        <td><span class="bdg bdg-red">↓ Turun</span></td>
+        <td style="font-family:var(--mono);color:var(--muted)">-14.8%</td>
+        <td style="font-family:var(--mono)">Rp 13.557.806</td>
+        <td style="font-family:var(--mono);color:var(--muted)">19.8%</td>
+        <td style="font-family:var(--mono);color:var(--blue)">Rp 7.331.633</td>
+        <td style="font-family:var(--mono)">4256</td>
+        <td style="font-family:var(--mono)">Rp 53.370.000</td>
+        <td style="font-family:var(--mono);color:var(--green)">Rp 1.099.744</td>
+    </tr><tr>
+        <td style="color:var(--muted)">4</td>
+        <td style="font-weight:500">April</td>
+        <td style="font-family:var(--mono)">Rp 92.741.606</td>
+        <td><span class="bdg bdg-green">↑ Naik</span></td>
+        <td style="font-family:var(--mono);color:var(--muted)">35.5%</td>
+        <td style="font-family:var(--mono)">Rp 26.271.606</td>
+        <td style="font-family:var(--mono);color:var(--muted)">28.3%</td>
+        <td style="font-family:var(--mono);color:var(--blue)">Rp 20.045.433</td>
+        <td style="font-family:var(--mono)">4853</td>
+        <td style="font-family:var(--mono)">Rp 64.370.000</td>
+        <td style="font-family:var(--mono);color:var(--green)">Rp 3.006.814</td>
+    </tr><tr>
+        <td style="color:var(--muted)">5</td>
+        <td style="font-weight:500">Mei</td>
+        <td style="font-family:var(--mono)">Rp 59.383.624</td>
+        <td><span class="bdg bdg-red">↓ Turun</span></td>
+        <td style="font-family:var(--mono);color:var(--muted)">-36.0%</td>
+        <td style="font-family:var(--mono)">Rp 3.413.624</td>
+        <td style="font-family:var(--mono);color:var(--muted)">5.7%</td>
+        <td style="font-family:var(--mono);color:var(--blue)">Rp 0</td>
+        <td style="font-family:var(--mono)">4123</td>
+        <td style="font-family:var(--mono)">Rp 59.270.000</td>
+        <td style="font-family:var(--mono);color:var(--green)">—</td>
+    </tr><tr>
+        <td style="color:var(--muted)">6</td>
+        <td style="font-weight:500">Juni</td>
+        <td style="font-family:var(--mono)">—</td>
+        <td><span class="bdg bdg-red">↓ Turun</span></td>
+        <td style="font-family:var(--mono);color:var(--muted)">—</td>
+        <td style="font-family:var(--mono)">—</td>
+        <td style="font-family:var(--mono);color:var(--muted)">—</td>
+        <td style="font-family:var(--mono);color:var(--blue)">—</td>
+        <td style="font-family:var(--mono)">—</td>
+        <td style="font-family:var(--mono)">—</td>
+        <td style="font-family:var(--mono);color:var(--green)">—</td>
+    </tr><tr>
+        <td style="color:var(--muted)">7</td>
+        <td style="font-weight:500">Juli</td>
+        <td style="font-family:var(--mono)">—</td>
+        <td><span class="bdg bdg-gray">→ Tetap</span></td>
+        <td style="font-family:var(--mono);color:var(--muted)">—</td>
+        <td style="font-family:var(--mono)">—</td>
+        <td style="font-family:var(--mono);color:var(--muted)">—</td>
+        <td style="font-family:var(--mono);color:var(--blue)">—</td>
+        <td style="font-family:var(--mono)">—</td>
+        <td style="font-family:var(--mono)">—</td>
+        <td style="font-family:var(--mono);color:var(--green)">—</td>
+    </tr><tr>
+        <td style="color:var(--muted)">8</td>
+        <td style="font-weight:500">Agustus</td>
+        <td style="font-family:var(--mono)">—</td>
+        <td><span class="bdg bdg-gray">→ Tetap</span></td>
+        <td style="font-family:var(--mono);color:var(--muted)">—</td>
+        <td style="font-family:var(--mono)">—</td>
+        <td style="font-family:var(--mono);color:var(--muted)">—</td>
+        <td style="font-family:var(--mono);color:var(--blue)">—</td>
+        <td style="font-family:var(--mono)">—</td>
+        <td style="font-family:var(--mono)">—</td>
+        <td style="font-family:var(--mono);color:var(--green)">—</td>
+    </tr><tr>
+        <td style="color:var(--muted)">9</td>
+        <td style="font-weight:500">September</td>
+        <td style="font-family:var(--mono)">—</td>
+        <td><span class="bdg bdg-gray">→ Tetap</span></td>
+        <td style="font-family:var(--mono);color:var(--muted)">—</td>
+        <td style="font-family:var(--mono)">—</td>
+        <td style="font-family:var(--mono);color:var(--muted)">—</td>
+        <td style="font-family:var(--mono);color:var(--blue)">—</td>
+        <td style="font-family:var(--mono)">—</td>
+        <td style="font-family:var(--mono)">—</td>
+        <td style="font-family:var(--mono);color:var(--green)">—</td>
+    </tr><tr>
+        <td style="color:var(--muted)">10</td>
+        <td style="font-weight:500">Oktober</td>
+        <td style="font-family:var(--mono)">—</td>
+        <td><span class="bdg bdg-gray">→ Tetap</span></td>
+        <td style="font-family:var(--mono);color:var(--muted)">—</td>
+        <td style="font-family:var(--mono)">—</td>
+        <td style="font-family:var(--mono);color:var(--muted)">—</td>
+        <td style="font-family:var(--mono);color:var(--blue)">—</td>
+        <td style="font-family:var(--mono)">—</td>
+        <td style="font-family:var(--mono)">—</td>
+        <td style="font-family:var(--mono);color:var(--green)">—</td>
+    </tr><tr>
+        <td style="color:var(--muted)">11</td>
+        <td style="font-weight:500">November</td>
+        <td style="font-family:var(--mono)">—</td>
+        <td><span class="bdg bdg-gray">→ Tetap</span></td>
+        <td style="font-family:var(--mono);color:var(--muted)">—</td>
+        <td style="font-family:var(--mono)">—</td>
+        <td style="font-family:var(--mono);color:var(--muted)">—</td>
+        <td style="font-family:var(--mono);color:var(--blue)">—</td>
+        <td style="font-family:var(--mono)">—</td>
+        <td style="font-family:var(--mono)">—</td>
+        <td style="font-family:var(--mono);color:var(--green)">—</td>
+    </tr><tr>
+        <td style="color:var(--muted)">12</td>
+        <td style="font-weight:500">Desember</td>
+        <td style="font-family:var(--mono)">—</td>
+        <td><span class="bdg bdg-gray">→ Tetap</span></td>
+        <td style="font-family:var(--mono);color:var(--muted)">—</td>
+        <td style="font-family:var(--mono)">—</td>
+        <td style="font-family:var(--mono);color:var(--muted)">—</td>
+        <td style="font-family:var(--mono);color:var(--blue)">—</td>
+        <td style="font-family:var(--mono)">—</td>
+        <td style="font-family:var(--mono)">—</td>
+        <td style="font-family:var(--mono);color:var(--green)">—</td>
+    </tr></tbody></table></div>
+    </div>
+    <div class="card">
+      <div class="card-hdr">
+        <div><div class="card-title">SHU — 10 Transaksi Terakhir</div><div class="card-sub">Uang masuk & keluar</div></div>
+        <a class="pill-link" href="https://docs.google.com/spreadsheets/d/1-3qooTuWg87bAoumX9l1jodeJiT3RqeP/" target="_blank">↗ Sheet</a>
+      </div>
+      <div style="overflow-x:auto"><table class="tbl tbl-pad" style="font-size:11px"><thead><tr><th>Tanggal</th><th>Masuk</th><th>Keluar</th><th>Sisa</th><th>Keterangan</th></tr></thead><tbody><tr>
+        <td style="font-family:var(--mono);font-size:10px">18/06/2026</td>
+        <td style="font-family:var(--mono);color:var(--green)">Rp 3.413.625</td>
+        <td style="font-family:var(--mono);color:var(--red)">—</td>
+        <td style="font-family:var(--mono);font-size:10px;color:var(--muted)">Rp 458.631.406</td>
+        <td style="color:var(--muted)">Tambahan SHU Mei</td>
+    </tr><tr>
+        <td style="font-family:var(--mono);font-size:10px">15/06/2026</td>
+        <td style="font-family:var(--mono);color:var(--green)">—</td>
+        <td style="font-family:var(--mono);color:var(--red)">Rp 1.610.000</td>
+        <td style="font-family:var(--mono);font-size:10px;color:var(--muted)">Rp 455.217.781</td>
+        <td style="color:var(--muted)">Pelunasan refreshment stiker</td>
+    </tr><tr>
+        <td style="font-family:var(--mono);font-size:10px">03/06/2026</td>
+        <td style="font-family:var(--mono);color:var(--green)">—</td>
+        <td style="font-family:var(--mono);color:var(--red)">Rp 475.000</td>
+        <td style="font-family:var(--mono);font-size:10px;color:var(--muted)">Rp 456.827.781</td>
+        <td style="color:var(--muted)">DP Refreshment Stiker Part 2</td>
+    </tr><tr>
+        <td style="font-family:var(--mono);font-size:10px">29/05/2026</td>
+        <td style="font-family:var(--mono);color:var(--green)">Rp 321.509</td>
+        <td style="font-family:var(--mono);color:var(--red)">—</td>
+        <td style="font-family:var(--mono);font-size:10px;color:var(--muted)">Rp 457.302.781</td>
+        <td style="color:var(--muted)">Return Bibit</td>
+    </tr><tr>
+        <td style="font-family:var(--mono);font-size:10px">20/05/2026</td>
+        <td style="font-family:var(--mono);color:var(--green)">Rp 22.474.192</td>
+        <td style="font-family:var(--mono);color:var(--red)">—</td>
+        <td style="font-family:var(--mono);font-size:10px;color:var(--muted)">Rp 456.981.272</td>
+        <td style="color:var(--muted)">Tambahan SHU April</td>
+    </tr><tr>
+        <td style="font-family:var(--mono);font-size:10px">20/05/2026</td>
+        <td style="font-family:var(--mono);color:var(--green)">—</td>
+        <td style="font-family:var(--mono);color:var(--red)">Rp 2.750.000</td>
+        <td style="font-family:var(--mono);font-size:10px;color:var(--muted)">Rp 434.507.080</td>
+        <td style="color:var(--muted)">Tambahan ERP Hanung Mei 2026</td>
+    </tr><tr>
+        <td style="font-family:var(--mono);font-size:10px">13/05/2026</td>
+        <td style="font-family:var(--mono);color:var(--green)">—</td>
+        <td style="font-family:var(--mono);color:var(--red)">Rp 3.700.000</td>
+        <td style="font-family:var(--mono);font-size:10px;color:var(--muted)">Rp 437.257.080</td>
+        <td style="color:var(--muted)">Pembayaran Kambing Kurban 2026</td>
+    </tr><tr>
+        <td style="font-family:var(--mono);font-size:10px">13/05/2026</td>
+        <td style="font-family:var(--mono);color:var(--green)">—</td>
+        <td style="font-family:var(--mono);color:var(--red)">Rp 1.135.000</td>
+        <td style="font-family:var(--mono);font-size:10px;color:var(--muted)">Rp 440.957.080</td>
+        <td style="color:var(--muted)">DP Refreshment Stiker</td>
+    </tr><tr>
+        <td style="font-family:var(--mono);font-size:10px">01/05/2026</td>
+        <td style="font-family:var(--mono);color:var(--green)">Rp 446.824</td>
+        <td style="font-family:var(--mono);color:var(--red)">—</td>
+        <td style="font-family:var(--mono);font-size:10px;color:var(--muted)">Rp 442.092.080</td>
+        <td style="color:var(--muted)">Tambahan SHU bulan januari</td>
+    </tr><tr>
+        <td style="font-family:var(--mono);font-size:10px">01/05/2026</td>
+        <td style="font-family:var(--mono);color:var(--green)">Rp 3.797.414</td>
+        <td style="font-family:var(--mono);color:var(--red)">—</td>
+        <td style="font-family:var(--mono);font-size:10px;color:var(--muted)">Rp 441.645.256</td>
+        <td style="color:var(--muted)">SHU Sementara</td>
+    </tr></tbody></table></div>
+    </div>
+  </div>
+
+  <!-- ROW 2: Arus Kas Summary + Valuasi -->
+  <div class="two-col">
+    <div class="card">
+      <div class="card-hdr">
+        <div><div class="card-title">Arus Kas — Ringkasan</div><div class="card-sub">Dana Siaga · Investasi · Total · Hutang</div></div>
+        <a class="pill-link" href="https://docs.google.com/spreadsheets/d/1-3qooTuWg87bAoumX9l1jodeJiT3RqeP/" target="_blank">↗ Sheet</a>
+      </div>
+      <div class="card-body">
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:14px">
+  <div style="background:var(--bg3);border-radius:7px;padding:12px">
+    <div style="font-size:10px;color:var(--muted);margin-bottom:4px;font-weight:500;letter-spacing:.5px;text-transform:uppercase">Dana Siaga (Liquid Cash)</div>
+    <div style="font-size:20px;font-weight:700;font-family:var(--mono);color:var(--blue)">Rp 38.566.395</div>
+  </div>
+  <div style="background:var(--bg3);border-radius:7px;padding:12px">
+    <div style="font-size:10px;color:var(--muted);margin-bottom:4px;font-weight:500;letter-spacing:.5px;text-transform:uppercase">Total Investasi</div>
+    <div style="font-size:20px;font-weight:700;font-family:var(--mono);color:var(--green)">Rp 284.863.249</div>
+  </div>
+  <div style="background:var(--bg3);border-radius:7px;padding:12px">
+    <div style="font-size:10px;color:var(--muted);margin-bottom:4px;font-weight:500;letter-spacing:.5px;text-transform:uppercase">Total All</div>
+    <div style="font-size:20px;font-weight:700;font-family:var(--mono);color:var(--accent2,#2dd4a0)">Rp 386.543.739</div>
+    <div style="font-size:10px;color:var(--muted);margin-top:3px">SHU Asli: Rp 458.631.406</div>
+  </div>
+  <div style="background:var(--bg3);border-radius:7px;padding:12px">
+    <div style="font-size:10px;color:var(--muted);margin-bottom:6px;font-weight:500;letter-spacing:.5px;text-transform:uppercase">Total Hutang: Rp 63.114.095</div>
+    <table style="width:100%;border-collapse:collapse"><tr><td style="font-size:11px">David</td><td style="font-family:var(--mono);color:var(--orange);font-size:11px">Rp 7.357.595</td></tr><tr><td style="font-size:11px">Andhika</td><td style="font-family:var(--mono);color:var(--orange);font-size:11px">Rp 4.500.000</td></tr><tr><td style="font-size:11px">Mba Tun</td><td style="font-family:var(--mono);color:var(--orange);font-size:11px">Rp 1.000.000</td></tr><tr><td style="font-size:11px">Dimas Prayoga</td><td style="font-family:var(--mono);color:var(--orange);font-size:11px">Rp 10.006.500</td></tr><tr><td style="font-size:11px">Hadi HP</td><td style="font-family:var(--mono);color:var(--orange);font-size:11px">Rp 2.000.000</td></tr><tr><td style="font-size:11px">Yusril</td><td style="font-family:var(--mono);color:var(--orange);font-size:11px">Rp 35.250.000</td></tr><tr><td style="font-size:11px">Anggito</td><td style="font-family:var(--mono);color:var(--orange);font-size:11px">Rp 3.000.000</td></tr></table>
+  </div>
+</div></div>
+    </div>
+    <div class="card">
+      <div class="card-hdr">
+        <div><div class="card-title">Total Nilai Aset Hypospot</div><div class="card-sub">Sheet: Valuasi</div></div>
+        <a class="pill-link" href="https://docs.google.com/spreadsheets/d/1-3qooTuWg87bAoumX9l1jodeJiT3RqeP/" target="_blank">↗ Sheet</a>
+      </div>
+      <div style="overflow-x:auto"><table class="tbl tbl-pad" style="font-size:11px;min-width:450px"><thead><tr><th>No</th><th>Thn</th><th>Alat/Bahan</th><th>Harga Satuan</th><th>Qty</th><th>Total Harga</th></tr></thead><tbody><tr>
+        <td style="font-family:var(--mono);color:var(--muted)">1</td>
+        <td style="font-family:var(--mono);font-size:10px;color:var(--muted)">2023</td>
+        <td style="font-weight:500">Nilai SHU</td>
+        <td style="font-family:var(--mono)">Rp 458.411.406</td>
+        <td style="font-family:var(--mono)">1</td>
+        <td style="font-family:var(--mono);color:var(--blue)">Rp 458.411.406</td>
+    </tr><tr>
+        <td style="font-family:var(--mono);color:var(--muted)">29</td>
+        <td style="font-family:var(--mono);font-size:10px;color:var(--muted)">2024</td>
+        <td style="font-weight:500">Laptop Surface Book 2</td>
+        <td style="font-family:var(--mono)">Rp 5.000.000</td>
+        <td style="font-family:var(--mono)">1</td>
+        <td style="font-family:var(--mono);color:var(--blue)">Rp 5.000.000</td>
+    </tr><tr>
+        <td style="font-family:var(--mono);color:var(--muted)">2</td>
+        <td style="font-family:var(--mono);font-size:10px;color:var(--muted)">2023</td>
+        <td style="font-weight:500">Cam Sony a6000</td>
+        <td style="font-family:var(--mono)">Rp 4.500.000</td>
+        <td style="font-family:var(--mono)">1</td>
+        <td style="font-family:var(--mono);color:var(--blue)">Rp 4.500.000</td>
+    </tr><tr>
+        <td style="font-family:var(--mono);color:var(--muted)">32</td>
+        <td style="font-family:var(--mono);font-size:10px;color:var(--muted)">2024</td>
+        <td style="font-weight:500">Etalase produk</td>
+        <td style="font-family:var(--mono)">Rp 4.000.000</td>
+        <td style="font-family:var(--mono)">1</td>
+        <td style="font-family:var(--mono);color:var(--blue)">Rp 4.000.000</td>
+    </tr><tr>
+        <td style="font-family:var(--mono);color:var(--muted)">15</td>
+        <td style="font-family:var(--mono);font-size:10px;color:var(--muted)">2026</td>
+        <td style="font-weight:500">HP IP 11 Pro Max for David</td>
+        <td style="font-family:var(--mono)">Rp 3.500.000</td>
+        <td style="font-family:var(--mono)">1</td>
+        <td style="font-family:var(--mono);color:var(--blue)">Rp 3.500.000</td>
+    </tr><tr>
+        <td style="font-family:var(--mono);color:var(--muted)">27</td>
+        <td style="font-family:var(--mono);font-size:10px;color:var(--muted)">2024</td>
+        <td style="font-weight:500">Motor Oprational Vega ZR</td>
+        <td style="font-family:var(--mono)">Rp 2.800.000</td>
+        <td style="font-family:var(--mono)">1</td>
+        <td style="font-family:var(--mono);color:var(--blue)">Rp 2.800.000</td>
+    </tr><tr>
+        <td style="font-family:var(--mono);color:var(--muted)">36</td>
+        <td style="font-family:var(--mono);font-size:10px;color:var(--muted)">2025</td>
+        <td style="font-weight:500">AC Sharp 0,5 pk AH A5ZCY</td>
+        <td style="font-family:var(--mono)">Rp 2.500.000</td>
+        <td style="font-family:var(--mono)">1</td>
+        <td style="font-family:var(--mono);color:var(--blue)">Rp 2.500.000</td>
+    </tr><tr>
+        <td style="font-family:var(--mono);color:var(--muted)">3</td>
+        <td style="font-family:var(--mono);font-size:10px;color:var(--muted)">2023</td>
+        <td style="font-weight:500">Komputer</td>
+        <td style="font-family:var(--mono)">Rp 2.400.000</td>
+        <td style="font-family:var(--mono)">1</td>
+        <td style="font-family:var(--mono);color:var(--blue)">Rp 2.400.000</td>
+    </tr><tr>
+        <td style="font-family:var(--mono);color:var(--muted)">4</td>
+        <td style="font-family:var(--mono);font-size:10px;color:var(--muted)">2023</td>
+        <td style="font-weight:500">HP Infinix Hot 12 Play NFC</td>
+        <td style="font-family:var(--mono)">Rp 1.795.000</td>
+        <td style="font-family:var(--mono)">1</td>
+        <td style="font-family:var(--mono);color:var(--blue)">Rp 1.795.000</td>
+    </tr><tr>
+        <td style="font-family:var(--mono);color:var(--muted)">5</td>
+        <td style="font-family:var(--mono);font-size:10px;color:var(--muted)">2023</td>
+        <td style="font-weight:500">Kulkas Sharp 1 Pintu</td>
+        <td style="font-family:var(--mono)">Rp 1.600.000</td>
+        <td style="font-family:var(--mono)">1</td>
+        <td style="font-family:var(--mono);color:var(--blue)">Rp 1.600.000</td>
+    </tr><tr>
+        <td style="font-family:var(--mono);color:var(--muted)">30</td>
+        <td style="font-family:var(--mono);font-size:10px;color:var(--muted)">2024</td>
+        <td style="font-weight:500">HP POCO C65</td>
+        <td style="font-family:var(--mono)">Rp 1.400.000</td>
+        <td style="font-family:var(--mono)">1</td>
+        <td style="font-family:var(--mono);color:var(--blue)">Rp 1.400.000</td>
+    </tr><tr>
+        <td style="font-family:var(--mono);color:var(--muted)">31</td>
+        <td style="font-family:var(--mono);font-size:10px;color:var(--muted)">2024</td>
+        <td style="font-weight:500">Blueprint Eco 80BT</td>
+        <td style="font-family:var(--mono)">Rp 700.000</td>
+        <td style="font-family:var(--mono)">1</td>
+        <td style="font-family:var(--mono);color:var(--blue)">Rp 700.000</td>
+    </tr><tr>
+        <td style="font-family:var(--mono);color:var(--muted)">10</td>
+        <td style="font-family:var(--mono);font-size:10px;color:var(--muted)">2026</td>
+        <td style="font-weight:500">Sanyo Kontrakan</td>
+        <td style="font-family:var(--mono)">Rp 700.000</td>
+        <td style="font-family:var(--mono)">1</td>
+        <td style="font-family:var(--mono);color:var(--blue)">Rp 700.000</td>
+    </tr><tr>
+        <td style="font-family:var(--mono);color:var(--muted)">6</td>
+        <td style="font-family:var(--mono);font-size:10px;color:var(--muted)">2023</td>
+        <td style="font-weight:500">Costa Collect TM-02 Tripod</td>
+        <td style="font-family:var(--mono)">Rp 645.000</td>
+        <td style="font-family:var(--mono)">1</td>
+        <td style="font-family:var(--mono);color:var(--blue)">Rp 645.000</td>
+    </tr><tr>
+        <td style="font-family:var(--mono);color:var(--muted)">7</td>
+        <td style="font-family:var(--mono);font-size:10px;color:var(--muted)">2023</td>
+        <td style="font-weight:500">Printer Blueprint</td>
+        <td style="font-family:var(--mono)">Rp 520.000</td>
+        <td style="font-family:var(--mono)">1</td>
+        <td style="font-family:var(--mono);color:var(--blue)">Rp 520.000</td>
+    </tr><tr>
+        <td style="font-family:var(--mono);color:var(--muted)">33</td>
+        <td style="font-family:var(--mono);font-size:10px;color:var(--muted)">2025</td>
+        <td style="font-weight:500">Rak Besi Hitam</td>
+        <td style="font-family:var(--mono)">Rp 520.000</td>
+        <td style="font-family:var(--mono)">1</td>
+        <td style="font-family:var(--mono);color:var(--blue)">Rp 520.000</td>
+    </tr><tr>
+        <td style="font-family:var(--mono);color:var(--muted)">8</td>
+        <td style="font-family:var(--mono);font-size:10px;color:var(--muted)">2023</td>
+        <td style="font-weight:500">Rak stok barang besar hitam</td>
+        <td style="font-family:var(--mono)">Rp 500.000</td>
+        <td style="font-family:var(--mono)">1</td>
+        <td style="font-family:var(--mono);color:var(--blue)">Rp 500.000</td>
+    </tr><tr>
+        <td style="font-family:var(--mono);color:var(--muted)">34</td>
+        <td style="font-family:var(--mono);font-size:10px;color:var(--muted)">2025</td>
+        <td style="font-weight:500">Meja Kerja David</td>
+        <td style="font-family:var(--mono)">Rp 360.000</td>
+        <td style="font-family:var(--mono)">1</td>
+        <td style="font-family:var(--mono);color:var(--blue)">Rp 360.000</td>
+    </tr><tr>
+        <td style="font-family:var(--mono);color:var(--muted)">28</td>
+        <td style="font-family:var(--mono);font-size:10px;color:var(--muted)">2024</td>
+        <td style="font-weight:500">Rak stok barang besar putih</td>
+        <td style="font-family:var(--mono)">Rp 350.000</td>
+        <td style="font-family:var(--mono)">1</td>
+        <td style="font-family:var(--mono);color:var(--blue)">Rp 350.000</td>
+    </tr><tr>
+        <td style="font-family:var(--mono);color:var(--muted)">9</td>
+        <td style="font-family:var(--mono);font-size:10px;color:var(--muted)">2023</td>
+        <td style="font-weight:500">Rak stok barang</td>
+        <td style="font-family:var(--mono)">Rp 290.000</td>
+        <td style="font-family:var(--mono)">1</td>
+        <td style="font-family:var(--mono);color:var(--blue)">Rp 290.000</td>
+    </tr><tr>
+        <td style="font-family:var(--mono);color:var(--muted)">11</td>
+        <td style="font-family:var(--mono);font-size:10px;color:var(--muted)">2023</td>
+        <td style="font-weight:500">Meja Lipat</td>
+        <td style="font-family:var(--mono)">Rp 226.000</td>
+        <td style="font-family:var(--mono)">1</td>
+        <td style="font-family:var(--mono);color:var(--blue)">Rp 226.000</td>
+    </tr><tr>
+        <td style="font-family:var(--mono);color:var(--muted)">35</td>
+        <td style="font-family:var(--mono);font-size:10px;color:var(--muted)">2025</td>
+        <td style="font-weight:500">Meja Admin</td>
+        <td style="font-family:var(--mono)">Rp 200.000</td>
+        <td style="font-family:var(--mono)">1</td>
+        <td style="font-family:var(--mono);color:var(--blue)">Rp 200.000</td>
+    </tr><tr>
+        <td style="font-family:var(--mono);color:var(--muted)">12</td>
+        <td style="font-family:var(--mono);font-size:10px;color:var(--muted)">2023</td>
+        <td style="font-weight:500">Alat Pemotong kertas A3</td>
+        <td style="font-family:var(--mono)">Rp 191.000</td>
+        <td style="font-family:var(--mono)">1</td>
+        <td style="font-family:var(--mono);color:var(--blue)">Rp 191.000</td>
+    </tr><tr>
+        <td style="font-family:var(--mono);color:var(--muted)">14</td>
+        <td style="font-family:var(--mono);font-size:10px;color:var(--muted)">2023</td>
+        <td style="font-weight:500">Hot Gun Orion</td>
+        <td style="font-family:var(--mono)">Rp 117.000</td>
+        <td style="font-family:var(--mono)">1</td>
+        <td style="font-family:var(--mono);color:var(--blue)">Rp 117.000</td>
+    </tr></tbody></table></div>
+    </div>
+  </div>
+
+  <!-- ROW 3: Dana Siaga + Investasi 10 terakhir -->
+  <div class="two-col">
+    <div class="card">
+      <div class="card-hdr">
+        <div><div class="card-title">Dana Siaga — 10 Input Terakhir</div><div class="card-sub">Dari tabel Arus Kas</div></div>
+      </div>
+      <div style="overflow-x:auto"><table class="tbl tbl-pad" style="font-size:11px"><thead><tr><th>Tanggal</th><th>Masuk</th><th>Keluar</th><th>Sisa</th><th>Keterangan</th></tr></thead><tbody><tr>
+        <td style="font-family:var(--mono);font-size:10px">06/11/2024</td>
+        <td style="font-family:var(--mono);color:var(--green)">Rp 20.000.000</td>
+        <td style="font-family:var(--mono);color:var(--red)">—</td>
+        <td style="font-family:var(--mono);font-size:10px;color:var(--muted)">Rp 62.956.154</td>
+        <td style="color:var(--muted)">dikembalikan de tari</td>
+    </tr><tr>
+        <td style="font-family:var(--mono);font-size:10px">06/08/2024</td>
+        <td style="font-family:var(--mono);color:var(--green)">Rp 1.080.000</td>
+        <td style="font-family:var(--mono);color:var(--red)">—</td>
+        <td style="font-family:var(--mono);font-size:10px;color:var(--muted)">Rp 42.956.154</td>
+        <td style="color:var(--muted)">dikembalikan bahan</td>
+    </tr><tr>
+        <td style="font-family:var(--mono);font-size:10px">06/08/2024</td>
+        <td style="font-family:var(--mono);color:var(--green)">—</td>
+        <td style="font-family:var(--mono);color:var(--red)">Rp 5.000.000</td>
+        <td style="font-family:var(--mono);font-size:10px;color:var(--muted)">Rp 41.876.154</td>
+        <td style="color:var(--muted)">Tambahan biaya bahan</td>
+    </tr><tr>
+        <td style="font-family:var(--mono);font-size:10px">06/01/2024</td>
+        <td style="font-family:var(--mono);color:var(--green)">—</td>
+        <td style="font-family:var(--mono);color:var(--red)">Rp 1.080.000</td>
+        <td style="font-family:var(--mono);font-size:10px;color:var(--muted)">Rp 46.876.154</td>
+        <td style="color:var(--muted)">Pinjam bahan</td>
+    </tr><tr>
+        <td style="font-family:var(--mono);font-size:10px">06/01/2024</td>
+        <td style="font-family:var(--mono);color:var(--green)">—</td>
+        <td style="font-family:var(--mono);color:var(--red)">Rp 129.875.000</td>
+        <td style="font-family:var(--mono);font-size:10px;color:var(--muted)">Rp 47.956.154</td>
+        <td style="color:var(--muted)">DP Tanah di semarang DP 50% 134,875,000</td>
+    </tr><tr>
+        <td style="font-family:var(--mono);font-size:10px">06/01/2024</td>
+        <td style="font-family:var(--mono);color:var(--green)">Rp 6.587.000</td>
+        <td style="font-family:var(--mono);color:var(--red)">—</td>
+        <td style="font-family:var(--mono);font-size:10px;color:var(--muted)">Rp 177.831.154</td>
+        <td style="color:var(--muted)">dikembalikan bahan</td>
+    </tr><tr>
+        <td style="font-family:var(--mono);font-size:10px">06/01/2024</td>
+        <td style="font-family:var(--mono);color:var(--green)">Rp 6.017.210</td>
+        <td style="font-family:var(--mono);color:var(--red)">—</td>
+        <td style="font-family:var(--mono);font-size:10px;color:var(--muted)">Rp 171.244.154</td>
+        <td style="color:var(--muted)">SHU Sementara</td>
+    </tr><tr>
+        <td style="font-family:var(--mono);font-size:10px">21/05/2024</td>
+        <td style="font-family:var(--mono);color:var(--green)">—</td>
+        <td style="font-family:var(--mono);color:var(--red)">Rp 3.300.000</td>
+        <td style="font-family:var(--mono);font-size:10px;color:var(--muted)">Rp 38.999.764</td>
+        <td style="color:var(--muted)">hutang mas nana</td>
+    </tr><tr>
+        <td style="font-family:var(--mono);font-size:10px">14/05/2024</td>
+        <td style="font-family:var(--mono);color:var(--green)">—</td>
+        <td style="font-family:var(--mono);color:var(--red)">Rp 15.000.000</td>
+        <td style="font-family:var(--mono);font-size:10px;color:var(--muted)">Rp 42.299.764</td>
+        <td style="color:var(--muted)">Invest Bibit</td>
+    </tr><tr>
+        <td style="font-family:var(--mono);font-size:10px">13/05/2024</td>
+        <td style="font-family:var(--mono);color:var(--green)">—</td>
+        <td style="font-family:var(--mono);color:var(--red)">Rp 1.711.500</td>
+        <td style="font-family:var(--mono);font-size:10px;color:var(--muted)">Rp 57.299.764</td>
+        <td style="color:var(--muted)">pembayar wifi</td>
+    </tr></tbody></table></div>
+    </div>
+    <div class="card">
+      <div class="card-hdr">
+        <div><div class="card-title">Investasi — 10 Input Terakhir</div><div class="card-sub">Dari tabel Investasi</div></div>
+      </div>
+      <div style="overflow-x:auto"><table class="tbl tbl-pad" style="font-size:11px"><thead><tr><th>Tanggal</th><th>Masuk</th><th>Keluar</th><th>Lokasi</th><th>Keterangan</th></tr></thead><tbody><tr>
+        <td style="font-family:var(--mono);font-size:10px">05/06/2026</td>
+        <td style="font-family:var(--mono);color:var(--green)">—</td>
+        <td style="font-family:var(--mono);color:var(--red)">Rp 14.999.287</td>
+        <td style="font-size:10px;color:var(--muted)">Tarik dana Bibit</td>
+        <td style="color:var(--muted)">Ke Cash</td>
+    </tr><tr>
+        <td style="font-family:var(--mono);font-size:10px">02/06/2026</td>
+        <td style="font-family:var(--mono);color:var(--green)">Rp 40.225.000</td>
+        <td style="font-family:var(--mono);color:var(--red)">—</td>
+        <td style="font-size:10px;color:var(--muted)">Invest Emas</td>
+        <td style="color:var(--muted)">Emas 15gr</td>
+    </tr><tr>
+        <td style="font-family:var(--mono);font-size:10px">29/05/2026</td>
+        <td style="font-family:var(--mono);color:var(--green)">—</td>
+        <td style="font-family:var(--mono);color:var(--red)">Rp 37.000.000</td>
+        <td style="font-size:10px;color:var(--muted)">Tarik dana Bibit</td>
+        <td style="color:var(--muted)">Ke Cash</td>
+    </tr><tr>
+        <td style="font-family:var(--mono);font-size:10px">31/03/2026</td>
+        <td style="font-family:var(--mono);color:var(--green)">Rp 3.746.528</td>
+        <td style="font-family:var(--mono);color:var(--red)">—</td>
+        <td style="font-size:10px;color:var(--muted)">Bayar cicilan tanah</td>
+        <td style="color:var(--muted)">Cicilan Tanah Maret 2026</td>
+    </tr><tr>
+        <td style="font-family:var(--mono);font-size:10px">28/02/2026</td>
+        <td style="font-family:var(--mono);color:var(--green)">Rp 2.900.000</td>
+        <td style="font-family:var(--mono);color:var(--red)">—</td>
+        <td style="font-size:10px;color:var(--muted)">Invest Bibit</td>
+        <td style="color:var(--muted)">Investasi bibit Hypospot</td>
+    </tr><tr>
+        <td style="font-family:var(--mono);font-size:10px">13/02/2026</td>
+        <td style="font-family:var(--mono);color:var(--green)">Rp 3.746.528</td>
+        <td style="font-family:var(--mono);color:var(--red)">—</td>
+        <td style="font-size:10px;color:var(--muted)">Bayar cicilan tanah</td>
+        <td style="color:var(--muted)">Cicilan Tanah Februari 2026</td>
+    </tr><tr>
+        <td style="font-family:var(--mono);font-size:10px">15/01/2026</td>
+        <td style="font-family:var(--mono);color:var(--green)">Rp 3.746.528</td>
+        <td style="font-family:var(--mono);color:var(--red)">—</td>
+        <td style="font-size:10px;color:var(--muted)">Bayar cicilan tanah</td>
+        <td style="color:var(--muted)">Cicilan Tanah Januari 2026</td>
+    </tr><tr>
+        <td style="font-family:var(--mono);font-size:10px">11/01/2026</td>
+        <td style="font-family:var(--mono);color:var(--green)">Rp 32.592.348</td>
+        <td style="font-family:var(--mono);color:var(--red)">—</td>
+        <td style="font-size:10px;color:var(--muted)">Invest Bibit</td>
+        <td style="color:var(--muted)">Investasi bibit Hypospot</td>
+    </tr><tr>
+        <td style="font-family:var(--mono);font-size:10px">17/12/2025</td>
+        <td style="font-family:var(--mono);color:var(--green)">Rp 3.746.528</td>
+        <td style="font-family:var(--mono);color:var(--red)">—</td>
+        <td style="font-size:10px;color:var(--muted)">Bayar cicilan tanah</td>
+        <td style="color:var(--muted)">Cicilan Tanah Desember 2025</td>
+    </tr><tr>
+        <td style="font-family:var(--mono);font-size:10px">29/11/2025</td>
+        <td style="font-family:var(--mono);color:var(--green)">Rp 2.000.000</td>
+        <td style="font-family:var(--mono);color:var(--red)">—</td>
+        <td style="font-size:10px;color:var(--muted)">Invest Bibit</td>
+        <td style="color:var(--muted)">Investasi bibit Hypospot</td>
+    </tr></tbody></table></div>
+    </div>
+  </div>
+
+  <!-- ROW 4: Forecasting + Penjualan link -->
+  <div class="two-col">
+    <div class="card">
+      <div class="card-hdr">
+        <div><div class="card-title">Forecasting Biaya</div><div class="card-sub">Sheet: FORECASTING — Pengeluaran 2026</div></div>
+        <a class="pill-link" href="https://docs.google.com/spreadsheets/d/14y7nPESfskWS8DGIUzfKr8tz46-Em2WU/" target="_blank">↗ Sheet</a>
+      </div>
+      <div style="overflow-x:auto">
+        <div id="fin-forecast-wrap"><table class="tbl tbl-pad" style="min-width:650px;font-size:11px">
+<thead>
+<tr>
+  <th rowspan="2">No</th><th rowspan="2">Bulan</th>
+  <th rowspan="2">Biaya Bahan</th><th rowspan="2">Biaya Ads</th>
+  <th colspan="2" style="text-align:center;color:var(--orange)">Forecast +8%</th>
+  <th colspan="2" style="text-align:center;color:var(--green)">Forecast 0%</th>
+</tr>
+<tr>
+  <th style="color:var(--orange)">Bahan</th><th style="color:var(--orange)">Ads</th>
+  <th style="color:var(--green)">Bahan</th><th style="color:var(--green)">Ads</th>
+</tr>
+</thead><tbody><tr>
+      <td style="font-family:var(--mono);color:var(--muted)">1</td>
+      <td style="font-weight:500">Jan-26</td>
+      <td style="font-family:var(--mono)">Rp 23.317.976</td>
+      <td style="font-family:var(--mono)">Rp 16.057.876</td>
+      <td style="font-family:var(--mono);color:var(--orange)"><span style="color:var(--muted)">—</span></td>
+      <td style="font-family:var(--mono);color:var(--orange)"><span style="color:var(--muted)">—</span></td>
+      <td style="font-family:var(--mono);color:var(--green)"><span style="color:var(--muted)">—</span></td>
+      <td style="font-family:var(--mono);color:var(--green)"><span style="color:var(--muted)">—</span></td>
+    </tr><tr>
+      <td style="font-family:var(--mono);color:var(--muted)">2</td>
+      <td style="font-weight:500">Feb-26</td>
+      <td style="font-family:var(--mono)">Rp 31.465.924</td>
+      <td style="font-family:var(--mono)">Rp 18.130.361</td>
+      <td style="font-family:var(--mono);color:var(--orange)"><span style="color:var(--muted)">—</span></td>
+      <td style="font-family:var(--mono);color:var(--orange)"><span style="color:var(--muted)">—</span></td>
+      <td style="font-family:var(--mono);color:var(--green)"><span style="color:var(--muted)">—</span></td>
+      <td style="font-family:var(--mono);color:var(--green)"><span style="color:var(--muted)">—</span></td>
+    </tr><tr>
+      <td style="font-family:var(--mono);color:var(--muted)">3</td>
+      <td style="font-weight:500">Mar-26</td>
+      <td style="font-family:var(--mono)">Rp 29.529.356</td>
+      <td style="font-family:var(--mono)">Rp 17.122.545</td>
+      <td style="font-family:var(--mono);color:var(--orange)"><span style="color:var(--muted)">—</span></td>
+      <td style="font-family:var(--mono);color:var(--orange)"><span style="color:var(--muted)">—</span></td>
+      <td style="font-family:var(--mono);color:var(--green)"><span style="color:var(--muted)">—</span></td>
+      <td style="font-family:var(--mono);color:var(--green)"><span style="color:var(--muted)">—</span></td>
+    </tr><tr>
+      <td style="font-family:var(--mono);color:var(--muted)">4</td>
+      <td style="font-weight:500">Apr-26</td>
+      <td style="font-family:var(--mono)">Rp 43.596.500</td>
+      <td style="font-family:var(--mono)">Rp 18.102.500</td>
+      <td style="font-family:var(--mono);color:var(--orange)">Rp 30.352.772</td>
+      <td style="font-family:var(--mono);color:var(--orange)">Rp 18.471.882</td>
+      <td style="font-family:var(--mono);color:var(--green)">Rp 28.104.419</td>
+      <td style="font-family:var(--mono);color:var(--green)">Rp 17.103.594</td>
+    </tr><tr>
+      <td style="font-family:var(--mono);color:var(--muted)">5</td>
+      <td style="font-weight:500">May-26</td>
+      <td style="font-family:var(--mono)">Rp 27.200.850</td>
+      <td style="font-family:var(--mono)">Rp 14.200.633</td>
+      <td style="font-family:var(--mono);color:var(--orange)">Rp 37.653.041</td>
+      <td style="font-family:var(--mono);color:var(--orange)">Rp 19.207.946</td>
+      <td style="font-family:var(--mono);color:var(--green)">Rp 34.863.927</td>
+      <td style="font-family:var(--mono);color:var(--green)">Rp 17.785.135</td>
+    </tr><tr>
+      <td style="font-family:var(--mono);color:var(--muted)">6</td>
+      <td style="font-weight:500">Jun-26</td>
+      <td style="font-family:var(--mono)"><span style="color:var(--muted)">—</span></td>
+      <td style="font-family:var(--mono)"><span style="color:var(--muted)">—</span></td>
+      <td style="font-family:var(--mono);color:var(--orange)">Rp 36.117.614</td>
+      <td style="font-family:var(--mono);color:var(--orange)">Rp 17.793.244</td>
+      <td style="font-family:var(--mono);color:var(--green)">Rp 33.442.235</td>
+      <td style="font-family:var(--mono);color:var(--green)">Rp 16.475.226</td>
+    </tr><tr>
+      <td style="font-family:var(--mono);color:var(--muted)">7</td>
+      <td style="font-weight:500">Jul-26</td>
+      <td style="font-family:var(--mono)"><span style="color:var(--muted)">—</span></td>
+      <td style="font-family:var(--mono)"><span style="color:var(--muted)">—</span></td>
+      <td style="font-family:var(--mono);color:var(--orange)">Rp 38.230.569</td>
+      <td style="font-family:var(--mono);color:var(--orange)">Rp 17.443.692</td>
+      <td style="font-family:var(--mono);color:var(--green)">Rp 35.398.675</td>
+      <td style="font-family:var(--mono);color:var(--green)">Rp 16.151.567</td>
+    </tr><tr>
+      <td style="font-family:var(--mono);color:var(--muted)">8</td>
+      <td style="font-weight:500">Aug-26</td>
+      <td style="font-family:var(--mono)"><span style="color:var(--muted)">—</span></td>
+      <td style="font-family:var(--mono)"><span style="color:var(--muted)">—</span></td>
+      <td style="font-family:var(--mono);color:var(--orange)">Rp 29.376.918</td>
+      <td style="font-family:var(--mono);color:var(--orange)">Rp 15.336.684</td>
+      <td style="font-family:var(--mono);color:var(--green)">Rp 27.200.850</td>
+      <td style="font-family:var(--mono);color:var(--green)">Rp 14.200.633</td>
+    </tr><tr>
+      <td style="font-family:var(--mono);color:var(--muted)">9</td>
+      <td style="font-weight:500">Sep-26</td>
+      <td style="font-family:var(--mono)"><span style="color:var(--muted)">—</span></td>
+      <td style="font-family:var(--mono)"><span style="color:var(--muted)">—</span></td>
+      <td style="font-family:var(--mono);color:var(--orange)"><span style="color:var(--muted)">—</span></td>
+      <td style="font-family:var(--mono);color:var(--orange)"><span style="color:var(--muted)">—</span></td>
+      <td style="font-family:var(--mono);color:var(--green)"><span style="color:var(--muted)">—</span></td>
+      <td style="font-family:var(--mono);color:var(--green)"><span style="color:var(--muted)">—</span></td>
+    </tr><tr>
+      <td style="font-family:var(--mono);color:var(--muted)">10</td>
+      <td style="font-weight:500">Oct-26</td>
+      <td style="font-family:var(--mono)"><span style="color:var(--muted)">—</span></td>
+      <td style="font-family:var(--mono)"><span style="color:var(--muted)">—</span></td>
+      <td style="font-family:var(--mono);color:var(--orange)"><span style="color:var(--muted)">—</span></td>
+      <td style="font-family:var(--mono);color:var(--orange)"><span style="color:var(--muted)">—</span></td>
+      <td style="font-family:var(--mono);color:var(--green)"><span style="color:var(--muted)">—</span></td>
+      <td style="font-family:var(--mono);color:var(--green)"><span style="color:var(--muted)">—</span></td>
+    </tr><tr>
+      <td style="font-family:var(--mono);color:var(--muted)">11</td>
+      <td style="font-weight:500">Nov-26</td>
+      <td style="font-family:var(--mono)"><span style="color:var(--muted)">—</span></td>
+      <td style="font-family:var(--mono)"><span style="color:var(--muted)">—</span></td>
+      <td style="font-family:var(--mono);color:var(--orange)"><span style="color:var(--muted)">—</span></td>
+      <td style="font-family:var(--mono);color:var(--orange)"><span style="color:var(--muted)">—</span></td>
+      <td style="font-family:var(--mono);color:var(--green)"><span style="color:var(--muted)">—</span></td>
+      <td style="font-family:var(--mono);color:var(--green)"><span style="color:var(--muted)">—</span></td>
+    </tr><tr>
+      <td style="font-family:var(--mono);color:var(--muted)">12</td>
+      <td style="font-weight:500">Dec-26</td>
+      <td style="font-family:var(--mono)"><span style="color:var(--muted)">—</span></td>
+      <td style="font-family:var(--mono)"><span style="color:var(--muted)">—</span></td>
+      <td style="font-family:var(--mono);color:var(--orange)"><span style="color:var(--muted)">—</span></td>
+      <td style="font-family:var(--mono);color:var(--orange)"><span style="color:var(--muted)">—</span></td>
+      <td style="font-family:var(--mono);color:var(--green)"><span style="color:var(--muted)">—</span></td>
+      <td style="font-family:var(--mono);color:var(--green)"><span style="color:var(--muted)">—</span></td>
+    </tr><tr style="border-top:1px solid var(--border2)">
+  <td colspan="2" style="font-weight:600;font-size:10px">Avg 6 Bulan</td>
+  <td style="font-family:var(--mono);color:var(--muted);font-size:10px">Rp 28.821.641</td>
+  <td style="font-family:var(--mono);color:var(--muted);font-size:10px">Rp 16.102.745</td>
+  <td colspan="4" style="font-family:var(--mono);color:var(--muted);font-size:10px">Total avg: Rp 44.924.386</td>
+</tr></tbody></table></div>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-hdr"><div class="card-title">Spreadsheet Penjualan 2026</div></div>
+      <div class="card-body" style="display:flex;flex-direction:column;align-items:center;justify-content:center;gap:14px;padding:32px;min-height:180px">
+        <div style="font-size:40px">📊</div>
+        <div style="font-size:13px;font-weight:600">Data Penjualan Hypospot 2026</div>
+        <div style="font-size:11px;color:var(--muted);text-align:center">Data penjualan lengkap tersedia di Google Sheets</div>
+        <a href="https://docs.google.com/spreadsheets/d/177OBibatvR1J_C6kUEoVqjg5wiNoToRH/" target="_blank"
+           style="background:var(--blue);color:#fff;border-radius:7px;padding:10px 22px;font-size:12px;font-weight:600;text-decoration:none;display:inline-flex;align-items:center;gap:6px">
+          ↗ Buka Spreadsheet Penjualan 2026
+        </a>
+        <a href="https://docs.google.com/spreadsheets/d/14y7nPESfskWS8DGIUzfKr8tz46-Em2WU/" target="_blank"
+           style="background:transparent;color:var(--muted);border:1px solid var(--border2);border-radius:7px;padding:8px 18px;font-size:11px;text-decoration:none">
+          ↗ Buka Spreadsheet Pengeluaran 2026
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <div style="font-size:10px;color:var(--muted);font-family:var(--mono);text-align:right;margin-top:4px">
+    Data finansial diperbarui terakhir: 18 Juni 2026 · Update manual via Google Drive sync
+  </div>
+</div>
 
   <!-- KPI ROW -->
   <div class="kpi-grid" id="fin-kpi-grid">
