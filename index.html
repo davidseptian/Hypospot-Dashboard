@@ -1051,7 +1051,7 @@ async function fetchFinancialData() {
     const [catatan, shu, aruskas, valuasi] = await Promise.all([
       fetchSheet(SHEET_IDS.shu, FINANCIAL_TABS.catatan2026, 'A1:P30'),
       fetchSheet(SHEET_IDS.shu, FINANCIAL_TABS.shu, 'A1:J2000'),
-      fetchSheet(SHEET_IDS.shu, FINANCIAL_TABS.aruskas, 'A1:U400'),
+      fetchSheet(SHEET_IDS.shu, FINANCIAL_TABS.aruskas, 'A1:U2000'),
       fetchSheet(SHEET_IDS.shu, FINANCIAL_TABS.valuasi, 'A1:L60'),
     ]);
     if (catatan) FIN_DATA.catatan = catatan;
