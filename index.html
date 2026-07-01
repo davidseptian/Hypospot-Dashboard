@@ -439,6 +439,8 @@ const FINANCIAL_TABS = {
   aruskas: 'Arus Kas',
   valuasi: 'Valuasi',
   forecasting: 'FORECASTING'
+  danaSiaga: 'DANA SIAGA',
+  investasi: 'INVESTASI'
 };
 const DEFAULT_TABS = {
   retur:  'Input Return',
@@ -1048,16 +1050,20 @@ async function fetchFinancialData() {
   const {key} = getCfg();
   if (!key) return;
   try {
-    const [catatan, shu, aruskas, valuasi] = await Promise.all([
-      fetchSheet(SHEET_IDS.shu, FINANCIAL_TABS.catatan2026, 'A1:P30'),
-      fetchSheet(SHEET_IDS.shu, FINANCIAL_TABS.shu, 'A1:J2000'),
-      fetchSheet(SHEET_IDS.shu, FINANCIAL_TABS.aruskas, 'A1:U2000'),
-      fetchSheet(SHEET_IDS.shu, FINANCIAL_TABS.valuasi, 'A1:L60'),
-    ]);
-    if (catatan) FIN_DATA.catatan = catatan;
-    if (shu)     FIN_DATA.shu = shu;
-    if (aruskas) FIN_DATA.aruskas = aruskas;
-    if (valuasi) FIN_DATA.valuasi = valuasi;
+    const [catatan, shu, aruskas, valuasi, danaSiaga, investasi] = await Promise.all([
+  fetchSheet(SHEET_IDS.shu, FINANCIAL_TABS.catatan2026, 'A1:P30'),
+  fetchSheet(SHEET_IDS.shu, FINANCIAL_TABS.shu, 'A1:J2000'),
+  fetchSheet(SHEET_IDS.shu, FINANCIAL_TABS.aruskas, 'A1:U400'),
+  fetchSheet(SHEET_IDS.shu, FINANCIAL_TABS.valuasi, 'A1:L60'),
+  fetchSheet(SHEET_IDS.shu, FINANCIAL_TABS.danaSiaga, 'A1:E1000'),
+  fetchSheet(SHEET_IDS.shu, FINANCIAL_TABS.investasi, 'A1:E1000'),
+]);
+if (catatan) FIN_DATA.catatan = catatan;
+if (shu)     FIN_DATA.shu = shu;
+if (aruskas) FIN_DATA.aruskas = aruskas;
+if (valuasi) FIN_DATA.valuasi = valuasi;
+if (danaSiaga) FIN_DATA.danaSiaga = danaSiaga;
+if (investasi) FIN_DATA.investasi = investasi;
 
     // Forecasting (file Pengeluaran 2026). Hanya jalan kalau file sudah native Google Sheet.
     try {
@@ -1180,54 +1186,47 @@ function renderFinShu() {
 
 // ── ARUS KAS ringkasan + dana siaga/investasi 10 terakhir ──
 function renderFinAruskas() {
-  const rows = FIN_DATA.aruskas;
-  const sumEl = document.getElementById('fin-aruskas-summary');
-  const siagaEl = document.getElementById('fin-siaga-wrap');
+   const dsRows  = FIN_DATA.danaSiaga || [];
+  const invRows = FIN_DATA.investasi || [];
+  const sumEl    = document.getElementById('fin-aruskas-summary');
+  const siagaEl  = document.getElementById('fin-siaga-wrap');
   const investEl = document.getElementById('fin-investasi-wrap');
-  if (!rows || rows.length < 5) {
-    sumEl.innerHTML = '<div class="empty">Data Arus Kas belum tersedia</div>';
-    siagaEl.innerHTML = '<div class="empty">—</div>';
-    investEl.innerHTML = '<div class="empty">—</div>';
-    return;
-  }
 
-  // ---------------------------------------------------------
-  // 1) RINGKASAN TOTAL (Dana Siaga / Investasi / Total All / Hutang)
-  // ---------------------------------------------------------
-  const lblIdx = findRowIdx(rows, ['dana siaga']);
-  let totalSiaga = 0, totalInvestasi = 0, totalAll = 0;
-  if (lblIdx >= 0) {
-    const L = rows[lblIdx];
-    const valRow = rows[lblIdx + 1] || [];
-    const totalCols = [];
-    L.forEach((c, idx) => { if (String(c || '').toLowerCase().trim() === 'total') totalCols.push(idx); });
-    const allCol = L.findIndex(c => String(c || '').toLowerCase().includes('total all'));
-    if (totalCols[0] !== undefined) totalSiaga = parseNum(valRow[totalCols[0]]);
-    if (totalCols[1] !== undefined) totalInvestasi = parseNum(valRow[totalCols[1]]);
-    if (allCol >= 0) totalAll = parseNum(valRow[allCol]);
-  }
-
-  // Hutang
-  const hutangList = [];
-  let totalHutang = 0;
-  const hutIdx = findRowIdx(rows, ['hutang']);
-  if (hutIdx >= 0) {
-    const hutCol = findColIdx(rows[hutIdx], 'hutang');
-    for (let i = hutIdx + 1; i < Math.min(rows.length, hutIdx + 25); i++) {
-      const nama = String(rows[i][hutCol] || '').trim();
-      const nominal = parseNum(rows[i][hutCol + 1]);
-      if (!nama) continue;
-      if (/shu|total|lokasi|asset|piutang|current|tanah|bibit|gold|cash/i.test(nama)) continue;
-      if (nominal > 0) { hutangList.push({ nama, nominal }); totalHutang += nominal; }
+  // --- helper: buang baris header & baris kosong, ambil baris data valid ---
+  function cleanRows(rows) {
+    if (!rows || rows.length < 2) return [];
+    const out = [];
+    for (let i = 1; i < rows.length; i++) { // skip header (baris 1)
+      const r = rows[i] || [];
+      const tgl = String(r[0] || '').trim();
+      if (!tgl) continue;
+      if (/tanggal/i.test(tgl)) continue;
+      // hanya baris yang kolom A-nya format tanggal
+      if (!/^\d{1,2}[\/\-]\d{1,2}[\/\-]\d{2,4}$|^\d{1,2}-[a-z]{3,4}-\d{2,4}$/i.test(tgl)) continue;
+      out.push(r);
     }
+    return out;
   }
+
+  const ds  = cleanRows(dsRows);
+  const inv = cleanRows(invRows);
+
+  // --- Total Dana Siaga = SISA (kolom D / index 3) baris terakhir ---
+  let totalSiaga = 0;
+  if (ds.length) totalSiaga = parseNum(ds[ds.length - 1][3]);
+
+  // --- Total Investasi = Σ MASUK - Σ KELUAR (investasi tak punya running SISA) ---
+  let totalInvestasi = 0;
+  inv.forEach(r => { totalInvestasi += parseNum(r[1]) - parseNum(r[2]); });
+
+  const totalAll = totalSiaga + totalInvestasi;
 
   document.getElementById('fin-siaga-kpi').textContent = totalSiaga > 0 ? fmtRpShort(totalSiaga) : '—';
-  document.getElementById('fin-hutang-kpi').textContent = totalHutang > 0 ? fmtRpShort(totalHutang) : '—';
+  // KPI hutang dibiarkan apa adanya (belum termasuk di patch ini)
 
-  const hutangRows = hutangList.map(h => `<tr><td style="font-size:11px">${escHtml(h.nama)}</td><td style="font-family:var(--mono);color:var(--orange);font-size:11px;text-align:right">${fmtRpFull(h.nominal)}</td></tr>`).join('');
+  // --- Ringkasan card ---
   sumEl.innerHTML = `
-    <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:14px">
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px">
       <div style="background:var(--bg3);border-radius:7px;padding:12px">
         <div style="font-size:10px;color:var(--muted);margin-bottom:4px;font-weight:500;text-transform:uppercase">Dana Siaga</div>
         <div style="font-size:19px;font-weight:700;font-family:var(--mono);color:var(--blue)">${totalSiaga > 0 ? fmtRpFull(totalSiaga) : '—'}</div>
@@ -1236,80 +1235,34 @@ function renderFinAruskas() {
         <div style="font-size:10px;color:var(--muted);margin-bottom:4px;font-weight:500;text-transform:uppercase">Total Investasi</div>
         <div style="font-size:19px;font-weight:700;font-family:var(--mono);color:var(--green)">${totalInvestasi > 0 ? fmtRpFull(totalInvestasi) : '—'}</div>
       </div>
-      <div style="background:var(--bg3);border-radius:7px;padding:12px">
-        <div style="font-size:10px;color:var(--muted);margin-bottom:4px;font-weight:500;text-transform:uppercase">Total All</div>
+      <div style="background:var(--bg3);border-radius:7px;padding:12px;grid-column:1 / -1">
+        <div style="font-size:10px;color:var(--muted);margin-bottom:4px;font-weight:500;text-transform:uppercase">Total All (Dana Siaga + Investasi)</div>
         <div style="font-size:19px;font-weight:700;font-family:var(--mono);color:var(--green)">${totalAll > 0 ? fmtRpFull(totalAll) : '—'}</div>
-      </div>
-      <div style="background:var(--bg3);border-radius:7px;padding:12px">
-        <div style="font-size:10px;color:var(--muted);margin-bottom:6px;font-weight:500;text-transform:uppercase">Total Hutang: ${totalHutang > 0 ? fmtRpFull(totalHutang) : '—'}</div>
-        <table style="width:100%;border-collapse:collapse">${hutangRows || '<tr><td style="font-size:11px;color:var(--muted)">—</td></tr>'}</table>
       </div>
     </div>`;
 
-  // ---------------------------------------------------------
-  // 2) TABEL DANA SIAGA & INVESTASI (10 baris TERBAWAH = terbaru)
-  // ---------------------------------------------------------
-  // Cari baris header blok Dana Siaga/Investasi yang BENAR.
-  // Ciri header blok ini: satu baris yang memuat kata "tanggal",
-  // "lokasi", DAN "keterangan" sekaligus (blok kiri+kanan digabung),
-  // dan biasanya juga memuat angka total 38.566.395 / 284.863.249.
-  let blockHdr = -1;
-  for (let i = 0; i < rows.length; i++) {
-    const flat = (rows[i] || []).map(c => String(c || '').toLowerCase()).join('|');
-    const hasTgl = flat.includes('tanggal');
-    const hasLok = flat.includes('lokasi');
-    const hasKet = flat.includes('keterangan');
-    const hasMasuk = flat.includes('masuk');
-    // header blok gabungan: ada tanggal+lokasi+keterangan, dan ada penanda total/masuk
-    if (hasTgl && hasLok && hasKet && (hasMasuk || flat.includes('38.566') || flat.includes('284.863'))) {
-      blockHdr = i;
-      break;
-    }
-  }
-
-  // Tentukan kolom untuk Dana Siaga (blok kiri) & Investasi (blok kanan)
-  // Default mengikuti struktur sheet: 
-  //   Dana Siaga  -> TANGGAL=0, MASUK=1, KELUAR=2, SISA(LOKASI)=3, KETERANGAN=4
-  //   Investasi   -> TANGGAL=6, MASUK=7, KELUAR=8, LOKASI=9, KETERANGAN=10
-  let dsTgl = 0, invTgl = 6;
-  if (blockHdr >= 0) {
-    const H = rows[blockHdr];
-    const tglCols = [];
-    H.forEach((c, idx) => { if (String(c || '').toLowerCase().includes('tanggal')) tglCols.push(idx); });
-    if (tglCols[0] !== undefined) dsTgl = tglCols[0];
-    if (tglCols[1] !== undefined) invTgl = tglCols[1];
-  }
-
-  // Baca baris transaksi HANYA dari bawah header blok ini ke bawah.
-  // Berhenti hanya saat ketemu baris kosong panjang berturut-turut,
-  // supaya tidak salah masuk ke tabel lain.
-  function collectFromBlock(tglCol) {
-    const out = [];
-    const startRow = blockHdr >= 0 ? blockHdr + 1 : 0;
-    for (let i = startRow; i < rows.length; i++) {
-      const r = rows[i] || [];
-      const tgl = String(r[tglCol] || '').trim();
-      // lewati baris sub-header "MASUK/KELUAR"
-      if (/masuk|keluar|tanggal/i.test(tgl)) continue;
-      // hanya baris yang tgl-nya format tanggal (3/1/2022 atau 5-Jun-26)
-      if (!/^\d{1,2}[\/\-]\d{1,2}[\/\-]\d{2,4}$|^\d{1,2}-[a-z]{3,4}-\d{2,4}$/i.test(tgl)) continue;
-      const masuk = r[tglCol + 1];
-      const keluar = r[tglCol + 2];
-      if (!isNum(masuk) && !isNum(keluar)) continue;
-      out.push({ tgl, masuk, keluar, sisa: r[tglCol + 3], ket: r[tglCol + 4] });
-    }
-    return out;
-  }
-
-  const ds = collectFromBlock(dsTgl).slice(-10).reverse();
-  const inv = collectFromBlock(invTgl).slice(-10).reverse();
-
-  siagaEl.innerHTML = ds.length ? `<table class="tbl tbl-pad"><thead><tr><th>Tanggal</th><th>Masuk</th><th>Keluar</th><th>Sisa</th><th>Keterangan</th></tr></thead><tbody>${
-    ds.map(r => `<tr><td style="font-family:var(--mono);font-size:10px">${escHtml(r.tgl)}</td><td style="font-family:var(--mono);color:var(--green)">${isNum(r.masuk) ? fmtRpShort(r.masuk) : '—'}</td><td style="font-family:var(--mono);color:var(--red)">${isNum(r.keluar) ? fmtRpShort(r.keluar) : '—'}</td><td style="font-family:var(--mono);font-size:10px;color:var(--muted)">${fmtRpShort(r.sisa)}</td><td style="color:var(--muted)">${escHtml(String(r.ket || ''))}</td></tr>`).join('')
+  // --- Tabel Dana Siaga: 10 baris TERBAWAH (terbaru di atas) ---
+  const dsLast = ds.slice(-10).reverse();
+  siagaEl.innerHTML = dsLast.length ? `<table class="tbl tbl-pad"><thead><tr><th>Tanggal</th><th>Masuk</th><th>Keluar</th><th>Sisa</th><th>Keterangan</th></tr></thead><tbody>${
+    dsLast.map(r => `<tr>
+      <td style="font-family:var(--mono);font-size:10px">${escHtml(String(r[0] || ''))}</td>
+      <td style="font-family:var(--mono);color:var(--green)">${isNum(r[1]) ? fmtRpShort(r[1]) : '—'}</td>
+      <td style="font-family:var(--mono);color:var(--red)">${isNum(r[2]) ? fmtRpShort(r[2]) : '—'}</td>
+      <td style="font-family:var(--mono);font-size:10px;color:var(--muted)">${isNum(r[3]) ? fmtRpShort(r[3]) : '—'}</td>
+      <td style="color:var(--muted)">${escHtml(String(r[4] || ''))}</td>
+    </tr>`).join('')
   }</tbody></table>` : '<div class="empty">Belum ada data Dana Siaga</div>';
 
-  investEl.innerHTML = inv.length ? `<table class="tbl tbl-pad"><thead><tr><th>Tanggal</th><th>Masuk</th><th>Keluar</th><th>Lokasi</th><th>Keterangan</th></tr></thead><tbody>${
-    inv.map(r => `<tr><td style="font-family:var(--mono);font-size:10px">${escHtml(r.tgl)}</td><td style="font-family:var(--mono);color:var(--green)">${isNum(r.masuk) ? fmtRpShort(r.masuk) : '—'}</td><td style="font-family:var(--mono);color:var(--red)">${isNum(r.keluar) ? fmtRpShort(r.keluar) : '—'}</td><td style="font-size:10px;color:var(--muted)">${escHtml(String(r.sisa || ''))}</td><td style="color:var(--muted)">${escHtml(String(r.ket || ''))}</td></tr>`).join('')
+  // --- Tabel Investasi: 10 baris TERBAWAH (terbaru di atas) ---
+  const invLast = inv.slice(-10).reverse();
+  investEl.innerHTML = invLast.length ? `<table class="tbl tbl-pad"><thead><tr><th>Tanggal</th><th>Masuk</th><th>Keluar</th><th>Lokasi</th><th>Keterangan</th></tr></thead><tbody>${
+    invLast.map(r => `<tr>
+      <td style="font-family:var(--mono);font-size:10px">${escHtml(String(r[0] || ''))}</td>
+      <td style="font-family:var(--mono);color:var(--green)">${isNum(r[1]) ? fmtRpShort(r[1]) : '—'}</td>
+      <td style="font-family:var(--mono);color:var(--red)">${isNum(r[2]) ? fmtRpShort(r[2]) : '—'}</td>
+      <td style="font-size:10px;color:var(--muted)">${escHtml(String(r[3] || ''))}</td>
+      <td style="color:var(--muted)">${escHtml(String(r[4] || ''))}</td>
+    </tr>`).join('')
   }</tbody></table>` : '<div class="empty">Belum ada data Investasi</div>';
 }
 
