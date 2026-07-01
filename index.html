@@ -440,8 +440,10 @@ const FINANCIAL_TABS = {
   valuasi: 'Valuasi',
   forecasting: 'FORECASTING',
   danaSiaga: 'DANA SIAGA',
-  investasi: 'INVESTASI'
+  investasi: 'INVESTASI',
+  piutang: 'PIUTANG'
 };
+
 const DEFAULT_TABS = {
   retur:  'Input Return',
   stock:  'Dashboard',
@@ -1050,7 +1052,7 @@ async function fetchFinancialData() {
   const {key} = getCfg();
   if (!key) return;
   try {
-    const [catatan, shu, aruskas, valuasi, danaSiaga, investasi, aruskasTotal] = await Promise.all([
+    const [catatan, shu, aruskas, valuasi, danaSiaga, investasi, aruskasTotal, piutang] = await Promise.all([
       fetchSheet(SHEET_IDS.shu, FINANCIAL_TABS.catatan2026, 'A1:P30'),
       fetchSheet(SHEET_IDS.shu, FINANCIAL_TABS.shu, 'A1:J2000'),
       fetchSheet(SHEET_IDS.shu, FINANCIAL_TABS.aruskas, 'A1:U400'),
@@ -1058,6 +1060,7 @@ async function fetchFinancialData() {
       fetchSheet(SHEET_IDS.shu, FINANCIAL_TABS.danaSiaga, 'A1:E1000'),
       fetchSheet(SHEET_IDS.shu, FINANCIAL_TABS.investasi, 'A1:E1000'),
       fetchSheet(SHEET_IDS.shu, FINANCIAL_TABS.aruskas, 'E5:O5'),
+      fetchSheet(SHEET_IDS.shu, FINANCIAL_TABS.piutang, 'A1:B50'),
     ]);
     if (catatan) FIN_DATA.catatan = catatan;
     if (shu)     FIN_DATA.shu = shu;
@@ -1066,6 +1069,8 @@ async function fetchFinancialData() {
     if (danaSiaga) FIN_DATA.danaSiaga = danaSiaga;
     if (investasi) FIN_DATA.investasi = investasi;
     if (aruskasTotal) FIN_DATA.aruskasTotal = aruskasTotal;
+    if (piutang) FIN_DATA.piutang = piutang;
+
 
 
     // Forecasting (file Pengeluaran 2026). Hanya jalan kalau file sudah native Google Sheet.
@@ -1192,6 +1197,7 @@ function renderFinAruskas() {
   const dsRows  = FIN_DATA.danaSiaga || [];
   const invRows = FIN_DATA.investasi || [];
   const totRow  = (FIN_DATA.aruskasTotal && FIN_DATA.aruskasTotal[0]) ? FIN_DATA.aruskasTotal[0] : [];
+  const piuRows = FIN_DATA.piutang || [];
   const sumEl    = document.getElementById('fin-aruskas-summary');
   const siagaEl  = document.getElementById('fin-siaga-wrap');
   const investEl = document.getElementById('fin-investasi-wrap');
@@ -1214,18 +1220,31 @@ function renderFinAruskas() {
   const inv = cleanRows(invRows);
 
   // Total diambil LANGSUNG dari sel sheet (range E5:O5).
-  // Index dalam array: E=0, F=1, G=2, H=3, I=4, J=5, K=6, L=7, M=8, N=9, O=10
+  // Index: E=0, F=1, G=2, H=3, I=4, J=5, K=6, L=7, M=8, N=9, O=10
   let totalSiaga     = parseNum(totRow[0]);   // E5
   let totalInvestasi = parseNum(totRow[6]);   // K5
   let totalAll       = parseNum(totRow[10]);  // O5
-
-  // fallback kalau sel kosong: pakai SISA terakhir Dana Siaga
   if (!totalSiaga && ds.length) totalSiaga = parseNum(ds[ds.length - 1][3]);
 
-  document.getElementById('fin-siaga-kpi').textContent = totalSiaga > 0 ? fmtRpShort(totalSiaga) : '—';
+  // --- Hutang / Piutang dari tab PIUTANG (kolom A=nama, B=nominal) ---
+  const hutangList = [];
+  let totalHutang = 0;
+  piuRows.forEach(r => {
+    const nama = String((r && r[0]) || '').trim();
+    const nominal = parseNum(r && r[1]);
+    if (!nama || /nama|total|piutang|hutang/i.test(nama)) return;
+    if (nominal <= 0) return;
+    hutangList.push({ nama, nominal });
+    totalHutang += nominal;
+  });
+
+  document.getElementById('fin-siaga-kpi').textContent  = totalSiaga  > 0 ? fmtRpShort(totalSiaga)  : '—';
+  document.getElementById('fin-hutang-kpi').textContent = totalHutang > 0 ? fmtRpShort(totalHutang) : '—';
+
+  const hutangRows = hutangList.map(h => `<tr><td style="font-size:11px">${escHtml(h.nama)}</td><td style="font-family:var(--mono);color:var(--orange);font-size:11px;text-align:right">${fmtRpFull(h.nominal)}</td></tr>`).join('');
 
   sumEl.innerHTML = `
-    <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px">
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:10px">
       <div style="background:var(--bg3);border-radius:7px;padding:12px">
         <div style="font-size:10px;color:var(--muted);margin-bottom:4px;font-weight:500;text-transform:uppercase">Dana Siaga</div>
         <div style="font-size:19px;font-weight:700;font-family:var(--mono);color:var(--blue)">${totalSiaga > 0 ? fmtRpFull(totalSiaga) : '—'}</div>
@@ -1234,9 +1253,13 @@ function renderFinAruskas() {
         <div style="font-size:10px;color:var(--muted);margin-bottom:4px;font-weight:500;text-transform:uppercase">Total Investasi</div>
         <div style="font-size:19px;font-weight:700;font-family:var(--mono);color:var(--green)">${totalInvestasi > 0 ? fmtRpFull(totalInvestasi) : '—'}</div>
       </div>
-      <div style="background:var(--bg3);border-radius:7px;padding:12px;grid-column:1 / -1">
+      <div style="background:var(--bg3);border-radius:7px;padding:12px">
         <div style="font-size:10px;color:var(--muted);margin-bottom:4px;font-weight:500;text-transform:uppercase">Total All</div>
         <div style="font-size:19px;font-weight:700;font-family:var(--mono);color:var(--green)">${totalAll > 0 ? fmtRpFull(totalAll) : '—'}</div>
+      </div>
+      <div style="background:var(--bg3);border-radius:7px;padding:12px">
+        <div style="font-size:10px;color:var(--muted);margin-bottom:6px;font-weight:500;text-transform:uppercase">Total Hutang: ${totalHutang > 0 ? fmtRpFull(totalHutang) : '—'}</div>
+        <table style="width:100%;border-collapse:collapse">${hutangRows || '<tr><td style="font-size:11px;color:var(--muted)">—</td></tr>'}</table>
       </div>
     </div>`;
 
