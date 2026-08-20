@@ -135,6 +135,7 @@ body{background:var(--bg);color:var(--text);font-family:var(--font);font-size:13
   <div class="nav-tab" id="tab-btn-financial" onclick="switchTab('financial',this)">💰 Financial Overview</div>
   <div class="nav-tab" id="tab-btn-config" onclick="switchTab('config',this)">⚙ Konfigurasi</div>
   <div class="nav-tab" onclick="switchTab('alerts',this)">⚠ Alerts <span id="alert-badge" style="display:none;background:var(--red);color:#fff;border-radius:10px;padding:1px 5px;font-size:9px;margin-left:3px;font-family:var(--mono)"></span></div>
+    <div class="nav-tab" id="tab-btn-checklist" onclick="switchTab('checklist',this)">✅ Checklist Admin</div>
 </div>
 
 <div class="main">
@@ -419,6 +420,53 @@ body{background:var(--bg);color:var(--text);font-family:var(--font);font-size:13
   <div style="font-size:10px;color:var(--muted);font-family:var(--mono);text-align:right;margin-top:4px" id="fin-update-note">Data finansial otomatis dari Google Sheets API</div>
 </div>
 
+<div class="tab-content" id="tab-checklist">
+  <div class="sec-lbl">Checklist &amp; Pencapaian Admin (Dimas)</div>
+
+  <div class="kpi-grid">
+    <div class="kpi blue"><div class="kpi-lbl">Skor Bulan Ini</div><div class="kpi-val blue" id="chk-skor-bulan">—</div><div class="kpi-meta" id="chk-skor-bulan-meta">memuat...</div></div>
+    <div class="kpi green"><div class="kpi-lbl">Rata-rata Harian</div><div class="kpi-val green" id="chk-avg-harian">—</div><div class="kpi-meta">bulan berjalan</div></div>
+    <div class="kpi orange"><div class="kpi-lbl">Checklist Mingguan</div><div class="kpi-val orange" id="chk-avg-mingguan">—</div><div class="kpi-meta">minggu terakhir</div></div>
+    <div class="kpi red"><div class="kpi-lbl">Checklist Bulanan</div><div class="kpi-val red" id="chk-avg-bulanan">—</div><div class="kpi-meta">bulan berjalan</div></div>
+  </div>
+
+  <div class="two-col">
+    <div class="card">
+      <div class="card-hdr">
+        <div><div class="card-title">Checklist Harian — 10 Hari Terakhir</div><div class="card-sub">Flash Sale, Story, BC, Chat, Review, Report</div></div>
+        <a class="pill-link" href="https://docs.google.com/spreadsheets/d/1abNloXaI7qeHzeZzuvtJaiCpPBr9RVC335q72hGQkPY/" target="_blank">↗ Sheet</a>
+      </div>
+      <div style="overflow-x:auto"><div id="chk-harian-wrap"><div class="loading"><div class="spinner"></div>Memuat...</div></div></div>
+    </div>
+    <div class="card">
+      <div class="card-hdr">
+        <div><div class="card-title">Checklist Mingguan — 8 Minggu Terakhir</div><div class="card-sub">Cek Flash Sale &amp; Cek Produk Marketplace</div></div>
+        <a class="pill-link" href="https://docs.google.com/spreadsheets/d/1abNloXaI7qeHzeZzuvtJaiCpPBr9RVC335q72hGQkPY/" target="_blank">↗ Sheet</a>
+      </div>
+      <div style="overflow-x:auto"><div id="chk-mingguan-wrap"><div class="loading"><div class="spinner"></div>Memuat...</div></div></div>
+    </div>
+  </div>
+
+  <div class="two-col">
+    <div class="card">
+      <div class="card-hdr">
+        <div><div class="card-title">Checklist Bulanan</div><div class="card-sub">Voucher, Diskon &amp; Promo, Membership</div></div>
+        <a class="pill-link" href="https://docs.google.com/spreadsheets/d/1abNloXaI7qeHzeZzuvtJaiCpPBr9RVC335q72hGQkPY/" target="_blank">↗ Sheet</a>
+      </div>
+      <div style="overflow-x:auto"><div id="chk-bulanan-wrap"><div class="loading"><div class="spinner"></div>Memuat...</div></div></div>
+    </div>
+    <div class="card">
+      <div class="card-hdr">
+        <div><div class="card-title">Dashboard Pencapaian Bulanan</div><div class="card-sub">Skor total per bulan</div></div>
+        <a class="pill-link" href="https://docs.google.com/spreadsheets/d/1abNloXaI7qeHzeZzuvtJaiCpPBr9RVC335q72hGQkPY/" target="_blank">↗ Sheet</a>
+      </div>
+      <div style="overflow-x:auto"><div id="chk-dashboard-wrap"><div class="loading"><div class="spinner"></div>Memuat...</div></div></div>
+    </div>
+  </div>
+
+</div>
+
+  
 </div><!-- end .main -->
 
 
@@ -432,6 +480,7 @@ const SHEET_IDS = {
   shu:    '1VHl7FAEQaQJHJQQ3jSFiE-t2LlWNTwGbiR6fQmzRxWs',
   pengeluaran: '1sYukhsnZpzagl7ecETIMnuhTP8QMcrrwpqB4kuKs4wg',
   penjualan: '177OBibatvR1J_C6kUEoVqjg5wiNoToRH'
+  checklist: '1abNloXaI7qeHzeZzuvtJaiCpPBr9RVC335q72hGQkPY'
 };
 const FINANCIAL_TABS = {
   catatan2026: 'Catatan 2026',
@@ -604,6 +653,7 @@ async function fetchAllData() {
 
     renderAll();
     fetchFinancialData();
+    fetchChecklistData();
   } catch(e) {
     console.error(e);
     setConnStatus(false);
@@ -1368,6 +1418,241 @@ function renderFinForecast() {
   </thead><tbody>${body||'<tr><td colspan="8" class="empty">—</td></tr>'}</tbody></table>`;
 }
 
+const CHECKLIST_TABS = {
+  harian: 'Checklist Harian',
+  mingguan: 'Checklist Mingguan',
+  bulanan: 'Checklist Bulanan',
+  dashboard: 'Dashboard Bulanan'
+};
+let CHK_DATA = { harian: [], mingguan: [], bulanan: [], dashboard: [] };
+
+const ID_EN_MONTHS = {
+  jan:0, january:0, feb:1, februari:1, february:1, mar:2, maret:2, march:2,
+  apr:3, april:3, mei:4, may:4, jun:5, juni:5, june:5, jul:6, juli:6, july:6,
+  agu:7, agustus:7, aug:7, august:7, sep:8, september:8, okt:9, oktober:9,
+  oct:9, october:9, nov:10, november:10, des:11, desember:11, dec:11, december:11
+};
+function parseChkDate(s) {
+  if (!s) return null;
+  const str = String(s).trim();
+  let m = str.match(/^(\d{1,2})-([A-Za-z]+)-(\d{4})$/);
+  if (m) {
+    const mon = ID_EN_MONTHS[m[2].toLowerCase()];
+    if (mon !== undefined) return new Date(+m[3], mon, +m[1]);
+  }
+  m = str.match(/^(\d{1,2})\s+([A-Za-z]+)\s+(\d{4})$/);
+  if (m) {
+    const mon = ID_EN_MONTHS[m[2].toLowerCase()];
+    if (mon !== undefined) return new Date(+m[3], mon, +m[1]);
+  }
+  return null;
+}
+function parseChkMonthLabel(s) {
+  if (!s) return null;
+  const str = String(s).trim();
+  const m = str.match(/^([A-Za-z]+)\s+(\d{4})$/);
+  if (m) {
+    const mon = ID_EN_MONTHS[m[1].toLowerCase()];
+    if (mon !== undefined) return new Date(+m[2], mon, 1);
+  }
+  return null;
+}
+function chkTF(v) { return String(v).toUpperCase() === 'TRUE'; }
+function chkBadge(v) { return chkTF(v) ? '<span class="bdg bdg-green">✓</span>' : '<span class="bdg bdg-red">✗</span>'; }
+function chkPctColor(n) { return n >= 80 ? 'var(--green)' : n >= 50 ? 'var(--orange)' : 'var(--red)'; }
+
+async function fetchChecklistData() {
+  const cfg = getCfg();
+  if (!cfg.key) return;
+  try {
+    const results = await Promise.all([
+      fetchSheet(SHEET_IDS.checklist, CHECKLIST_TABS.harian, 'A1:K400'),
+      fetchSheet(SHEET_IDS.checklist, CHECKLIST_TABS.mingguan, 'A1:G60'),
+      fetchSheet(SHEET_IDS.checklist, CHECKLIST_TABS.bulanan, 'A1:F15'),
+      fetchSheet(SHEET_IDS.checklist, CHECKLIST_TABS.dashboard, 'A1:N15'),
+    ]);
+    const harian = results[0], mingguan = results[1], bulanan = results[2], dashboard = results[3];
+    if (harian) CHK_DATA.harian = harian;
+    if (mingguan) CHK_DATA.mingguan = mingguan;
+    if (bulanan) CHK_DATA.bulanan = bulanan;
+    if (dashboard) CHK_DATA.dashboard = dashboard;
+    renderChecklist();
+  } catch(e) {
+    console.error('Checklist fetch error:', e);
+  }
+}
+
+function renderChecklist() {
+  renderChkHarian();
+  renderChkMingguan();
+  renderChkBulanan();
+  renderChkDashboard();
+}
+
+function renderChkHarian() {
+  const rows = CHK_DATA.harian;
+  const wrap = document.getElementById('chk-harian-wrap');
+  if (!rows || rows.length < 2) { wrap.innerHTML = '<div class="empty">Data checklist harian belum tersedia</div>'; return; }
+  const today = new Date(); today.setHours(23,59,59,999);
+  const valid = [];
+  for (let i = 1; i < rows.length; i++) {
+    const r = rows[i];
+    const tgl = String(r[0] || '').trim();
+    if (!tgl) continue;
+    const d = parseChkDate(tgl);
+    if (!d || d > today) continue;
+    valid.push(r);
+  }
+  if (!valid.length) { wrap.innerHTML = '<div class="empty">Belum ada data harian sampai hari ini</div>'; return; }
+  const last10 = valid.slice(-10).reverse();
+
+  const curMonthLabel = String(last10[0][10] || '').trim();
+  const bulanRows = valid.filter(r => String(r[10] || '').trim() === curMonthLabel);
+  let avgPct = 0;
+  if (bulanRows.length) {
+    const sum = bulanRows.reduce((s, r) => s + parseNum(String(r[8] || '0').replace('%','')), 0);
+    avgPct = Math.round(sum / bulanRows.length);
+  }
+  document.getElementById('chk-avg-harian').textContent = bulanRows.length ? avgPct + '%' : '—';
+
+  let body = '';
+  last10.forEach(r => {
+    const pct = String(r[8] || '0%');
+    const pctNum = parseNum(pct.replace('%',''));
+    body += `<tr>
+      <td style="font-family:var(--mono);font-size:10px">${escHtml(String(r[0] || ''))}</td>
+      <td style="font-size:10px;color:var(--muted)">${escHtml(String(r[1] || ''))}</td>
+      <td>${chkBadge(r[2])}</td>
+      <td>${chkBadge(r[3])}</td>
+      <td>${chkBadge(r[4])}</td>
+      <td>${chkBadge(r[5])}</td>
+      <td>${chkBadge(r[6])}</td>
+      <td>${chkBadge(r[7])}</td>
+      <td style="font-family:var(--mono);font-weight:600;color:${chkPctColor(pctNum)}">${escHtml(pct)}</td>
+      <td style="color:var(--muted);font-size:11px">${escHtml(String(r[9] || ''))}</td>
+    </tr>`;
+  });
+  wrap.innerHTML = `<table class="tbl tbl-pad" style="min-width:820px;font-size:11px"><thead><tr>
+    <th>Tanggal</th><th>Hari</th><th>Flash Sale</th><th>Story</th><th>BC</th><th>Chat</th><th>Review</th><th>Report</th><th>%</th><th>Catatan</th>
+  </tr></thead><tbody>${body}</tbody></table>`;
+}
+
+function renderChkMingguan() {
+  const rows = CHK_DATA.mingguan;
+  const wrap = document.getElementById('chk-mingguan-wrap');
+  if (!rows || rows.length < 2) { wrap.innerHTML = '<div class="empty">Data checklist mingguan belum tersedia</div>'; return; }
+  const today = new Date(); today.setHours(23,59,59,999);
+  const valid = [];
+  for (let i = 1; i < rows.length; i++) {
+    const r = rows[i];
+    const periode = String(r[1] || '').trim();
+    if (!periode) continue;
+    const startStr = periode.split(/–|-/)[0].trim();
+    const d = parseChkDate(startStr);
+    if (!d || d > today) continue;
+    valid.push(r);
+  }
+  if (!valid.length) { wrap.innerHTML = '<div class="empty">Belum ada data mingguan sampai saat ini</div>'; return; }
+  const last8 = valid.slice(-8).reverse();
+
+  const latestPct = parseNum(String(last8[0][4] || '0').replace('%',''));
+  document.getElementById('chk-avg-mingguan').textContent = last8.length ? latestPct + '%' : '—';
+
+  let body = '';
+  last8.forEach(r => {
+    const pct = String(r[4] || '0%');
+    const pctNum = parseNum(pct.replace('%',''));
+    body += `<tr>
+      <td style="font-family:var(--mono);color:var(--muted)">${escHtml(String(r[0] || ''))}</td>
+      <td style="font-size:10px">${escHtml(String(r[1] || ''))}</td>
+      <td>${chkBadge(r[2])}</td>
+      <td>${chkBadge(r[3])}</td>
+      <td style="font-family:var(--mono);font-weight:600;color:${chkPctColor(pctNum)}">${escHtml(pct)}</td>
+      <td style="color:var(--muted);font-size:11px">${escHtml(String(r[5] || ''))}</td>
+    </tr>`;
+  });
+  wrap.innerHTML = `<table class="tbl tbl-pad" style="font-size:11px"><thead><tr>
+    <th>Minggu</th><th>Periode</th><th>Flash Sale</th><th>Cek Produk</th><th>%</th><th>Catatan</th>
+  </tr></thead><tbody>${body}</tbody></table>`;
+}
+
+function renderChkBulanan() {
+  const rows = CHK_DATA.bulanan;
+  const wrap = document.getElementById('chk-bulanan-wrap');
+  if (!rows || rows.length < 2) { wrap.innerHTML = '<div class="empty">Data checklist bulanan belum tersedia</div>'; return; }
+  const today = new Date(); today.setHours(23,59,59,999);
+  const valid = [];
+  for (let i = 1; i < rows.length; i++) {
+    const r = rows[i];
+    const bln = String(r[0] || '').trim();
+    if (!bln) continue;
+    const d = parseChkMonthLabel(bln);
+    if (!d || d > today) continue;
+    valid.push(r);
+  }
+  if (!valid.length) { wrap.innerHTML = '<div class="empty">Belum ada data bulanan sampai saat ini</div>'; return; }
+  const last6 = valid.slice(-6).reverse();
+
+  const curPct = parseNum(String(last6[0][4] || '0').replace('%',''));
+  document.getElementById('chk-avg-bulanan').textContent = last6.length ? curPct + '%' : '—';
+
+  let body = '';
+  last6.forEach(r => {
+    const pct = String(r[4] || '0%');
+    const pctNum = parseNum(pct.replace('%',''));
+    body += `<tr>
+      <td style="font-weight:500">${escHtml(String(r[0] || ''))}</td>
+      <td>${chkBadge(r[1])}</td>
+      <td>${chkBadge(r[2])}</td>
+      <td>${chkBadge(r[3])}</td>
+      <td style="font-family:var(--mono);font-weight:600;color:${chkPctColor(pctNum)}">${escHtml(pct)}</td>
+      <td style="color:var(--muted);font-size:11px">${escHtml(String(r[5] || ''))}</td>
+    </tr>`;
+  });
+  wrap.innerHTML = `<table class="tbl tbl-pad" style="font-size:11px"><thead><tr>
+    <th>Bulan</th><th>Voucher</th><th>Diskon &amp; Promo</th><th>Membership</th><th>%</th><th>Catatan</th>
+  </tr></thead><tbody>${body}</tbody></table>`;
+}
+
+function renderChkDashboard() {
+  const rows = CHK_DATA.dashboard;
+  const wrap = document.getElementById('chk-dashboard-wrap');
+  if (!rows || rows.length < 2) { wrap.innerHTML = '<div class="empty">Data dashboard bulanan belum tersedia</div>'; return; }
+  const today = new Date(); today.setHours(23,59,59,999);
+  const valid = [];
+  for (let i = 1; i < rows.length; i++) {
+    const r = rows[i];
+    const bln = String(r[0] || '').trim();
+    if (!bln || /rata-rata/i.test(bln)) continue;
+    const d = parseChkMonthLabel(bln);
+    if (!d || d > today) continue;
+    valid.push(r);
+  }
+  if (!valid.length) { wrap.innerHTML = '<div class="empty">Belum ada data sampai saat ini</div>'; return; }
+  const last6 = valid.slice(-6).reverse();
+
+  const curSkor = parseNum(String(last6[0][10] || '0').replace('%',''));
+  document.getElementById('chk-skor-bulan').textContent = last6.length ? curSkor + '%' : '—';
+  document.getElementById('chk-skor-bulan-meta').textContent = last6.length ? String(last6[0][0]) : '';
+
+  let body = '';
+  last6.forEach(r => {
+    const skor = String(r[10] || '0%');
+    const skorNum = parseNum(skor.replace('%',''));
+    body += `<tr>
+      <td style="font-weight:500">${escHtml(String(r[0] || ''))}</td>
+      <td style="font-family:var(--mono);font-size:10px">${escHtml(String(r[7] || ''))}</td>
+      <td style="font-family:var(--mono);font-size:10px">${escHtml(String(r[8] || ''))}</td>
+      <td style="font-family:var(--mono);font-size:10px">${escHtml(String(r[9] || ''))}</td>
+      <td style="font-family:var(--mono);font-weight:700;color:${chkPctColor(skorNum)}">${escHtml(skor)}</td>
+    </tr>`;
+  });
+  wrap.innerHTML = `<table class="tbl tbl-pad" style="font-size:11px"><thead><tr>
+    <th>Bulan</th><th>Rata Harian</th><th>Mingguan</th><th>Bulanan</th><th>Skor Total</th>
+  </tr></thead><tbody>${body}</tbody></table>`;
+}
+
+  
 // ─── TAB SWITCH ───
 function switchTab(name, el) {
   document.querySelectorAll('.tab-content').forEach(t => t.classList.remove('active'));
