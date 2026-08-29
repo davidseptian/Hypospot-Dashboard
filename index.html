@@ -679,13 +679,23 @@ function parseDate(s) {
   if (!s) return null;
   const str = String(s).trim();
   const datePart = str.split(' ')[0];
-  const timePart = str.split(' ')[1] || '';
+  // Coba format DD/MM/YYYY dulu (dengan garis miring)
   const parts = datePart.split('/');
   if (parts.length === 3) {
     const [a, b, c] = parts.map(Number);
-    // Format GSheet Hypospot: DD/MM/YYYY (dengan atau tanpa waktu)
-    // a = hari, b = bulan, c = tahun — selalu
     return new Date(c, b - 1, a);
+  }
+  // Coba format "D MMM YYYY" / "D MMMM YYYY" (contoh: "18 Agu 2026", "18 Maret 2026")
+  const idMonths = {
+    jan:0, januari:0, feb:1, februari:1, mar:2, maret:2, apr:3, april:3,
+    mei:4, jun:5, juni:5, jul:6, juli:6, agu:7, agustus:7, aug:7,
+    sep:8, september:8, okt:9, oktober:9, oct:9, nov:10, november:10,
+    des:11, desember:11, dec:11
+  };
+  const m = str.match(/^(\d{1,2})\s+([A-Za-z]+)\s+(\d{4})$/);
+  if (m) {
+    const mon = idMonths[m[2].toLowerCase()];
+    if (mon !== undefined) return new Date(+m[3], mon, +m[1]);
   }
   return new Date(str);
 }
