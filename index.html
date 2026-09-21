@@ -1476,7 +1476,7 @@ async function fetchChecklistData() {
   if (!cfg.key) return;
   try {
     const results = await Promise.all([
-      fetchSheet(SHEET_IDS.checklist, CHECKLIST_TABS.harian, 'A1:K400'),
+      fetchSheet(SHEET_IDS.checklist, CHECKLIST_TABS.harian, 'A1:L400'),
       fetchSheet(SHEET_IDS.checklist, CHECKLIST_TABS.mingguan, 'A1:G60'),
       fetchSheet(SHEET_IDS.checklist, CHECKLIST_TABS.bulanan, 'A1:F15'),
       fetchSheet(SHEET_IDS.checklist, CHECKLIST_TABS.dashboard, 'A1:N15'),
@@ -1516,18 +1516,18 @@ function renderChkHarian() {
   if (!valid.length) { wrap.innerHTML = '<div class="empty">Belum ada data harian sampai hari ini</div>'; return; }
   const last10 = valid.slice(-10).reverse();
 
-  const curMonthLabel = String(last10[0][10] || '').trim();
-  const bulanRows = valid.filter(r => String(r[10] || '').trim() === curMonthLabel);
+  const curMonthLabel = String(last10[0][11] || '').trim();
+  const bulanRows = valid.filter(r => String(r[11] || '').trim() === curMonthLabel);
   let avgPct = 0;
   if (bulanRows.length) {
-    const sum = bulanRows.reduce((s, r) => s + parseNum(String(r[8] || '0').replace('%','')), 0);
+    const sum = bulanRows.reduce((s, r) => s + parseNum(String(r[9] || '0').replace('%','')), 0);
     avgPct = Math.round(sum / bulanRows.length);
   }
   document.getElementById('chk-avg-harian').textContent = bulanRows.length ? avgPct + '%' : '—';
 
   let body = '';
   last10.forEach(r => {
-    const pct = String(r[8] || '0%');
+    const pct = String(r[9] || '0%');
     const pctNum = parseNum(pct.replace('%',''));
     body += `<tr>
       <td style="font-family:var(--mono);font-size:10px">${escHtml(String(r[0] || ''))}</td>
@@ -1538,12 +1538,13 @@ function renderChkHarian() {
       <td>${chkBadge(r[5])}</td>
       <td>${chkBadge(r[6])}</td>
       <td>${chkBadge(r[7])}</td>
+      <td>${chkBadge(r[8])}</td>
       <td style="font-family:var(--mono);font-weight:600;color:${chkPctColor(pctNum)}">${escHtml(pct)}</td>
-      <td style="color:var(--muted);font-size:11px">${escHtml(String(r[9] || ''))}</td>
+      <td style="color:var(--muted);font-size:11px">${escHtml(String(r[10] || ''))}</td>
     </tr>`;
   });
-  wrap.innerHTML = `<table class="tbl tbl-pad" style="min-width:820px;font-size:11px"><thead><tr>
-    <th>Tanggal</th><th>Hari</th><th>Flash Sale</th><th>Story</th><th>BC</th><th>Chat</th><th>Review</th><th>Report</th><th>%</th><th>Catatan</th>
+  wrap.innerHTML = `<table class="tbl tbl-pad" style="min-width:900px;font-size:11px"><thead><tr>
+    <th>Tanggal</th><th>Hari</th><th>Flash Sale</th><th>Story</th><th>BC</th><th>Chat</th><th>Review</th><th>Report</th><th>Upload</th><th>%</th><th>Catatan</th>
   </tr></thead><tbody>${body}</tbody></table>`;
 }
 
