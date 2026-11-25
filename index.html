@@ -1109,18 +1109,52 @@ function findColIdx(row, keyword) {
 }
 
 async function fetchFinancialData() {
-  const {key} = getCfg();
-  if (!key) return;
+  const FIN_PROXY_URL = 'PASTE_URL_WEB_APP_KAMU_DI_SINI';
+
+function fetchSheetViaProxy(type) {
+  return new Promise((resolve) => {
+    const cbName = 'cb_' + type + '_' + Date.now();
+    window[cbName] = function(data) {
+      delete window[cbName];
+      document.body.removeChild(script);
+      resolve(data && data.values ? data.values : null);
+    };
+    const script = document.createElement('script');
+    script.src = FIN_PROXY_URL + '?type=' + encodeURIComponent(type) + '&callback=' + cbName;
+    script.onerror = function() { delete window[cbName]; resolve(null); };
+    document.body.appendChild(script);
+  });
+}
+
+async function fetchFinancialData() {
+const FIN_PROXY_URL = 'https://script.google.com/macros/s/AKfycbywREaOyqZrB0a1s2MJLVa-rwi5EHds_z1zaZaXR-a2VAOD5xTy4FtCT02q5oE3le8l/exec';
+
+function fetchSheetViaProxy(type) {
+  return new Promise((resolve) => {
+    const cbName = 'cb_' + type + '_' + Date.now();
+    window[cbName] = function(data) {
+      delete window[cbName];
+      document.body.removeChild(script);
+      resolve(data && data.values ? data.values : null);
+    };
+    const script = document.createElement('script');
+    script.src = FIN_PROXY_URL + '?type=' + encodeURIComponent(type) + '&callback=' + cbName;
+    script.onerror = function() { delete window[cbName]; resolve(null); };
+    document.body.appendChild(script);
+  });
+}
+
+async function fetchFinancialData() {
   try {
     const [catatan, shu, aruskas, valuasi, danaSiaga, investasi, aruskasTotal, piutang] = await Promise.all([
-      fetchSheet(SHEET_IDS.shu, FINANCIAL_TABS.catatan2026, 'A1:P30'),
-      fetchSheet(SHEET_IDS.shu, FINANCIAL_TABS.shu, 'A1:J2000'),
-      fetchSheet(SHEET_IDS.shu, FINANCIAL_TABS.aruskas, 'A1:U400'),
-      fetchSheet(SHEET_IDS.shu, FINANCIAL_TABS.valuasi, 'A1:L60'),
-      fetchSheet(SHEET_IDS.shu, FINANCIAL_TABS.danaSiaga, 'A1:E1000'),
-      fetchSheet(SHEET_IDS.shu, FINANCIAL_TABS.investasi, 'A1:E1000'),
-      fetchSheet(SHEET_IDS.shu, FINANCIAL_TABS.aruskas, 'E5:O5'),
-      fetchSheet(SHEET_IDS.shu, FINANCIAL_TABS.piutang, 'A1:B50'),
+      fetchSheetViaProxy('catatan2026'),
+      fetchSheetViaProxy('shu'),
+      fetchSheetViaProxy('aruskas'),
+      fetchSheetViaProxy('valuasi'),
+      fetchSheetViaProxy('danaSiaga'),
+      fetchSheetViaProxy('investasi'),
+      fetchSheetViaProxy('aruskasTotal'),
+      fetchSheetViaProxy('piutang'),
     ]);
     if (catatan) FIN_DATA.catatan = catatan;
     if (shu)     FIN_DATA.shu = shu;
@@ -1131,11 +1165,8 @@ async function fetchFinancialData() {
     if (aruskasTotal) FIN_DATA.aruskasTotal = aruskasTotal;
     if (piutang) FIN_DATA.piutang = piutang;
 
-
-
-    // Forecasting (file Pengeluaran 2026). Hanya jalan kalau file sudah native Google Sheet.
     try {
-      const fc = await fetchSheet(SHEET_IDS.pengeluaran, FINANCIAL_TABS.forecasting, 'A1:N20');
+      const fc = await fetchSheetViaProxy('forecasting');
       FIN_DATA.forecast = fc || [];
     } catch(e) { FIN_DATA.forecast = []; }
 
@@ -1144,6 +1175,8 @@ async function fetchFinancialData() {
     console.error('Financial fetch error:', e);
   }
 }
+}
+
 
 function renderFinancial() {
   renderFinOmzet();
