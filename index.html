@@ -284,7 +284,7 @@ body{background:var(--bg);color:var(--text);font-family:var(--font);font-size:13
       <div>
         <label style="display:block;font-size:11px;color:var(--muted);margin-bottom:5px;font-weight:500">Nama Tab — Stock Gudang</label>
         <input type="text" id="cfg-tab-stock" placeholder="Dashboard" style="width:100%;background:var(--bg3);border:1px solid var(--border2);border-radius:6px;padding:9px 12px;color:var(--text);font-size:12px;font-family:var(--mono);outline:none;box-sizing:border-box">
-        <div style="font-size:10px;color:var(--muted);margin-top:4px">Sheet ID: 1DoHs_TPGjRgkLJ-HjA44ZSnejRGA6c74_o766s7If08</div>
+        <div style="font-size:10px;color:var(--muted);margin-top:4px">Sheet ID: 1yazMZ8bFba_mSM0BzM5-x3c_MYJiLoE0M0RWPKywxRE</div>
       </div>
 
       <div>
@@ -475,7 +475,7 @@ body{background:var(--bg);color:var(--text);font-family:var(--font);font-size:13
 // ─── CONFIG ───
 const SHEET_IDS = {
   retur:  '1VSZ6l3BJ3wISat459WpiU7RbZqDV0Aq-xPO45rUVuW8',
-  stock:  '1DoHs_TPGjRgkLJ-HjA44ZSnejRGA6c74_o766s7If08',
+  stock:  '1yazMZ8bFba_mSM0BzM5-x3c_MYJiLoE0M0RWPKywxRE',
   harian: '1bUWUHiH8WLQW5xPCNy_qEDBx9mcWxlkByZUg_xalEs4',
   shu:    '1VHl7FAEQaQJHJQQ3jSFiE-t2LlWNTwGbiR6fQmzRxWs',
   pengeluaran: '1sYukhsnZpzagl7ecETIMnuhTP8QMcrrwpqB4kuKs4wg',
@@ -1108,7 +1108,6 @@ function findColIdx(row, keyword) {
   return (row||[]).findIndex(c => String(c||'').toLowerCase().includes(keyword.toLowerCase()));
 }
 
-async function fetchFinancialData() {
 const FIN_PROXY_URL = 'https://script.google.com/macros/s/AKfycbywREaOyqZrB0a1s2MJLVa-rwi5EHds_z1zaZaXR-a2VAOD5xTy4FtCT02q5oE3le8l/exec';
 
 function fetchSheetViaProxy(type) {
@@ -1156,7 +1155,6 @@ async function fetchFinancialData() {
   } catch(e) {
     console.error('Financial fetch error:', e);
   }
-}
 }
 
 
