@@ -1109,24 +1109,6 @@ function findColIdx(row, keyword) {
 }
 
 async function fetchFinancialData() {
-  const FIN_PROXY_URL = 'PASTE_URL_WEB_APP_KAMU_DI_SINI';
-
-function fetchSheetViaProxy(type) {
-  return new Promise((resolve) => {
-    const cbName = 'cb_' + type + '_' + Date.now();
-    window[cbName] = function(data) {
-      delete window[cbName];
-      document.body.removeChild(script);
-      resolve(data && data.values ? data.values : null);
-    };
-    const script = document.createElement('script');
-    script.src = FIN_PROXY_URL + '?type=' + encodeURIComponent(type) + '&callback=' + cbName;
-    script.onerror = function() { delete window[cbName]; resolve(null); };
-    document.body.appendChild(script);
-  });
-}
-
-async function fetchFinancialData() {
 const FIN_PROXY_URL = 'https://script.google.com/macros/s/AKfycbywREaOyqZrB0a1s2MJLVa-rwi5EHds_z1zaZaXR-a2VAOD5xTy4FtCT02q5oE3le8l/exec';
 
 function fetchSheetViaProxy(type) {
